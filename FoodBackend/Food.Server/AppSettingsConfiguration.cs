@@ -9,7 +9,7 @@
         /// </summary>
         public string ConnectionString
         {
-            get { return "Server=vt-jobs01;Database=iconbase;Uid=Food;Pwd=apk4pm5;"; }
+            get { return "Server=zbook17-mnl;Database=app;Uid=iconkeeper;Pwd=mysql;"; }
         }
     }
 }

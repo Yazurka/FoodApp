@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using Food.Server.Command;
-
+using Food.Server.Ingredient;
 using Food.Server.Query;
 
 using LightInject;
@@ -18,9 +18,10 @@ namespace Food.Server
             serviceRegistry.Register<IQueryExecutor>(factory => new QueryExecutor((IServiceFactory)serviceRegistry));
             serviceRegistry.Register<ICommandExecutor>(factory => new CommandExecutor((IServiceFactory)serviceRegistry));
             serviceRegistry.Register<IDbConnection>(factory => CreateMySqlConnection(factory), new PerScopeLifetime());
-       
 
-          
+            serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
+            serviceRegistry.Register<IIngredientService, IngredientService>();
+
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());
         }

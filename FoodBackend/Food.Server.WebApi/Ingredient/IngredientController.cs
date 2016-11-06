@@ -4,15 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Food.Server.Ingredient;
 
 namespace Food.Server.WebApi.Ingredient
 {
     public class IngredientController : ApiController
     {
-        public async Task<string> Get(string id)
+        private readonly IIngredientService m_ingredientService;
+
+        public IngredientController(IIngredientService ingredientService)
         {
-            await Task.Delay(1);
-            var result = "hello to u";
+            m_ingredientService = ingredientService;
+        }
+
+        public async Task<IEnumerable<IngredientResult>> Get(int id)
+        {
+
+            var result = await m_ingredientService.GetAllIngredients();
             return result;
         }
     }
