@@ -27,7 +27,8 @@ namespace Food.Server.Ingredient
             }
             else
             {
-                throw new NotImplementedException("Find one ingredient not implemented");
+                var result = await m_dbConnection.QueryAsync<IngredientResult>(Sql.FindIngredient,new {query.Id});
+                return result;
             }
             
         }

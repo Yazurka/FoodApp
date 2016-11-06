@@ -3,7 +3,7 @@ using System.Data;
 using Food.Server.Command;
 using Food.Server.Ingredient;
 using Food.Server.Query;
-
+using Food.Server.Services;
 using LightInject;
 using MySql.Data.MySqlClient;
 
@@ -20,8 +20,11 @@ namespace Food.Server
             serviceRegistry.Register<IDbConnection>(factory => CreateMySqlConnection(factory), new PerScopeLifetime());
 
             serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
-            serviceRegistry.Register<IIngredientService, IngredientService>();
 
+            serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
+
+            serviceRegistry.Register<IIngredientService, IngredientService>();
+            serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());
         }

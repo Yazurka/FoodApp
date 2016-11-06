@@ -68,5 +68,25 @@ namespace Food.Server {
                 return ResourceManager.GetString("AllIngredients", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
+        /// </summary>
+        internal static string FindIngredient {
+            get {
+                return ResourceManager.GetString("FindIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO app.ingredient
+        ///(Id, Name, Description) 
+        ///VALUES (@Id, @Name, @Description).
+        /// </summary>
+        internal static string InsertIngredient {
+            get {
+                return ResourceManager.GetString("InsertIngredient", resourceCulture);
+            }
+        }
     }
 }

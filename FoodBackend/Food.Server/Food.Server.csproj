@@ -71,6 +71,9 @@
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="Ingredient\IIngredientService.cs" />
+    <Compile Include="Ingredient\IngredientCommand.cs" />
+    <Compile Include="Ingredient\IngredientCommandHandler.cs" />
+    <Compile Include="Ingredient\IngredientCreateRequest.cs" />
     <Compile Include="Ingredient\IngredientQuery.cs" />
     <Compile Include="Ingredient\IngredientQueryHandler.cs" />
     <Compile Include="Ingredient\IngredientResult.cs" />
@@ -83,6 +86,8 @@
     <Compile Include="Query\IQueryExecutor.cs" />
     <Compile Include="Query\IQueryHandler.cs" />
     <Compile Include="Query\QueryExecutor.cs" />
+    <Compile Include="Services\IdGenerator.cs" />
+    <Compile Include="Services\IIdGenerator.cs" />
     <Compile Include="Sql.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,6 +99,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ingredient\InsertIngredient.sql" />
+    <Content Include="Ingredient\FindIngredient.sql" />
     <Content Include="Ingredient\AllIngredients.sql" />
   </ItemGroup>
   <ItemGroup>

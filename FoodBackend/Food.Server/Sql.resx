@@ -121,4 +121,10 @@
   <data name="AllIngredients" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\allingredients.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="FindIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ingredient\findingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="InsertIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ingredient\insertingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

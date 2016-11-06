@@ -17,10 +17,19 @@ namespace Food.Server.WebApi.Ingredient
             m_ingredientService = ingredientService;
         }
 
-        public async Task<IEnumerable<IngredientResult>> Get(int id)
+        public async Task<IngredientResult> Get(int id)
         {
-
+            var result = await m_ingredientService.FindIngredient(id);
+            return result;
+        }
+        public async Task<IEnumerable<IngredientResult>> Get()
+        {
             var result = await m_ingredientService.GetAllIngredients();
+            return result;
+        }
+        public async Task<IngredientResult> Post(IngredientCreateRequest ingredientCreateRequest)
+        {
+            var result = await m_ingredientService.PostIngredient(ingredientCreateRequest);
             return result;
         }
     }
