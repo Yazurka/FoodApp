@@ -1,0 +1,1 @@
+﻿SELECT * FROM app.dish i WHERE i.id=@id;

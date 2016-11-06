@@ -61,11 +61,29 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.dish;.
+        /// </summary>
+        internal static string AllDishes {
+            get {
+                return ResourceManager.GetString("AllDishes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient;.
         /// </summary>
         internal static string AllIngredients {
             get {
                 return ResourceManager.GetString("AllIngredients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE FROM app.dish WHERE Id=@Id.
+        /// </summary>
+        internal static string DeleteDish {
+            get {
+                return ResourceManager.GetString("DeleteDish", resourceCulture);
             }
         }
         
@@ -79,11 +97,31 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.dish i WHERE i.id=@id;.
+        /// </summary>
+        internal static string FindDish {
+            get {
+                return ResourceManager.GetString("FindDish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
         /// </summary>
         internal static string FindIngredient {
             get {
                 return ResourceManager.GetString("FindIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO app.dish
+        ///(Id, Name, Description) 
+        ///VALUES (@Id, @Name, @Description).
+        /// </summary>
+        internal static string InsertDish {
+            get {
+                return ResourceManager.GetString("InsertDish", resourceCulture);
             }
         }
         

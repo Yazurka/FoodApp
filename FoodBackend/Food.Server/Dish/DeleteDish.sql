@@ -1,0 +1,1 @@
+﻿DELETE FROM app.dish WHERE Id=@Id
