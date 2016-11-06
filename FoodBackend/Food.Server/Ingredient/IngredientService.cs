@@ -46,9 +46,9 @@ namespace Food.Server.Ingredient
             return postedIngredient;
         }
 
-        public Task DeleteIngredient(int id)
+        public async Task DeleteIngredient(int id)
         {
-            throw new NotImplementedException();
+            await m_commandExecutor.ExecuteAsync(new DeleteIngredientCommand { Id = id });
         }
 
         private IngredientCommand CreateIngredientCommand(IngredientCreateRequest ingredientRequest)

@@ -70,6 +70,8 @@
     <Compile Include="AppSettingsConfiguration.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="IConfiguration.cs" />
+    <Compile Include="Ingredient\DeleteIngredientCommand.cs" />
+    <Compile Include="Ingredient\DeleteIngredientCommandHandler.cs" />
     <Compile Include="Ingredient\IIngredientService.cs" />
     <Compile Include="Ingredient\IngredientCommand.cs" />
     <Compile Include="Ingredient\IngredientCommandHandler.cs" />
@@ -99,6 +101,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ingredient\DeleteIngredient.sql" />
     <Content Include="Ingredient\InsertIngredient.sql" />
     <Content Include="Ingredient\FindIngredient.sql" />
     <Content Include="Ingredient\AllIngredients.sql" />

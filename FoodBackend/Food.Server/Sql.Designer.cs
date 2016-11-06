@@ -70,6 +70,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE FROM app.ingredient WHERE Id=@Id.
+        /// </summary>
+        internal static string DeleteIngredient {
+            get {
+                return ResourceManager.GetString("DeleteIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
         /// </summary>
         internal static string FindIngredient {

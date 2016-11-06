@@ -22,6 +22,7 @@ namespace Food.Server
             serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<DeleteIngredientCommand>, DeleteIngredientCommandHandler>();
 
             serviceRegistry.Register<IIngredientService, IngredientService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());

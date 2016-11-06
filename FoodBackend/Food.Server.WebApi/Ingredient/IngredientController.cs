@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Food.Server.Ingredient;
 
@@ -31,6 +32,11 @@ namespace Food.Server.WebApi.Ingredient
         {
             var result = await m_ingredientService.PostIngredient(ingredientCreateRequest);
             return result;
+        }
+
+        public async Task Delete(int id)
+        {
+            await m_ingredientService.DeleteIngredient(id);
         }
     }
 }
