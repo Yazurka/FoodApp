@@ -88,6 +88,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.recipe;.
+        /// </summary>
+        internal static string AllRecipes {
+            get {
+                return ResourceManager.GetString("AllRecipes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DELETE FROM app.dish WHERE Id=@Id.
         /// </summary>
         internal static string DeleteDish {
@@ -115,6 +124,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELETE FROM app.recipe WHERE Id=@Id.
+        /// </summary>
+        internal static string DeleteRecipe {
+            get {
+                return ResourceManager.GetString("DeleteRecipe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.dish i WHERE i.id=@id;.
         /// </summary>
         internal static string FindDish {
@@ -138,6 +156,15 @@ namespace Food.Server {
         internal static string FindIngredient {
             get {
                 return ResourceManager.GetString("FindIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.recipe i WHERE i.id=@id;.
+        /// </summary>
+        internal static string FindRecipe {
+            get {
+                return ResourceManager.GetString("FindRecipe", resourceCulture);
             }
         }
         
@@ -171,6 +198,17 @@ namespace Food.Server {
         internal static string InsertIngredient {
             get {
                 return ResourceManager.GetString("InsertIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO app.recipe
+        ///(Id, Dish_id_fk, Description, Description_short, Difficulty, Duration ) 
+        ///VALUES (@Id, @DishId, @Description, @DescriptionShort, @Difficulty, @Duration).
+        /// </summary>
+        internal static string InsertRecipe {
+            get {
+                return ResourceManager.GetString("InsertRecipe", resourceCulture);
             }
         }
     }

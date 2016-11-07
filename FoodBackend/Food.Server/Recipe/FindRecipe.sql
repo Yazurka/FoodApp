@@ -1,0 +1,1 @@
+﻿SELECT * FROM app.recipe i WHERE i.id=@id;

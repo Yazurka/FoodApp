@@ -1,0 +1,1 @@
+﻿DELETE FROM app.recipe WHERE Id=@Id

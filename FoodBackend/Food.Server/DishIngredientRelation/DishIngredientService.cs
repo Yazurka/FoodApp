@@ -54,8 +54,8 @@ namespace Food.Server.DishIngredientRelation
                 Id = m_idGenerator.GenerateId(),
                 Amount = dishIngredientRequest.Amount,
                 Unit = dishIngredientRequest.Unit,
-                Dish_id_fk = dishIngredientRequest.Dish_id_fk,
-                Ingredient_id_fk = dishIngredientRequest.Ingredient_id_fk
+                Dish_id_fk = dishIngredientRequest.DishId,
+                Ingredient_id_fk = dishIngredientRequest.IngredientId
                     
             };
             return dishIngredientCommand;

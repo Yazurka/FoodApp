@@ -154,4 +154,16 @@
   <data name="DeleteDishIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dishingredientrelation\deletedishingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="AllRecipes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>recipe\allrecipes.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FindRecipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>recipe\findrecipe.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="InsertRecipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>recipe\insertrecipe.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DeleteRecipe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>recipe\deleterecipe.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

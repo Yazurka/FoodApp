@@ -138,6 +138,7 @@
     <Compile Include="Ingredient\IngredientController.cs" />
     <Compile Include="Ping\PingController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe\RecipeController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

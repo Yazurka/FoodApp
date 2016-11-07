@@ -108,6 +108,16 @@
     <Compile Include="Query\IQueryExecutor.cs" />
     <Compile Include="Query\IQueryHandler.cs" />
     <Compile Include="Query\QueryExecutor.cs" />
+    <Compile Include="Recipe\DeleteRecipeCommand.cs" />
+    <Compile Include="Recipe\DeleteRecipeCommandHandler.cs" />
+    <Compile Include="Recipe\IRecipeService.cs" />
+    <Compile Include="Recipe\RecipeCommand.cs" />
+    <Compile Include="Recipe\RecipeCommandHandler.cs" />
+    <Compile Include="Recipe\RecipeCreateRequest.cs" />
+    <Compile Include="Recipe\RecipeQuery.cs" />
+    <Compile Include="Recipe\RecipeQueryHandler.cs" />
+    <Compile Include="Recipe\RecipeResult.cs" />
+    <Compile Include="Recipe\RecipeService.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\IIdGenerator.cs" />
     <Compile Include="Sql.Designer.cs">
@@ -133,6 +143,10 @@
     <Content Include="Ingredient\InsertIngredient.sql" />
     <Content Include="Ingredient\FindIngredient.sql" />
     <Content Include="Ingredient\AllIngredients.sql" />
+    <Content Include="Recipe\AllRecipes.sql" />
+    <Content Include="Recipe\DeleteRecipe.sql" />
+    <Content Include="Recipe\FindRecipe.sql" />
+    <Content Include="Recipe\InsertRecipe.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sql.resx">
