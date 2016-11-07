@@ -1,0 +1,1 @@
+﻿SELECT * FROM app.dish_ingredient i WHERE i.id=@id;

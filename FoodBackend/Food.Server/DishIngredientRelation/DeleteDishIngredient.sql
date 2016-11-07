@@ -1,0 +1,1 @@
+﻿DELETE FROM app.dish_ingredient WHERE Id=@Id

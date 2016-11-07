@@ -2,6 +2,7 @@
 using System.Data;
 using Food.Server.Command;
 using Food.Server.Dish;
+using Food.Server.DishIngredientRelation;
 using Food.Server.Ingredient;
 using Food.Server.Query;
 using Food.Server.Services;
@@ -22,14 +23,18 @@ namespace Food.Server
 
             serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishQuery, IEnumerable<DishResult>>, DishQueryHandler>();
+            serviceRegistry.Register<IQueryHandler<DishIngredientQuery, IEnumerable<DishIngredientResult>>, DishIngredientQueryHandler>();
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DishCommand>, DishCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<DishIngredientCommand>, DishIngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteIngredientCommand>, DeleteIngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteDishCommand>, DeleteDishCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<DeleteDishIngredientCommand>, DeleteDishIngredientCommandHandler>();
 
             serviceRegistry.Register<IIngredientService, IngredientService>();
             serviceRegistry.Register<IDishService, DishService>();
+            serviceRegistry.Register<IDishIngredientService, DishIngredientService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());

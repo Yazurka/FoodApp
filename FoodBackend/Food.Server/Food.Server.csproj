@@ -69,6 +69,16 @@
   <ItemGroup>
     <Compile Include="AppSettingsConfiguration.cs" />
     <Compile Include="CompositionRoot.cs" />
+    <Compile Include="DishIngredientRelation\DeleteDishIngredientCommand.cs" />
+    <Compile Include="DishIngredientRelation\DeleteDishIngredientCommandHandler.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientCommand.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientCommandHandler.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientCreateRequest.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientQuery.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientQueryHandler.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientResult.cs" />
+    <Compile Include="DishIngredientRelation\DishIngredientService.cs" />
+    <Compile Include="DishIngredientRelation\IDishIngredientService.cs" />
     <Compile Include="Dish\DeleteDishCommand.cs" />
     <Compile Include="Dish\DeleteDishCommandHandler.cs" />
     <Compile Include="Dish\DishCommand.cs" />
@@ -111,6 +121,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DishIngredientRelation\AllDishIngredients.sql" />
+    <Content Include="DishIngredientRelation\DeleteDishIngredient.sql" />
+    <Content Include="DishIngredientRelation\FindDishIngredient.sql" />
+    <Content Include="DishIngredientRelation\InsertDishIngredient.sql" />
     <Content Include="Dish\AllDishes.sql" />
     <Content Include="Dish\DeleteDish.sql" />
     <Content Include="Dish\FindDish.sql" />

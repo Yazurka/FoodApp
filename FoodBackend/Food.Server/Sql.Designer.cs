@@ -70,6 +70,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.dish_ingredient;.
+        /// </summary>
+        internal static string AllDishIngredients {
+            get {
+                return ResourceManager.GetString("AllDishIngredients", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient;.
         /// </summary>
         internal static string AllIngredients {
@@ -84,6 +93,15 @@ namespace Food.Server {
         internal static string DeleteDish {
             get {
                 return ResourceManager.GetString("DeleteDish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE FROM app.dish_ingredient WHERE Id=@Id.
+        /// </summary>
+        internal static string DeleteDishIngredient {
+            get {
+                return ResourceManager.GetString("DeleteDishIngredient", resourceCulture);
             }
         }
         
@@ -106,6 +124,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT * FROM app.dish_ingredient i WHERE i.id=@id;.
+        /// </summary>
+        internal static string FindDishIngredient {
+            get {
+                return ResourceManager.GetString("FindDishIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
         /// </summary>
         internal static string FindIngredient {
@@ -122,6 +149,17 @@ namespace Food.Server {
         internal static string InsertDish {
             get {
                 return ResourceManager.GetString("InsertDish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO app.dish_ingredient
+        ///(Id, Amount, Unit, Ingredient_id_fk, Dish_id_fk) 
+        ///VALUES (@Id, @Amount, @Unit, @Ingredient_id_fk, @Dish_id_fk).
+        /// </summary>
+        internal static string InsertDishIngredient {
+            get {
+                return ResourceManager.GetString("InsertDishIngredient", resourceCulture);
             }
         }
         
