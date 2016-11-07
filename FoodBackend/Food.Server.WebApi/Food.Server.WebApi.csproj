@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="Dish\DishController.cs" />
     <Compile Include="Ingredient\IngredientController.cs" />
     <Compile Include="Ping\PingController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

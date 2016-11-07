@@ -29,6 +29,7 @@ namespace Food.Server
             serviceRegistry.Register<ICommandHandler<DeleteDishCommand>, DeleteDishCommandHandler>();
 
             serviceRegistry.Register<IIngredientService, IngredientService>();
+            serviceRegistry.Register<IDishService, DishService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());
