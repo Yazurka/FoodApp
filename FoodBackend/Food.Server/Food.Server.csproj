@@ -79,6 +79,10 @@
     <Compile Include="DishIngredientRelation\DishIngredientResult.cs" />
     <Compile Include="DishIngredientRelation\DishIngredientService.cs" />
     <Compile Include="DishIngredientRelation\IDishIngredientService.cs" />
+    <Compile Include="DishTag\DishTagQuery.cs" />
+    <Compile Include="DishTag\DishTagQueryHandler.cs" />
+    <Compile Include="DishTag\DishTagService.cs" />
+    <Compile Include="DishTag\IDishTagService.cs" />
     <Compile Include="Dish\DeleteDishCommand.cs" />
     <Compile Include="Dish\DeleteDishCommandHandler.cs" />
     <Compile Include="Dish\DishCommand.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Dish\DishCreateRequest.cs" />
     <Compile Include="Dish\DishQuery.cs" />
     <Compile Include="Dish\DishQueryHandler.cs" />
+    <Compile Include="Dish\Dish.cs" />
     <Compile Include="Dish\DishResult.cs" />
     <Compile Include="Dish\DishService.cs" />
     <Compile Include="Dish\IDishService.cs" />
@@ -108,23 +113,23 @@
     <Compile Include="Query\IQueryExecutor.cs" />
     <Compile Include="Query\IQueryHandler.cs" />
     <Compile Include="Query\QueryExecutor.cs" />
-    <Compile Include="Recipe\DeleteRecipeCommand.cs" />
-    <Compile Include="Recipe\DeleteRecipeCommandHandler.cs" />
-    <Compile Include="Recipe\IRecipeService.cs" />
-    <Compile Include="Recipe\RecipeCommand.cs" />
-    <Compile Include="Recipe\RecipeCommandHandler.cs" />
-    <Compile Include="Recipe\RecipeCreateRequest.cs" />
-    <Compile Include="Recipe\RecipeQuery.cs" />
-    <Compile Include="Recipe\RecipeQueryHandler.cs" />
-    <Compile Include="Recipe\RecipeResult.cs" />
-    <Compile Include="Recipe\RecipeService.cs" />
-    <Compile Include="Services\IdGenerator.cs" />
-    <Compile Include="Services\IIdGenerator.cs" />
     <Compile Include="Sql.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Sql.resx</DependentUpon>
     </Compile>
+    <Compile Include="Tag\DeleteTagCommand.cs" />
+    <Compile Include="Tag\DeleteTagCommandHandler.cs" />
+    <Compile Include="Tag\ITagService.cs" />
+    <Compile Include="Tag\TagCommand.cs" />
+    <Compile Include="Tag\TagCommandHandler.cs" />
+    <Compile Include="Tag\TagCreateRequest.cs" />
+    <Compile Include="Tag\TagQuery.cs" />
+    <Compile Include="Tag\TagQueryHandler.cs" />
+    <Compile Include="Tag\TagResult.cs" />
+    <Compile Include="Tag\TagService.cs" />
+    <Compile Include="Services\IdGenerator.cs" />
+    <Compile Include="Services\IIdGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -135,6 +140,7 @@
     <Content Include="DishIngredientRelation\DeleteDishIngredient.sql" />
     <Content Include="DishIngredientRelation\FindDishIngredient.sql" />
     <Content Include="DishIngredientRelation\InsertDishIngredient.sql" />
+    <Content Include="DishTag\FindTagsForDish.sql" />
     <Content Include="Dish\AllDishes.sql" />
     <Content Include="Dish\DeleteDish.sql" />
     <Content Include="Dish\FindDish.sql" />
@@ -143,10 +149,10 @@
     <Content Include="Ingredient\InsertIngredient.sql" />
     <Content Include="Ingredient\FindIngredient.sql" />
     <Content Include="Ingredient\AllIngredients.sql" />
-    <Content Include="Recipe\AllRecipes.sql" />
-    <Content Include="Recipe\DeleteRecipe.sql" />
-    <Content Include="Recipe\FindRecipe.sql" />
-    <Content Include="Recipe\InsertRecipe.sql" />
+    <Content Include="Tag\AllTags.sql" />
+    <Content Include="Tag\DeleteTag.sql" />
+    <Content Include="Tag\FindTag.sql" />
+    <Content Include="Tag\InsertTag.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sql.resx">
@@ -154,6 +160,7 @@
       <LastGenOutput>Sql.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

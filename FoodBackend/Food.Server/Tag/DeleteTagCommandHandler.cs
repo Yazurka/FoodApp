@@ -6,21 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Food.Server.Command;
+using Food.Server.Tag;
 
-namespace Food.Server.Recipe
+namespace Food.Server.Tag
 {
-    public class DeleteRecipeCommandHandler : ICommandHandler<DeleteRecipeCommand>
+    public class DeleteTagCommandHandler : ICommandHandler<DeleteTagCommand>
     {
         private readonly IDbConnection m_dbConnection;
 
-        public DeleteRecipeCommandHandler(IDbConnection dbConnection)
+        public DeleteTagCommandHandler(IDbConnection dbConnection)
         {
             m_dbConnection = dbConnection;
         }
 
-        public async Task HandleAsync(DeleteRecipeCommand command)
+        public async Task HandleAsync(DeleteTagCommand command)
         {
-            await m_dbConnection.ExecuteAsync(Sql.DeleteRecipe, command);
+            await m_dbConnection.ExecuteAsync(Sql.DeleteTag, command);
         }
     }
 }

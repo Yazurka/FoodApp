@@ -1,3 +1,3 @@
 ﻿INSERT INTO app.dish
-(Id, Name, Description) 
-VALUES (@Id, @Name, @Description)
+(Id, Name, Description, Recipe, Difficulty, Duration) 
+VALUES (@Id, @Name, @Description, @Recipe, @Difficulty, @Duration)

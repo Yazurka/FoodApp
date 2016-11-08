@@ -88,11 +88,11 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.recipe;.
+        ///   Looks up a localized string similar to SELECT * FROM app.tag;.
         /// </summary>
-        internal static string AllRecipes {
+        internal static string AllTags {
             get {
-                return ResourceManager.GetString("AllRecipes", resourceCulture);
+                return ResourceManager.GetString("AllTags", resourceCulture);
             }
         }
         
@@ -124,11 +124,11 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.recipe WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM app.tag WHERE Id=@Id.
         /// </summary>
-        internal static string DeleteRecipe {
+        internal static string DeleteTag {
             get {
-                return ResourceManager.GetString("DeleteRecipe", resourceCulture);
+                return ResourceManager.GetString("DeleteTag", resourceCulture);
             }
         }
         
@@ -160,18 +160,30 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.recipe i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM app.tag i WHERE i.id=@id;.
         /// </summary>
-        internal static string FindRecipe {
+        internal static string FindTag {
             get {
-                return ResourceManager.GetString("FindRecipe", resourceCulture);
+                return ResourceManager.GetString("FindTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT t.Id, t.Name 
+        ///FROM app.tag t, app.dish_tag dt 
+        ///WHERE t.id=dt.Tag_id_fk 
+        ///and dt.Dish_id_fk = @id;.
+        /// </summary>
+        internal static string FindTagsForDish {
+            get {
+                return ResourceManager.GetString("FindTagsForDish", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to INSERT INTO app.dish
-        ///(Id, Name, Description) 
-        ///VALUES (@Id, @Name, @Description).
+        ///(Id, Name, Description, Recipe, Difficulty, Duration) 
+        ///VALUES (@Id, @Name, @Description, @Recipe, @Difficulty, @Duration).
         /// </summary>
         internal static string InsertDish {
             get {
@@ -202,13 +214,13 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.recipe
-        ///(Id, Dish_id_fk, Description, Description_short, Difficulty, Duration ) 
-        ///VALUES (@Id, @DishId, @Description, @DescriptionShort, @Difficulty, @Duration).
+        ///   Looks up a localized string similar to INSERT INTO app.tag
+        ///(Id, Name) 
+        ///VALUES (@Id, @Name).
         /// </summary>
-        internal static string InsertRecipe {
+        internal static string InsertTag {
             get {
-                return ResourceManager.GetString("InsertRecipe", resourceCulture);
+                return ResourceManager.GetString("InsertTag", resourceCulture);
             }
         }
     }

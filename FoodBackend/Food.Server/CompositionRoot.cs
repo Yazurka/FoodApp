@@ -3,10 +3,11 @@ using System.Data;
 using Food.Server.Command;
 using Food.Server.Dish;
 using Food.Server.DishIngredientRelation;
+using Food.Server.DishTag;
 using Food.Server.Ingredient;
 using Food.Server.Query;
-using Food.Server.Recipe;
 using Food.Server.Services;
+using Food.Server.Tag;
 using LightInject;
 using MySql.Data.MySqlClient;
 
@@ -25,7 +26,8 @@ namespace Food.Server
             serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishQuery, IEnumerable<DishResult>>, DishQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishIngredientQuery, IEnumerable<DishIngredientResult>>, DishIngredientQueryHandler>();
-            serviceRegistry.Register<IQueryHandler<RecipeQuery, IEnumerable<RecipeResult>>, RecipeQueryHandler>();
+            serviceRegistry.Register<IQueryHandler<TagQuery, IEnumerable<TagResult>>, TagQueryHandler>();
+            serviceRegistry.Register<IQueryHandler<DishTagQuery, IEnumerable<TagResult>>, DishTagQueryHandler>();
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DishCommand>, DishCommandHandler>();
@@ -33,13 +35,14 @@ namespace Food.Server
             serviceRegistry.Register<ICommandHandler<DeleteIngredientCommand>, DeleteIngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteDishCommand>, DeleteDishCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteDishIngredientCommand>, DeleteDishIngredientCommandHandler>();
-            serviceRegistry.Register<ICommandHandler<RecipeCommand>, RecipeCommandHandler>();
-            serviceRegistry.Register<ICommandHandler<DeleteRecipeCommand>, DeleteRecipeCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<TagCommand>, TagCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<DeleteTagCommand>, DeleteTagCommandHandler>();
 
             serviceRegistry.Register<IIngredientService, IngredientService>();
             serviceRegistry.Register<IDishService, DishService>();
+            serviceRegistry.Register<IDishTagService, DishTagService>();
             serviceRegistry.Register<IDishIngredientService, DishIngredientService>();
-            serviceRegistry.Register<IRecipeService, RecipeService>();
+            serviceRegistry.Register<ITagService, TagService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());

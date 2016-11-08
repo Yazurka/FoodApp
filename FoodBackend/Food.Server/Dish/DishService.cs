@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Food.Server.Command;
+using Food.Server.DishTag;
 using Food.Server.Query;
 using Food.Server.Services;
+using Food.Server.Tag;
 
 namespace Food.Server.Dish
 {
@@ -14,18 +16,38 @@ namespace Food.Server.Dish
         private readonly IQueryExecutor m_queryExecutor;
         private readonly ICommandExecutor m_commandExecutor;
         private readonly IIdGenerator m_idGenerator;
+        private readonly IDishTagService m_dishTagService;
 
-        public DishService(IQueryExecutor queryExecutor, ICommandExecutor commandExecutor, IIdGenerator idGenerator)
+        public DishService(IQueryExecutor queryExecutor, ICommandExecutor commandExecutor, IIdGenerator idGenerator, IDishTagService dishTagService)
         {
             m_queryExecutor = queryExecutor;
             m_commandExecutor = commandExecutor;
             m_idGenerator = idGenerator;
+            m_dishTagService = dishTagService;
         }
 
-        public async Task<IEnumerable<DishResult>> GetAllDishes()
+        public async Task<IEnumerable<Dish>> GetAllDishes()
         {
-            var result = await m_queryExecutor.HandleAsync(new DishQuery());
-            return result;
+            var dishResults = await m_queryExecutor.HandleAsync(new DishQuery());
+            var dishes = new List<Dish>();
+            foreach (var dishResult in dishResults)
+            {
+                //TODO: Finn bedre løsning på sql spørring
+                IEnumerable<TagResult> tags = await m_dishTagService.FindTagsForDish(dishResult.Id);
+                dishes.Add(new Dish
+                {
+                    Id = dishResult.Id,
+                    Name = dishResult.Name,
+                    Description = dishResult.Description,
+                    Recipe = dishResult.Recipe,
+                    Difficulty = dishResult.Difficulty,
+                    Duration = dishResult.Duration,
+                    Tags = tags
+
+                });
+            }
+            
+            return dishes;
         }
 
         public async Task<DishResult> FindDish(int id)
@@ -48,9 +70,16 @@ namespace Food.Server.Dish
         {
             await m_commandExecutor.ExecuteAsync(new DeleteDishCommand { Id = id });
         }
-        private DishCommand CreateDishCommand(DishCreateRequest ingredientRequest)
+        private DishCommand CreateDishCommand(DishCreateRequest dishRequest)
         {
-            var dishCommand = new DishCommand { Id = m_idGenerator.GenerateId(), Name = ingredientRequest.Name, Description = ingredientRequest.Description };
+            var dishCommand = new DishCommand {
+                Id = m_idGenerator.GenerateId(),
+                Name = dishRequest.Name,
+                Description = dishRequest.Description,
+                Recipe = dishRequest.Recipe,
+                Difficulty = dishRequest.Difficulty,
+                Duration = dishRequest.Duration
+            };
             return dishCommand;
         }
     }

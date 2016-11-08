@@ -22,11 +22,12 @@ namespace Food.Server.WebApi.Dish
             var result = await m_dishService.FindDish(id);
             return result;
         }
-        public async Task<IEnumerable<DishResult>> Get()
+        public async Task<IEnumerable<Server.Dish.Dish>> Get()
         {
             var result = await m_dishService.GetAllDishes();
             return result;
         }
+       
         public async Task<DishResult> Post(DishCreateRequest dishCreateRequest)
         {
             var result = await m_dishService.PostDish(dishCreateRequest);
