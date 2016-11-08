@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Food.Server.Command;
+using Food.Server.DishIngredientRelation;
 using Food.Server.DishTag;
 using Food.Server.Query;
 using Food.Server.Services;
@@ -17,13 +18,15 @@ namespace Food.Server.Dish
         private readonly ICommandExecutor m_commandExecutor;
         private readonly IIdGenerator m_idGenerator;
         private readonly IDishTagService m_dishTagService;
+        private readonly IDishIngredientService m_dishIngredientService;
 
-        public DishService(IQueryExecutor queryExecutor, ICommandExecutor commandExecutor, IIdGenerator idGenerator, IDishTagService dishTagService)
+        public DishService(IQueryExecutor queryExecutor, ICommandExecutor commandExecutor, IIdGenerator idGenerator, IDishTagService dishTagService, IDishIngredientService dishIngredientService)
         {
             m_queryExecutor = queryExecutor;
             m_commandExecutor = commandExecutor;
             m_idGenerator = idGenerator;
             m_dishTagService = dishTagService;
+            m_dishIngredientService = dishIngredientService;
         }
 
         public async Task<IEnumerable<Dish>> GetAllDishes()
@@ -62,6 +65,8 @@ namespace Food.Server.Dish
             var dishCommand = CreateDishCommand(dish);
 
             await m_commandExecutor.ExecuteAsync(dishCommand);
+            await m_dishTagService.AddTagsToDish(dishCommand.Id, dish.TagIds);
+            await m_dishIngredientService.AddIngredientsToDish(dishCommand.Id, dish.DishIngredients);
 
             var postedDish = await FindDish(dishCommand.Id);
             return postedDish;

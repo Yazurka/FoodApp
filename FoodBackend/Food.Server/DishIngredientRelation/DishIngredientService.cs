@@ -34,31 +34,31 @@ namespace Food.Server.DishIngredientRelation
             return result;
         }
 
-        public async Task<DishIngredientResult> PostDishIngredient(DishIngredientCreateRequest dishIngredient)
-        {
-            var dishIngredientCommand = CreateIngredientCommand(dishIngredient);
-            await m_commandExecutor.ExecuteAsync(dishIngredientCommand);
-            var postedDishIngredient = await FindDishIngredient(dishIngredientCommand.Id);
-            return postedDishIngredient;
-        }
-
         public async Task DeleteDishIngredient(int id)
         {
             await m_commandExecutor.ExecuteAsync(new DeleteDishIngredientCommand { Id = id });
         }
 
-        private DishIngredientCommand CreateIngredientCommand(DishIngredientCreateRequest dishIngredientRequest)
+        public async Task AddIngredientsToDish(int dishId, DishIngredientCreateRequest[] dishIngredients)
         {
-            var dishIngredientCommand = new DishIngredientCommand
+            List<DishIngredientCommand> dishIngredientCommands = new List<DishIngredientCommand>();
+            foreach (var dishIngredient in dishIngredients)
             {
-                Id = m_idGenerator.GenerateId(),
-                Amount = dishIngredientRequest.Amount,
-                Unit = dishIngredientRequest.Unit,
-                Dish_id_fk = dishIngredientRequest.DishId,
-                Ingredient_id_fk = dishIngredientRequest.IngredientId
-                    
-            };
-            return dishIngredientCommand;
+                dishIngredientCommands.Add(new DishIngredientCommand
+                {
+                    Id = m_idGenerator.GenerateId(),
+                    Dish_id_fk = dishId,
+                    Ingredient_id_fk = dishIngredient.IngredientId,
+                    Unit = dishIngredient.Unit,
+                    Amount = dishIngredient.Amount
+                });
+            }
+            //TODO: forbedre med tanke på loop av insert sql
+            foreach (var dishIngredientCommand in dishIngredientCommands)
+            {
+                await m_commandExecutor.ExecuteAsync(dishIngredientCommand);
+            }
         }
+
     }
 }

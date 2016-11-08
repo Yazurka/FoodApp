@@ -22,15 +22,14 @@ namespace Food.Server.WebApi.DishIngredient
             var result = await m_dishIngredientService.FindDishIngredient(id);
             return result;
         }
-        public async Task<IEnumerable<DishIngredientResult>> Get()
+        public async Task<IEnumerable<DishIngredientResult>> Get()  
         {
             var result = await m_dishIngredientService.GetAllDishIngredients();
             return result;
         }
-        public async Task<DishIngredientResult> Post(DishIngredientCreateRequest dishCreateRequest)
+        public async Task Post([FromUri]int dishId, [FromBody]DishIngredientCreateRequest[] dishIngredientsCreateRequest)
         {
-            var result = await m_dishIngredientService.PostDishIngredient(dishCreateRequest);
-            return result;
+          await m_dishIngredientService.AddIngredientsToDish(dishId, dishIngredientsCreateRequest);
         }
         public async Task Delete(int id)
         {

@@ -10,7 +10,7 @@ namespace Food.Server.DishIngredientRelation
     {
         Task<IEnumerable<DishIngredientResult>> GetAllDishIngredients();
         Task<DishIngredientResult> FindDishIngredient(int id);
-        Task<DishIngredientResult> PostDishIngredient(DishIngredientCreateRequest dishIngredient);
         Task DeleteDishIngredient(int id);
+        Task AddIngredientsToDish(int dishId, DishIngredientCreateRequest[] dishIngredients);
     }
 }
