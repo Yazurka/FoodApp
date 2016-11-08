@@ -28,6 +28,7 @@ namespace Food.Server.Dish
 
         public async Task<IEnumerable<Dish>> GetAllDishes()
         {
+           
             var dishResults = await m_queryExecutor.HandleAsync(new DishQuery());
             var dishes = new List<Dish>();
             foreach (var dishResult in dishResults)

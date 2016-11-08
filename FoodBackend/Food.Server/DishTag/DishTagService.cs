@@ -28,5 +28,24 @@ namespace Food.Server.DishTag
             var result = await m_queryExecutor.HandleAsync(new DishTagQuery { Id = dishId });
             return result;
         }
+
+        public async Task AddTagsToDish(int dishId, int[] TagIds)
+        {
+            List<DishTagCommand> dishTagCommands = new List<DishTagCommand>();
+            foreach (var tagId in TagIds)
+            {
+                dishTagCommands.Add(new DishTagCommand
+                {
+                    Id = m_idGenerator.GenerateId(),
+                    Dish_id_fk = dishId,
+                    Tag_id_fk = tagId
+                });
+            }
+            //TODO: forbedre med tanke på sql
+            foreach (var dishTagCommand in dishTagCommands)
+            {
+                await m_commandExecutor.ExecuteAsync(dishTagCommand);
+            }
+        }
     }
 }

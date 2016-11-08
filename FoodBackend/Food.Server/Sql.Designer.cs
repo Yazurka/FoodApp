@@ -203,6 +203,17 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to INSERT INTO app.dish_tag
+        ///(Id, Dish_id_fk, Tag_id_fk) 
+        ///VALUES (@Id, @Dish_id_fk, @Tag_id_fk).
+        /// </summary>
+        internal static string InsertDishTag {
+            get {
+                return ResourceManager.GetString("InsertDishTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to INSERT INTO app.ingredient
         ///(Id, Name, Description) 
         ///VALUES (@Id, @Name, @Description).
