@@ -8,5 +8,6 @@ namespace Food.Server.DishTag
     {
          Task<IEnumerable<TagResult>> FindTagsForDish(int dishId);
          Task AddTagsToDish(int dishId, int[]TagIds);
+         Task RemoveTagsFromDish(int[]dishTagIds);
     }
 }

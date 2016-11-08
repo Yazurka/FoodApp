@@ -1,0 +1,1 @@
+﻿DELETE FROM app.dish_tag WHERE Id=@Id

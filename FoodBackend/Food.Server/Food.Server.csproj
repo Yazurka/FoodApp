@@ -79,6 +79,8 @@
     <Compile Include="DishIngredientRelation\DishIngredientResult.cs" />
     <Compile Include="DishIngredientRelation\DishIngredientService.cs" />
     <Compile Include="DishIngredientRelation\IDishIngredientService.cs" />
+    <Compile Include="DishTag\DeleteDishTagCommand.cs" />
+    <Compile Include="DishTag\DeleteDishTagCommandHandler.cs" />
     <Compile Include="DishTag\DishTagCommand.cs" />
     <Compile Include="DishTag\DishTagCommandHandler.cs" />
     <Compile Include="DishTag\DishTagQuery.cs" />
@@ -142,6 +144,7 @@
     <Content Include="DishIngredientRelation\DeleteDishIngredient.sql" />
     <Content Include="DishIngredientRelation\FindDishIngredient.sql" />
     <Content Include="DishIngredientRelation\InsertDishIngredient.sql" />
+    <Content Include="DishTag\DeleteDishTag.sql" />
     <Content Include="DishTag\FindTagsForDish.sql" />
     <Content Include="DishTag\InsertDishTag.sql" />
     <Content Include="Dish\AllDishes.sql" />

@@ -47,5 +47,23 @@ namespace Food.Server.DishTag
                 await m_commandExecutor.ExecuteAsync(dishTagCommand);
             }
         }
+
+        public async Task RemoveTagsFromDish(int[] dishTagIds)
+        {
+            List<DeleteDishTagCommand> deleteDishTagCommands = new List<DeleteDishTagCommand>();
+            foreach (var tagId in dishTagIds)
+            {
+                deleteDishTagCommands.Add(new DeleteDishTagCommand
+                {
+                    Id = tagId,
+                    
+                });
+            }
+            //TODO: forbedre med tanke på loop sql
+            foreach (var deleteDishTagCommand in deleteDishTagCommands)
+            {
+                await m_commandExecutor.ExecuteAsync(deleteDishTagCommand);
+            }
+        }
     }
 }
