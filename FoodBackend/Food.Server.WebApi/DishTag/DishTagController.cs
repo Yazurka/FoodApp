@@ -22,7 +22,7 @@ namespace Food.Server.WebApi.DishTag
         {
             await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
         }
-        public async Task Delete(int dishId, int[] tagIds)
+        public async Task Delete([FromUri]int dishId, [FromUri]int[] tagIds)
         {
             await m_dishTagService.RemoveTagsFromDish(dishId,tagIds);
         }
