@@ -28,9 +28,9 @@ namespace Food.Server.DishIngredientRelation
             return result;
         }
 
-        public async Task<DishIngredientResult> FindDishIngredient(int id)
+        public async Task<DishIngredientResult> FindIngredientForDish(int dishId)
         {
-            var result = (await m_queryExecutor.HandleAsync(new DishIngredientQuery { Id = id })).FirstOrDefault();
+            var result = (await m_queryExecutor.HandleAsync(new DishIngredientQuery { Id = dishId })).FirstOrDefault();
             return result;
         }
 
@@ -53,11 +53,9 @@ namespace Food.Server.DishIngredientRelation
                     Amount = dishIngredient.Amount
                 });
             }
-            //TODO: forbedre med tanke på loop av insert sql
-            foreach (var dishIngredientCommand in dishIngredientCommands)
-            {
-                await m_commandExecutor.ExecuteAsync(dishIngredientCommand);
-            }
+
+            await m_commandExecutor.ExecuteAsync(dishIngredientCommands.AsEnumerable());
+            
         }
 
     }

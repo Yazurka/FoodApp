@@ -19,7 +19,7 @@ namespace Food.Server.WebApi.DishIngredient
 
         public async Task<DishIngredientResult> Get(int id)
         {
-            var result = await m_dishIngredientService.FindDishIngredient(id);
+            var result = await m_dishIngredientService.FindIngredientForDish(id);
             return result;
         }
         public async Task<IEnumerable<DishIngredientResult>> Get()  
@@ -29,9 +29,9 @@ namespace Food.Server.WebApi.DishIngredient
         }
         public async Task Post([FromUri]int dishId, [FromBody]DishIngredientCreateRequest[] dishIngredientsCreateRequest)
         {
-          await m_dishIngredientService.AddIngredientsToDish(dishId, dishIngredientsCreateRequest);
+            await m_dishIngredientService.AddIngredientsToDish(dishId, dishIngredientsCreateRequest);
         }
-       
+
         public async Task Delete(int id)
         {
             await m_dishIngredientService.DeleteDishIngredient(id);

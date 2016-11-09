@@ -27,7 +27,7 @@ namespace Food.Server.DishIngredientRelation
             }
             else
             {
-                var result = await m_dbConnection.QueryAsync<DishIngredientResult>(Sql.FindDishIngredient, new { query.Id });
+                var result = await m_dbConnection.QueryAsync<DishIngredientResult>(Sql.FindIngredientForDish, new { query.Id });
                 return result;
             }
         }

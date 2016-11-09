@@ -115,7 +115,9 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.dish_tag WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM app.dish_tag WHERE 
+        ///Dish_id_fk = @Dish_id_fk AND
+        /// Tag_id_fk=@Tag_id_fk.
         /// </summary>
         internal static string DeleteDishTag {
             get {
@@ -151,20 +153,24 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.dish_ingredient i WHERE i.id=@id;.
-        /// </summary>
-        internal static string FindDishIngredient {
-            get {
-                return ResourceManager.GetString("FindDishIngredient", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
         /// </summary>
         internal static string FindIngredient {
             get {
                 return ResourceManager.GetString("FindIngredient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT di.Id, di.Amount, di.Unit, di.Ingredient_id_fk, di.Dish_id_fk FROM
+        /// app.dish_ingredient di, app.ingredient i 
+        /// WHERE di.Ingredient_id_fk = i.Id AND
+        ///di.Dish_id_fk = @Id;
+        ///.
+        /// </summary>
+        internal static string FindIngredientForDish {
+            get {
+                return ResourceManager.GetString("FindIngredientForDish", resourceCulture);
             }
         }
         

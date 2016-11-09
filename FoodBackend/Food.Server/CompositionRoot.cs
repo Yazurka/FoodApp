@@ -31,7 +31,7 @@ namespace Food.Server
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DishCommand>, DishCommandHandler>();
-            serviceRegistry.Register<ICommandHandler<DishIngredientCommand>, DishIngredientCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<IEnumerable<DishIngredientCommand>>, DishIngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteIngredientCommand>, DeleteIngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteDishCommand>, DeleteDishCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DeleteDishIngredientCommand>, DeleteDishIngredientCommandHandler>();
