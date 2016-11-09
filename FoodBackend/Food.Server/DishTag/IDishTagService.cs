@@ -7,7 +7,7 @@ namespace Food.Server.DishTag
     public interface IDishTagService
     {
          Task<IEnumerable<TagResult>> FindTagsForDish(int dishId);
-         Task AddTagsToDish(int dishId, int[]TagIds);
-         Task RemoveTagsFromDish(int[]dishTagIds);
+         Task AddTagsToDish(DishTagCreateRequest dishTagCreateRequest);
+         Task RemoveTagsFromDish(int dishId, int[] tagIds);
     }
 }

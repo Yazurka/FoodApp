@@ -10,7 +10,7 @@ using Food.Server.Command;
 
 namespace Food.Server.DishTag
 {
-    public class DeleteDishTagCommandHandler : ICommandHandler<DeleteDishTagCommand>
+    public class DeleteDishTagCommandHandler : ICommandHandler<IEnumerable<DeleteDishTagCommand>>
     {
         private readonly IDbConnection m_dbConnection;
 
@@ -19,7 +19,7 @@ namespace Food.Server.DishTag
             m_dbConnection = dbConnection;
         }
 
-        public async Task HandleAsync(DeleteDishTagCommand command)
+        public async Task HandleAsync(IEnumerable<DeleteDishTagCommand> command)
         {
             await m_dbConnection.ExecuteAsync(Sql.DeleteDishTag, command);
         }

@@ -83,6 +83,7 @@
     <Compile Include="DishTag\DeleteDishTagCommandHandler.cs" />
     <Compile Include="DishTag\DishTagCommand.cs" />
     <Compile Include="DishTag\DishTagCommandHandler.cs" />
+    <Compile Include="DishTag\DishTagCreateRequest.cs" />
     <Compile Include="DishTag\DishTagQuery.cs" />
     <Compile Include="DishTag\DishTagQueryHandler.cs" />
     <Compile Include="DishTag\DishTagService.cs" />

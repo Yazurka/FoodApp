@@ -29,41 +29,36 @@ namespace Food.Server.DishTag
             return result;
         }
 
-        public async Task AddTagsToDish(int dishId, int[] TagIds)
+        public async Task AddTagsToDish(DishTagCreateRequest dishTagCreateRequest)
         {
-            List<DishTagCommand> dishTagCommands = new List<DishTagCommand>();
-            foreach (var tagId in TagIds)
+            var dishTagCommands = new List<DishTagCommand>();
+            foreach (var tagId in dishTagCreateRequest.TagIds)
             {
                 dishTagCommands.Add(new DishTagCommand
                 {
                     Id = m_idGenerator.GenerateId(),
-                    Dish_id_fk = dishId,
+                    Dish_id_fk = dishTagCreateRequest.DishId,
                     Tag_id_fk = tagId
                 });
             }
-            //TODO: forbedre med tanke på sql
-            foreach (var dishTagCommand in dishTagCommands)
-            {
-                await m_commandExecutor.ExecuteAsync(dishTagCommand);
-            }
+         await m_commandExecutor.ExecuteAsync(dishTagCommands.AsEnumerable());
         }
 
-        public async Task RemoveTagsFromDish(int[] dishTagIds)
+        public async Task RemoveTagsFromDish(int dishId, int[] tagIds)
         {
             List<DeleteDishTagCommand> deleteDishTagCommands = new List<DeleteDishTagCommand>();
-            foreach (var tagId in dishTagIds)
+            foreach (var tagId in tagIds)
             {
                 deleteDishTagCommands.Add(new DeleteDishTagCommand
                 {
-                    Id = tagId,
+                   Dish_id_fk = dishId,
+                   Tag_id_fk = tagId
                     
                 });
             }
-            //TODO: forbedre med tanke på loop sql
-            foreach (var deleteDishTagCommand in deleteDishTagCommands)
-            {
-                await m_commandExecutor.ExecuteAsync(deleteDishTagCommand);
-            }
+           
+            await m_commandExecutor.ExecuteAsync(deleteDishTagCommands.AsEnumerable());
+            
         }
     }
 }

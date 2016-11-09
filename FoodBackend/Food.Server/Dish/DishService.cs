@@ -31,7 +31,6 @@ namespace Food.Server.Dish
 
         public async Task<IEnumerable<Dish>> GetAllDishes()
         {
-           
             var dishResults = await m_queryExecutor.HandleAsync(new DishQuery());
             var dishes = new List<Dish>();
             foreach (var dishResult in dishResults)
@@ -63,13 +62,19 @@ namespace Food.Server.Dish
         public async Task<DishResult> PostDish(DishCreateRequest dish)
         {
             var dishCommand = CreateDishCommand(dish);
+            var dishTagCreateRequest = CreteDishCreateRequest(dishCommand, dish);
 
             await m_commandExecutor.ExecuteAsync(dishCommand);
-            await m_dishTagService.AddTagsToDish(dishCommand.Id, dish.TagIds);
+            await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
             await m_dishIngredientService.AddIngredientsToDish(dishCommand.Id, dish.DishIngredients);
 
             var postedDish = await FindDish(dishCommand.Id);
             return postedDish;
+        }
+
+        private static DishTagCreateRequest CreteDishCreateRequest(DishCommand dishCommand, DishCreateRequest dishCreateRequest)
+        {
+            return new DishTagCreateRequest { DishId = dishCommand.Id, TagIds = dishCreateRequest.TagIds }; 
         }
 
         public async Task DeleteDish(int id)

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Food.Server.DishTag
 {
-    public class DeleteDishTagCommand
+    public class DishTagCreateRequest
     {
-        public int Dish_id_fk { get; set; }
-        public int Tag_id_fk { get; set; }  
+        public int DishId { get; set; }
+        public int[] TagIds { get; set; }
     }
 }

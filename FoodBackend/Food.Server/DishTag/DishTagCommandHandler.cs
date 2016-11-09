@@ -9,7 +9,7 @@ using Food.Server.Command;
 
 namespace Food.Server.DishTag
 {
-    public class DishTagCommandHandler : ICommandHandler<DishTagCommand> 
+    public class DishTagCommandHandler : ICommandHandler<IEnumerable<DishTagCommand>> 
     {
         private readonly IDbConnection m_dbConnection;
 
@@ -18,8 +18,9 @@ namespace Food.Server.DishTag
             m_dbConnection = dbConnection;
         }
 
-        public async Task HandleAsync(DishTagCommand command)
+        public async Task HandleAsync(IEnumerable<DishTagCommand> command)
         {
+           
             await m_dbConnection.ExecuteAsync(Sql.InsertDishTag, command);
         }
     }
