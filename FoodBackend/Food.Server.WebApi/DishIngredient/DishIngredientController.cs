@@ -17,9 +17,9 @@ namespace Food.Server.WebApi.DishIngredient
             m_dishIngredientService = dishIngredientService;
         }
 
-        public async Task<DishIngredientResult> Get(int id)
+        public async Task<IEnumerable<DishIngredientResult>> Get(int id)
         {
-            var result = await m_dishIngredientService.FindIngredientForDish(id);
+            var result = await m_dishIngredientService.FindIngredientsForDish(id);
             return result;
         }
         public async Task<IEnumerable<DishIngredientResult>> Get()  

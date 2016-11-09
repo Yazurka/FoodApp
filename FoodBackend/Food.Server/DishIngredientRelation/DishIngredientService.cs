@@ -28,9 +28,9 @@ namespace Food.Server.DishIngredientRelation
             return result;
         }
 
-        public async Task<DishIngredientResult> FindIngredientForDish(int dishId)
+        public async Task<IEnumerable<DishIngredientResult>> FindIngredientsForDish(int dishId)
         {
-            var result = (await m_queryExecutor.HandleAsync(new DishIngredientQuery { Id = dishId })).FirstOrDefault();
+            var result = await m_queryExecutor.HandleAsync(new DishIngredientQuery { Id = dishId });
             return result;
         }
 
