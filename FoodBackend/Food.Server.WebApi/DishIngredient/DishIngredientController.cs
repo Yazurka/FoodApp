@@ -32,9 +32,9 @@ namespace Food.Server.WebApi.DishIngredient
             await m_dishIngredientService.AddIngredientsToDish(dishId, dishIngredientsCreateRequest);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete([FromUri]int dishId, [FromUri]int []ingredientIds)
         {
-            await m_dishIngredientService.DeleteDishIngredient(id);
+            await m_dishIngredientService.DeleteIngredientFromDish(dishId,ingredientIds);
         }
     }
 }

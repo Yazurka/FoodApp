@@ -34,9 +34,20 @@ namespace Food.Server.DishIngredientRelation
             return result;
         }
 
-        public async Task DeleteDishIngredient(int id)
+        public async Task DeleteIngredientFromDish(int dishId, int[] ingredientIds)
         {
-            await m_commandExecutor.ExecuteAsync(new DeleteDishIngredientCommand { Id = id });
+            List<DeleteDishIngredientCommand> deleteDishIngredientCommands = new List<DeleteDishIngredientCommand>();
+            foreach (var ingredientid in ingredientIds)
+            {
+                deleteDishIngredientCommands.Add(new DeleteDishIngredientCommand
+                {
+                    DishId = dishId,
+                    IngredientId = ingredientid
+
+                });
+            }
+
+            await m_commandExecutor.ExecuteAsync(deleteDishIngredientCommands.AsEnumerable());
         }
 
         public async Task AddIngredientsToDish(int dishId, DishIngredientCreateRequest[] dishIngredients)

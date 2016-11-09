@@ -9,7 +9,7 @@ using Food.Server.Command;
 
 namespace Food.Server.DishIngredientRelation
 {
-    public class DeleteDishIngredientCommandHandler : ICommandHandler<DeleteDishIngredientCommand>
+    public class DeleteDishIngredientCommandHandler : ICommandHandler<IEnumerable<DeleteDishIngredientCommand>>
     {
         private readonly IDbConnection m_dbConnection;
 
@@ -18,9 +18,9 @@ namespace Food.Server.DishIngredientRelation
             m_dbConnection = dbConnection;
         }
 
-        public async Task HandleAsync(DeleteDishIngredientCommand command)
+        public async Task HandleAsync(IEnumerable<DeleteDishIngredientCommand> commands)
         {
-            await m_dbConnection.ExecuteAsync(Sql.DeleteDishIngredient, command);
+            await m_dbConnection.ExecuteAsync(Sql.DeleteDishIngredient, commands);
         }
     }
 }

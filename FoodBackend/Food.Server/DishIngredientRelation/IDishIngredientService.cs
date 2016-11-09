@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Food.Server.DishIngredientRelation
@@ -10,7 +7,7 @@ namespace Food.Server.DishIngredientRelation
     {
         Task<IEnumerable<DishIngredientResult>> GetAllDishIngredients();
         Task<IEnumerable<DishIngredientResult>> FindIngredientsForDish(int dishId);
-        Task DeleteDishIngredient(int id);
+        Task DeleteIngredientFromDish(int dishId, int[] ingredientIds);
         Task AddIngredientsToDish(int dishId, DishIngredientCreateRequest[] dishIngredients);
     }
 }
