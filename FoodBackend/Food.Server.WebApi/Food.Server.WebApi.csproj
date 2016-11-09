@@ -134,6 +134,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="DishIngredient\DishIngredientController.cs" />
+    <Compile Include="DishTag\DishTagController.cs" />
     <Compile Include="Dish\DishController.cs" />
     <Compile Include="Ingredient\IngredientController.cs" />
     <Compile Include="Ping\PingController.cs" />
