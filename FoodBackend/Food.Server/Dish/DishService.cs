@@ -46,6 +46,7 @@ namespace Food.Server.Dish
                     Difficulty = dishResult.Difficulty,
                     Duration = dishResult.Duration,
                     Author = dishResult.Author,
+                    TimeAdded = dishResult.TimeAdded,
                     Tags = tags
 
                 });
@@ -99,7 +100,8 @@ namespace Food.Server.Dish
                 Recipe = dishRequest.Recipe,
                 Difficulty = dishRequest.Difficulty,
                 Duration = dishRequest.Duration,
-                Author = dishRequest.Author
+                Author = dishRequest.Author,
+                TimeAdded = DateTime.Today
             };
             return dishCommand;
         }
