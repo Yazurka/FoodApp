@@ -55,13 +55,30 @@ namespace Food.Server.Dish
             return dishes;
         }
 
-        public async Task<DishResult> FindDish(int id)
+        public async Task<Dish> FindDish(int id)
         {
+            
             var result = (await m_queryExecutor.HandleAsync(new DishQuery {Id = id})).FirstOrDefault();
-            return result;
+            if (result==null)
+            {
+                return null;
+            }
+            var tags = await m_dishTagService.FindTagsForDish(id);
+            var dish = new Dish {
+                Author = result.Author,
+                Id = result.Id,
+                Recipe = result.Recipe,
+                Duration = result.Duration,
+                Difficulty = result.Difficulty,
+                Description = result.Description,
+                TimeAdded = result.TimeAdded,
+                Name = result.Name,
+                Tags = tags
+            };
+            return dish;
         }
 
-        public async Task<DishResult> PostDish(DishCreateRequest dish)
+        public async Task<Dish> PostDish(DishCreateRequest dish)
         {
             var dishCommand = CreateDishCommand(dish);
             var dishTagCreateRequest = CreteDishCreateRequest(dishCommand, dish);

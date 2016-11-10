@@ -17,7 +17,7 @@ namespace Food.Server.WebApi.Dish
             m_dishService = dishService;
         }
 
-        public async Task<DishResult> Get(int id)
+        public async Task<Server.Dish.Dish> Get(int id)
         {
             var result = await m_dishService.FindDish(id);
             return result;
@@ -28,7 +28,7 @@ namespace Food.Server.WebApi.Dish
             return result;
         }
        
-        public async Task<DishResult> Post(DishCreateRequest dishCreateRequest)
+        public async Task<Server.Dish.Dish> Post(DishCreateRequest dishCreateRequest)
         {
             var result = await m_dishService.PostDish(dishCreateRequest);
             return result;
