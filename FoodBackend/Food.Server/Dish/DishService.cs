@@ -45,6 +45,7 @@ namespace Food.Server.Dish
                     Recipe = dishResult.Recipe,
                     Difficulty = dishResult.Difficulty,
                     Duration = dishResult.Duration,
+                    Author = dishResult.Author,
                     Tags = tags
 
                 });
@@ -65,8 +66,16 @@ namespace Food.Server.Dish
             var dishTagCreateRequest = CreteDishCreateRequest(dishCommand, dish);
 
             await m_commandExecutor.ExecuteAsync(dishCommand);
-            await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
-            await m_dishIngredientService.AddIngredientsToDish(dishCommand.Id, dish.DishIngredients);
+
+            if (dishTagCreateRequest.TagIds != null)
+            {
+                await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
+            }
+            if (dish.DishIngredients != null)
+            {
+                await m_dishIngredientService.AddIngredientsToDish(dishCommand.Id, dish.DishIngredients);
+            }
+            
 
             var postedDish = await FindDish(dishCommand.Id);
             return postedDish;
@@ -89,7 +98,8 @@ namespace Food.Server.Dish
                 Description = dishRequest.Description,
                 Recipe = dishRequest.Recipe,
                 Difficulty = dishRequest.Difficulty,
-                Duration = dishRequest.Duration
+                Duration = dishRequest.Duration,
+                Author = dishRequest.Author
             };
             return dishCommand;
         }
