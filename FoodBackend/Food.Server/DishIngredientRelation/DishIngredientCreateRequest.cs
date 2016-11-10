@@ -8,7 +8,7 @@ namespace Food.Server.DishIngredientRelation
 {
     public class DishIngredientCreateRequest
     {
-        public int Amount { get; set; }
+        public double Amount { get; set; }
         public string Unit { get; set; }
         public int IngredientId { get; set; }
     }
