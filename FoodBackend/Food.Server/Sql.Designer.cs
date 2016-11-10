@@ -106,7 +106,9 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.dish_ingredient WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM app.dish_ingredient WHERE 
+        ///Dish_id_fk = @DishId AND
+        ///Ingredient_id_fk= @IngredientId.
         /// </summary>
         internal static string DeleteDishIngredient {
             get {
@@ -162,7 +164,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT di.Id, di.Amount, di.Unit, di.Ingredient_id_fk, di.Dish_id_fk FROM
+        ///   Looks up a localized string similar to SELECT i.Id, i.Name, i.Description, di.Amount, di.Unit FROM
         /// app.dish_ingredient di, app.ingredient i 
         /// WHERE di.Ingredient_id_fk = i.Id AND
         ///di.Dish_id_fk = @Id;
@@ -197,8 +199,8 @@ namespace Food.Server {
         
         /// <summary>
         ///   Looks up a localized string similar to INSERT INTO app.dish
-        ///(Id, Name, Description, Recipe, Difficulty, Duration) 
-        ///VALUES (@Id, @Name, @Description, @Recipe, @Difficulty, @Duration).
+        ///(Id, Name, Description, Recipe, Difficulty, Duration, Author, TimeAdded) 
+        ///VALUES (@Id, @Name, @Description, @Recipe, @Difficulty, @Duration, @Author, @TimeAdded).
         /// </summary>
         internal static string InsertDish {
             get {
@@ -247,6 +249,17 @@ namespace Food.Server {
         internal static string InsertTag {
             get {
                 return ResourceManager.GetString("InsertTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE app.dish SET
+        ///Name = @Name , Description = @Description, Recipe = @Recipe, Difficulty = @Difficulty, Duration  = @Duration, Author = @Author
+        ///WHERE Id=@Id.
+        /// </summary>
+        internal static string UpdateDish {
+            get {
+                return ResourceManager.GetString("UpdateDish", resourceCulture);
             }
         }
     }

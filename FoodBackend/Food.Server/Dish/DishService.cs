@@ -91,6 +91,22 @@ namespace Food.Server.Dish
         {
             await m_commandExecutor.ExecuteAsync(new DeleteDishCommand { Id = id });
         }
+
+        public async Task UpdateDish(int id, UpdateDishRequest dishUpdateRequest)
+        {
+            var updateDishCommand = new UpdateDishCommand
+            {
+                Id = id,
+                Author = dishUpdateRequest.Author,
+                Description = dishUpdateRequest.Description,
+                Difficulty = dishUpdateRequest.Difficulty,
+                Duration = dishUpdateRequest.Duration,
+                Name = dishUpdateRequest.Name,
+                Recipe = dishUpdateRequest.Recipe
+            };
+            await m_commandExecutor.ExecuteAsync(updateDishCommand);
+        }
+
         private DishCommand CreateDishCommand(DishCreateRequest dishRequest)
         {
             var dishCommand = new DishCommand {

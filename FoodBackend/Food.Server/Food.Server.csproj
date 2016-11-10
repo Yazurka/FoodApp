@@ -99,6 +99,9 @@
     <Compile Include="Dish\DishResult.cs" />
     <Compile Include="Dish\DishService.cs" />
     <Compile Include="Dish\IDishService.cs" />
+    <Compile Include="Dish\UpdateDishCommand.cs" />
+    <Compile Include="Dish\UpdateDishCommandHandler.cs" />
+    <Compile Include="Dish\UpdateDishRequest.cs" />
     <Compile Include="IConfiguration.cs" />
     <Compile Include="Ingredient\DeleteIngredientCommand.cs" />
     <Compile Include="Ingredient\DeleteIngredientCommandHandler.cs" />
@@ -151,6 +154,7 @@
     <Content Include="Dish\AllDishes.sql" />
     <Content Include="Dish\DeleteDish.sql" />
     <Content Include="Dish\FindDish.sql" />
+    <Content Include="Dish\UpdateDish.sql" />
     <Content Include="Dish\InsertDish.sql" />
     <Content Include="Ingredient\DeleteIngredient.sql" />
     <Content Include="Ingredient\InsertIngredient.sql" />

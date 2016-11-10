@@ -12,5 +12,6 @@ namespace Food.Server.Dish
         Task<DishResult> FindDish(int id);
         Task<DishResult> PostDish(DishCreateRequest dish);
         Task DeleteDish(int id);
+        Task UpdateDish(int id, UpdateDishRequest dishUpdateRequest);
     }
 }

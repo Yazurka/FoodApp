@@ -37,5 +37,10 @@ namespace Food.Server.WebApi.Dish
         {
             await m_dishService.DeleteDish(id);
         }
+
+        public async Task Put([FromUri]int id, [FromBody]UpdateDishRequest updateDishRequest)
+        {
+            await m_dishService.UpdateDish(id, updateDishRequest);
+        }
     }
 }
