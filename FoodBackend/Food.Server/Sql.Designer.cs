@@ -262,5 +262,16 @@ namespace Food.Server {
                 return ResourceManager.GetString("UpdateDish", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE app.tag set
+        ///Name = @Name WHERE
+        ///Id = @Id.
+        /// </summary>
+        internal static string UpdateTag {
+            get {
+                return ResourceManager.GetString("UpdateTag", resourceCulture);
+            }
+        }
     }
 }

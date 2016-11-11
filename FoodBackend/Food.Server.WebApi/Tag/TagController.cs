@@ -33,5 +33,10 @@ namespace Food.Server.WebApi.Tag
         {
             await m_tagService.DeleteTag(id);
         }
+
+        public async Task Put(TagUpdateRequest tagUpdateRequest)
+        {
+            await m_tagService.UpdateTag(tagUpdateRequest);
+        } 
     }
 }

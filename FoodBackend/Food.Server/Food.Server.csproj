@@ -138,6 +138,9 @@
     <Compile Include="Tag\TagService.cs" />
     <Compile Include="Services\IdGenerator.cs" />
     <Compile Include="Services\IIdGenerator.cs" />
+    <Compile Include="Tag\TagUpdateRequest.cs" />
+    <Compile Include="Tag\UpdateTagCommand.cs" />
+    <Compile Include="Tag\UpdateTagCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -163,6 +166,7 @@
     <Content Include="Tag\AllTags.sql" />
     <Content Include="Tag\DeleteTag.sql" />
     <Content Include="Tag\FindTag.sql" />
+    <Content Include="Tag\UpdateTag.sql" />
     <Content Include="Tag\InsertTag.sql" />
   </ItemGroup>
   <ItemGroup>

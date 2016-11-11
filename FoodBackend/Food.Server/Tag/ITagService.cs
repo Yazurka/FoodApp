@@ -9,5 +9,6 @@ namespace Food.Server.Tag
         Task<TagResult> FindTag(int id);
         Task<TagResult> PostTag(TagCreateRequest tagCreateRequest);
         Task DeleteTag(int id);
+        Task UpdateTag(TagUpdateRequest tagUpdateRequest);
     }
 }   

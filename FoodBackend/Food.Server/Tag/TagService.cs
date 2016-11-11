@@ -47,6 +47,16 @@ namespace Food.Server.Tag
             await m_commandExecutor.ExecuteAsync(new DeleteTagCommand { Id = id });
         }
 
+        public async Task UpdateTag(TagUpdateRequest tagUpdateRequest)
+        {
+            var tagUpdateCommand = new UpdateTagCommand
+            {
+                Id = tagUpdateRequest.id,
+                Name = tagUpdateRequest.Name
+            };
+            await m_commandExecutor.ExecuteAsync(tagUpdateCommand);
+        }
+
         private TagCommand CreateTagCommand(TagCreateRequest tagRequest)
         {
             var tagCommand = new TagCommand
