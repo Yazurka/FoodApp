@@ -29,20 +29,21 @@ namespace Food.Server.Dish
             m_dishIngredientService = dishIngredientService;
         }
 
-        public async Task<IEnumerable<Dish>> GetAllDishes()
+        public async Task<IEnumerable<DishLight>> GetAllDishes()
         {
-            var dishResults = await m_queryExecutor.HandleAsync(new DishQuery());
-            var dishes = new List<Dish>();
+            //TODO: bruk LightVersion
+            var dishResults = await m_queryExecutor.HandleAsync(new DishLightQuery());
+       
+            var dishes = new List<DishLight>();
             foreach (var dishResult in dishResults)
             {
                 //TODO: Finn bedre løsning på sql spørring
                 IEnumerable<TagResult> tags = await m_dishTagService.FindTagsForDish(dishResult.Id);
-                dishes.Add(new Dish
+                dishes.Add(new DishLight
                 {
                     Id = dishResult.Id,
                     Name = dishResult.Name,
                     Description = dishResult.Description,
-                    Recipe = dishResult.Recipe,
                     Difficulty = dishResult.Difficulty,
                     Duration = dishResult.Duration,
                     Author = dishResult.Author,

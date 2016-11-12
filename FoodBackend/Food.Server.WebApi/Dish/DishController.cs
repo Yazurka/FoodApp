@@ -22,7 +22,7 @@ namespace Food.Server.WebApi.Dish
             var result = await m_dishService.FindDish(id);
             return result;
         }
-        public async Task<IEnumerable<Server.Dish.Dish>> Get()
+        public async Task<IEnumerable<DishLight>> Get()
         {
             var result = await m_dishService.GetAllDishes();
             return result;

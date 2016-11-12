@@ -70,6 +70,15 @@ namespace Food.Server {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d.
+        /// </summary>
+        internal static string AllDishesLight {
+            get {
+                return ResourceManager.GetString("AllDishesLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SELECT * FROM app.dish_ingredient;.
         /// </summary>
         internal static string AllDishIngredients {

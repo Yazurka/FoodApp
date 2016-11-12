@@ -93,6 +93,10 @@
     <Compile Include="Dish\DishCommand.cs" />
     <Compile Include="Dish\DishCommandHandler.cs" />
     <Compile Include="Dish\DishCreateRequest.cs" />
+    <Compile Include="Dish\DishLight.cs" />
+    <Compile Include="Dish\DishLightQuery.cs" />
+    <Compile Include="Dish\DishLightQueryHandler.cs" />
+    <Compile Include="Dish\DishLightResult.cs" />
     <Compile Include="Dish\DishQuery.cs" />
     <Compile Include="Dish\DishQueryHandler.cs" />
     <Compile Include="Dish\Dish.cs" />
@@ -154,6 +158,7 @@
     <Content Include="DishTag\DeleteDishTag.sql" />
     <Content Include="DishTag\FindTagsForDish.sql" />
     <Content Include="DishTag\InsertDishTag.sql" />
+    <Content Include="Dish\AllDishesLight.sql" />
     <Content Include="Dish\AllDishes.sql" />
     <Content Include="Dish\DeleteDish.sql" />
     <Content Include="Dish\FindDish.sql" />

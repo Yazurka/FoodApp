@@ -28,6 +28,7 @@ namespace Food.Server
             serviceRegistry.Register<IQueryHandler<DishIngredientQuery, IEnumerable<DishIngredientResult>>, DishIngredientQueryHandler>();
             serviceRegistry.Register<IQueryHandler<TagQuery, IEnumerable<TagResult>>, TagQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishTagQuery, IEnumerable<TagResult>>, DishTagQueryHandler>();
+            serviceRegistry.Register<IQueryHandler<DishLightQuery, IEnumerable<DishLightResult>>, DishLightQueryHandler>();
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DishCommand>, DishCommandHandler>();
