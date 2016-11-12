@@ -1,0 +1,31 @@
+﻿<Controls:MetroWindow x:Class="FoodAdmin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodAdmin"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        xmlns:viewModels="clr-namespace:FoodAdmin.ViewModels"
+        xmlns:Views="clr-namespace:FoodAdmin.Views"
+        d:DataContext="{d:DesignInstance Type=viewModels:FoodAdminViewModel, IsDesignTimeCreatable=True}"
+        Title="MainWindow" Height="350" Width="525">
+    <Controls:MetroWindow.Resources>
+        <DataTemplate DataType="{x:Type viewModels:TagViewModel}">
+            <Views:TagView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:IngredientViewModel}">
+
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DishViewModel}">
+           <Views:DishView/>
+        </DataTemplate>
+    </Controls:MetroWindow.Resources>
+
+        <TabControl  BorderBrush="WhiteSmoke" BorderThickness="0.2">
+            <TabItem Header="Ingrediens" Content="{Binding IngredientViewModel}" />
+            <TabItem Header="Rett" Content="{Binding DishViewModel}"/>
+            <TabItem Header="Tag" Content="{Binding TagViewModel}"/>
+        </TabControl>
+
+</Controls:MetroWindow>
