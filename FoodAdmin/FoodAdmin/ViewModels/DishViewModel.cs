@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Threading.Tasks;
 using FoodAdmin.Facade;
 using FoodAdmin.Models;
@@ -100,7 +101,7 @@ namespace FoodAdmin.ViewModels
 
         private async void SaveDish()
         {
-            await m_foodFacade.SaveDish(TheDish.Image, TheDish.DishValue, TheDish.Ingredients);
+            await m_foodFacade.SaveDish(TheDish.Image, TheDish.DishValue, TheDish.Ingredients, Steps.ToList());
             Cancel();
         }
     }

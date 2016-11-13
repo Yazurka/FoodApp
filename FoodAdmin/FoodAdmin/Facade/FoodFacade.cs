@@ -101,7 +101,7 @@ namespace FoodAdmin.Facade
             return Task.Run(() => new DishImage() { });
         }
 
-        public Task SaveDish(DishImage image, DishLight dish, List<DishIngredientResult> ingredients)
+        public Task SaveDish(DishImage image, DishLight dish, List<DishIngredientResult> ingredients, List<Step> steps )
         {
             return Task.CompletedTask;
         }
