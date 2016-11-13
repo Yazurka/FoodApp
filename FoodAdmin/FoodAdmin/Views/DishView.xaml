@@ -78,7 +78,7 @@
                             <ItemsControl ItemsSource="{Binding  ElementName=userControl , Path=DataContext.Steps}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Value}"></TextBox>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Value}"></TextBox>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                            </ItemsControl>

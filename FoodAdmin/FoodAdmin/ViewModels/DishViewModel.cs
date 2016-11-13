@@ -15,7 +15,7 @@ namespace FoodAdmin.ViewModels
         private readonly FoodFacade m_foodFacade;
         private DishLight m_selectedDish;
         private readonly IViewDisabler m_viewDisabler;
-        private List<Step> m_steps;
+        private ObservableCollection<Step> m_steps;
         [ImportingConstructor]
         public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel)
         {
@@ -43,7 +43,7 @@ namespace FoodAdmin.ViewModels
             }
         }
 
-        public List<Step> Steps
+        public ObservableCollection<Step> Steps
         {
             get { return m_steps; }
             set
@@ -66,9 +66,10 @@ namespace FoodAdmin.ViewModels
         {
             if (Steps == null)
             {
-                Steps = new List<Step>();
+                Steps = new ObservableCollection<Step>();
             }
             Steps.Add(new Step());
+            //OnPropertyChanged(nameof(Steps));
         }
 
         private async void SelectionChanged()
