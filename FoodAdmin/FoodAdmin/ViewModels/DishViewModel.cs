@@ -15,7 +15,7 @@ namespace FoodAdmin.ViewModels
         private readonly FoodFacade m_foodFacade;
         private DishLight m_selectedDish;
         private readonly IViewDisabler m_viewDisabler;
-
+        private List<Step> m_steps;
         [ImportingConstructor]
         public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel)
         {
@@ -25,6 +25,10 @@ namespace FoodAdmin.ViewModels
         }
         public IngredientViewModel IngredientViewModel { get; }
         public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
+        public DelegateCommand NewStepCommand => new DelegateCommand(CreateNewStep);
+
+       
+
         public DelegateCommand CancelCommad => new DelegateCommand(Cancel);
         public DelegateCommand SaveCommand => new DelegateCommand(SaveDish);
         public ObservableCollection<DishLight> Dishes { get; set; }
@@ -39,6 +43,16 @@ namespace FoodAdmin.ViewModels
             }
         }
 
+        public List<Step> Steps
+        {
+            get { return m_steps; }
+            set
+            {
+                m_steps = value;
+                OnPropertyChanged(nameof(Steps));
+            }
+        }
+
         public Dish TheDish { get; set; }
 
         public async Task Initialize()
@@ -47,6 +61,14 @@ namespace FoodAdmin.ViewModels
             dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
             Dishes = new ObservableCollection<DishLight>(dishes);
             OnPropertyChanged(nameof(Dishes));
+        }
+        private void CreateNewStep()
+        {
+            if (Steps == null)
+            {
+                Steps = new List<Step>();
+            }
+            Steps.Add(new Step());
         }
 
         private async void SelectionChanged()
