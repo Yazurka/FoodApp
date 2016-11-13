@@ -1,23 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel.Composition;
 using System.Threading.Tasks;
-using FoodAdmin.REST;
+using FoodAdmin.Util;
 
 namespace FoodAdmin.ViewModels
 {
+    [Export]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class FoodAdminViewModel : ViewModelBase
     {
-        private IRestClient m_restClient;
-        public FoodAdminViewModel()
+        [ImportingConstructor]
+        public FoodAdminViewModel(DishViewModel dishViewModel, IngredientViewModel ingredientViewModel, TagViewModel tagViewModel, IViewDisabler viewDisabler)
         {
-            m_restClient = new RestClient();
-            DishViewModel = new DishViewModel(m_restClient);
-            IngredientViewModel = new IngredientViewModel();
-            TagViewModel = new TagViewModel(m_restClient);
+            ViewDisabler = viewDisabler;
+            DishViewModel = dishViewModel;
+            IngredientViewModel = ingredientViewModel;
+            TagViewModel = tagViewModel;
         }
 
+        public async Task Initialize()
+        {
+            await Task.WhenAll(DishViewModel.Initialize(), IngredientViewModel.Initialize(), TagViewModel.Initialize());
+        }
+
+        public IViewDisabler ViewDisabler { get; }
         
         public DishViewModel DishViewModel { get; } 
 

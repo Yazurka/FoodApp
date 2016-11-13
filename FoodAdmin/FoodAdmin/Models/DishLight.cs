@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodAdmin.Models
 {
     public class DishLight
     {
+        public DishLight()
+        {
+            Tags = new List<Tag>();
+            Ingredients = new List<Ingredient>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,5 +19,6 @@ namespace FoodAdmin.Models
         public string Author { get; set; }
         public DateTime TimeAdded { get; set; }
         public List<Tag> Tags { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
     }
 }

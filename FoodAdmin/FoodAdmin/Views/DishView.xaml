@@ -4,20 +4,99 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodAdmin.Views"
-             mc:Ignorable="d" 
+             xmlns:Converters="clr-namespace:FoodAdmin.Converters"
+             xmlns:Models="clr-namespace:FoodAdmin.Models"
+             mc:Ignorable="d"  x:Name="userControl"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <ItemsControl ItemsSource="{Binding Dishes}">
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <TextBlock Text="{Binding Name}"/>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-
+    <UserControl.Resources>
+        <Converters:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        <Converters:OpositeBoolToVisibilityConverter x:Key="opositeBoolToVisibilityConverter"/>
         
-        </ItemsControl>
+        <DataTemplate DataType="{x:Type Models:Dish}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="https://2shopper.files.wordpress.com/2013/06/teriyaki-kabobs1-ashx.jpg" Width="100" Height="100"/>
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel VerticalAlignment="Top">
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Tittel:"/>
+                            <TextBox Text="{Binding DishValue.Name}" Grid.Column="1"/>
+                        </Grid>
+                        
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Kort forklaring:"/>
+                            <TextBox Text="{Binding DishValue.Description}" Grid.Column="1"/>
+                        </Grid>
+
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Tid:"/>
+                            <TextBox AcceptsReturn="True" Text="{Binding DishValue.Duration}" Grid.Column="1"/>
+                        </Grid>
+
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Vaskelighetsgrad:"/>
+                            <Slider Minimum="1" Maximum="10" Grid.Column="1" Value="{Binding DishValue.Difficulty}" Margin="5,0"/>
+                            <TextBlock Grid.Column="2" Text="{Binding DishValue.Difficulty}"/>
+                        </Grid>
+
+                        <!--TODO-->
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Ingredienser:"/>
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+                <Grid Grid.Row="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Avbryt" Margin="5" Grid.Column="1" Command="{Binding ElementName=userControl, Path=DataContext.CancelCommad}"/>
+                    <Button Content="Lagre" Margin="5" Grid.Column="0" Command="{Binding ElementName=userControl, Path=DataContext.SaveCommand}"/>
+
+                </Grid>
+            </Grid>
+            
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Visibility="{Binding TheDish, Converter={StaticResource booleanToVisibilityConverter}}" >
+            <ContentControl Content="{Binding TheDish}"/>
+        </Grid>
+        
+        
+        <Grid Visibility="{Binding TheDish, Converter={StaticResource opositeBoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox SelectedValue="{Binding SelectedDish}" DisplayMemberPath="Name" x:Name="listBox" ItemsSource="{Binding Dishes}" Grid.Column="0"/>
+            <Button Grid.Row="1" Grid.Column="0" Command="{Binding CreateNewDishCommand}" Content="Lag ny rett"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FoodAdmin</RootNamespace>
     <AssemblyName>FoodAdmin</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,7 +45,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -67,18 +70,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Command.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\OpositeBoolToVisibilityConverter.cs" />
+    <Compile Include="Facade\FoodFacade.cs" />
+    <Compile Include="Models\Dish.cs" />
+    <Compile Include="Models\DishImage.cs" />
+    <Compile Include="Models\DishIngredient.cs" />
+    <Compile Include="Models\Ingredient.cs" />
+    <Compile Include="Util\Command.cs" />
     <Compile Include="Converters\ValueNullToBoolConverter.cs" />
-    <Compile Include="DelegateCommand.cs" />
+    <Compile Include="Util\DelegateCommand.cs" />
     <Compile Include="Models\DishLight.cs" />
     <Compile Include="Models\Tag.cs" />
-    <Compile Include="REST\IRestClient.cs" />
-    <Compile Include="REST\RestClient.cs" />
+    <Compile Include="Util\ImageUtilMethods.cs" />
+    <Compile Include="Util\IRestClient.cs" />
+    <Compile Include="Util\IViewDisabler.cs" />
+    <Compile Include="Util\RestClient.cs" />
+    <Compile Include="Util\ViewDisabler.cs" />
     <Compile Include="ViewModels\DishViewModel.cs" />
     <Compile Include="ViewModels\FoodAdminViewModel.cs" />
     <Compile Include="ViewModels\IngredientViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Util\ViewModelBase.cs" />
     <Compile Include="Views\DishView.xaml.cs">
       <DependentUpon>DishView.xaml</DependentUpon>
     </Compile>

@@ -4,9 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodAdmin.Views"
+             xmlns:Converters="clr-namespace:FoodAdmin.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" BorderThickness="0,0,0,1" Margin="5" Padding="3">
             
+            <DockPanel >
+                <Button Command="{Binding CreateNewIngredientCommand}" Content="Opprett" DockPanel.Dock="Right" Margin="5"/>
+                <TextBox HorizontalAlignment="Stretch" Text="{Binding IngredientName}" Margin="5" Width="100"></TextBox>
+                <TextBox HorizontalAlignment="Stretch" Text="{Binding IngredientDescription}" Margin="5"></TextBox>
+            </DockPanel>
+        </Border>
+
+        <ListBox x:Name="list" Grid.Row="1" ItemsSource="{Binding Ingredients}" SelectedItem="{Binding SelectedIngredient}">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="5" Grid.Column="0" Text="{Binding Name}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}"/>
+                        <TextBlock Margin="5" Grid.Column="1" Text="{Binding Description}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}"/>
+                    </Grid>
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Border Grid.Row="2" BorderThickness="0,1,0,0" Margin="5" Padding="3">
+            
+        <Grid   >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding DeleteIngredientCommand}"  Content="Slett" Width="100" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" />
+            <Button Command="{Binding SaveEditedIngredientCommand}"  Content="Lagre endring" Grid.Row="1" Grid.Column="0" Margin="5"/>
+
+            <TextBox Margin="5" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Text="{Binding ElementName=list, Path=SelectedValue.Name}"/>
+            <TextBox Margin="5" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Text="{Binding ElementName=list, Path=SelectedValue.Description}"/>
+        </Grid>
+        </Border>
     </Grid>
 </UserControl>

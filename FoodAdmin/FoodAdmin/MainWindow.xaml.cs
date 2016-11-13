@@ -1,31 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using FoodAdmin.ViewModels;
-using MahApps.Metro.Controls;
 
 namespace FoodAdmin
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow 
     {
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new FoodAdminViewModel();
+            Compose();
+        }
+
+        [Import]
+        public FoodAdminViewModel ViewModel { get; set; }
+
+        private async void Compose()
+        {
+            var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(MainWindow).Assembly));
+            new CompositionContainer(catalog).ComposeParts(this);
+
+            DataContext = ViewModel;
+
+            await ViewModel.Initialize();
         }
     }
 }

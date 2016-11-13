@@ -29,6 +29,11 @@ namespace FoodAdmin
 
         public void Execute(object parameter)
         {
+            if (!CanExecute(parameter))
+            {
+                return;
+            }
+
             _execute();
         }
 

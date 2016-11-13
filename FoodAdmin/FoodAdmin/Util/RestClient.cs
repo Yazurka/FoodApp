@@ -1,11 +1,14 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace FoodAdmin.REST
+namespace FoodAdmin.Util
 {
+    [Export(typeof(IRestClient))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class RestClient  : IRestClient
     {
         private readonly HttpClient client;

@@ -1,48 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Threading.Tasks;
+using FoodAdmin.Facade;
 using FoodAdmin.Models;
-using FoodAdmin.REST;
+using FoodAdmin.Util;
 
 namespace FoodAdmin.ViewModels
 {
+    [Export]
     public class DishViewModel : ViewModelBase
     {
-        private readonly IRestClient m_restClient;
-        private List<DishLight> m_dishes; 
-        public DishViewModel(IRestClient restClient)
+        private readonly FoodFacade m_foodFacade;
+        private DishLight m_selectedDish;
+        private readonly IViewDisabler m_viewDisabler;
+
+        [ImportingConstructor]
+        public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel)
         {
-            m_restClient = restClient;
-           
-            //Dishes = GetData();
-            YOLO();
+            m_foodFacade = foodFacade;
+            m_viewDisabler = viewDisabler;
+            IngredientViewModel = ingredientViewModel;
         }
+        public IngredientViewModel IngredientViewModel { get; }
+        public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
+        public DelegateCommand CancelCommad => new DelegateCommand(Cancel);
+        public DelegateCommand SaveCommand => new DelegateCommand(SaveDish);
+        public ObservableCollection<DishLight> Dishes { get; set; }
 
-        private async void YOLO()
+        public DishLight SelectedDish
         {
-            await GetData();
-
-        }
-
-        public List<DishLight> Dishes
-        {
-            get { return m_dishes; }
+            get { return m_selectedDish; }
             set
             {
-                m_dishes = value;
-                OnPropertyChanged(nameof(Dishes));
+                m_selectedDish = value;
+                SelectionChanged();
             }
         }
-        public async Task GetData()
+
+        public Dish TheDish { get; set; }
+
+        public async Task Initialize()
         {
-        //    var client = new HttpClient();
-        //   var res = await  client.GetAsync("http://localhost:8080/api/Dish");
-        //   var res2 = await res.Content.ReadAsStringAsync();
-              var res = await m_restClient.Get<List<DishLight>>(0, "Dish");
-            Dishes = res;
+            var dishes = await m_foodFacade.GetAllDishes();
+            dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
+            Dishes = new ObservableCollection<DishLight>(dishes);
+            OnPropertyChanged(nameof(Dishes));
+        }
+
+        private async void SelectionChanged()
+        {
+            if (SelectedDish == null)
+            {
+                OnPropertyChanged(string.Empty);
+                return;
+            }
+            TheDish = new Dish
+            {
+                DishValue = SelectedDish,
+                Ingredients = await m_foodFacade.GetIngredientsForDish(SelectedDish),
+                Image = await m_foodFacade.GetImageForDish(SelectedDish)
+            };
+            OnPropertyChanged(nameof(TheDish));
+        }
+
+        private void Cancel()
+        {
+            TheDish = null;
+            SelectedDish = null;
+            OnPropertyChanged(nameof(TheDish));
+        }
+
+        private void CreateNewDish()
+        {
+            TheDish = new Dish {DishValue = new DishLight(), Ingredients = new List<DishIngredientResult>()};
+            OnPropertyChanged(nameof(TheDish));
+        }
+
+        private async void SaveDish()
+        {
+            await m_foodFacade.SaveDish(TheDish.Image, TheDish.DishValue, TheDish.Ingredients);
+            Cancel();
         }
     }
 }
