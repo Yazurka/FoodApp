@@ -60,16 +60,12 @@ namespace FoodAdmin.ViewModels
             var dishes = await m_foodFacade.GetAllDishes();
             dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
             Dishes = new ObservableCollection<DishLight>(dishes);
+            Steps = new ObservableCollection<Step> { new Step() };
             OnPropertyChanged(nameof(Dishes));
         }
         private void CreateNewStep()
         {
-            if (Steps == null)
-            {
-                Steps = new ObservableCollection<Step>();
-            }
-            Steps.Add(new Step());
-            //OnPropertyChanged(nameof(Steps));
+            Steps.Add(new Step());  
         }
 
         private async void SelectionChanged()
@@ -93,6 +89,7 @@ namespace FoodAdmin.ViewModels
             TheDish = null;
             SelectedDish = null;
             OnPropertyChanged(nameof(TheDish));
+            Steps = new ObservableCollection<Step> { new Step() };
         }
 
         private void CreateNewDish()
