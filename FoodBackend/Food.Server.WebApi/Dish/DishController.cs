@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Food.Server.Dish;
@@ -22,9 +19,9 @@ namespace Food.Server.WebApi.Dish
             var result = await m_dishService.FindDish(id);
             return result;
         }
-        public async Task<IEnumerable<DishLight>> Get()
+        public async Task<IEnumerable<DishLight>> Get(int limit, int offset)
         {
-            var result = await m_dishService.GetAllDishes();
+            var result = await m_dishService.GetAllDishes(limit, offset);
             return result;
         }
        

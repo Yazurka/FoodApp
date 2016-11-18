@@ -8,7 +8,7 @@ namespace Food.Server.Dish
 {
     public interface IDishService
     {
-        Task<IEnumerable<DishLight>> GetAllDishes();
+        Task<IEnumerable<DishLight>> GetAllDishes(int limit, int offset);
         Task<Dish> FindDish(int id);
         Task<Dish> PostDish(DishCreateRequest dish);
         Task DeleteDish(int id);

@@ -1,1 +1,1 @@
-﻿select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d
+﻿select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d order by d.Id limit @Limit offset @Offset

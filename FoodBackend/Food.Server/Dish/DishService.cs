@@ -29,10 +29,10 @@ namespace Food.Server.Dish
             m_dishIngredientService = dishIngredientService;
         }
 
-        public async Task<IEnumerable<DishLight>> GetAllDishes()
+        public async Task<IEnumerable<DishLight>> GetAllDishes(int limit, int offset)
         {
-            //TODO: bruk LightVersion
-            var dishResults = await m_queryExecutor.HandleAsync(new DishLightQuery());
+
+            var dishResults = await m_queryExecutor.HandleAsync(new DishLightQuery {Limit = limit, Offset = offset});
        
             var dishes = new List<DishLight>();
             foreach (var dishResult in dishResults)

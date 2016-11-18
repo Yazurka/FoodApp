@@ -18,7 +18,7 @@ namespace Food.Server.Dish
 
         public async Task<IEnumerable<DishLightResult>> HandleAsync(DishLightQuery query)
         {
-            var result = await m_dbConnection.QueryAsync<DishLightResult>(Sql.AllDishesLight);
+            var result = await m_dbConnection.QueryAsync<DishLightResult>(Sql.AllDishesLight,query);
 
             return result;
         }
