@@ -60,10 +60,12 @@ namespace Food.Server.Dish
         {
             
             var result = (await m_queryExecutor.HandleAsync(new DishQuery {Id = id})).FirstOrDefault();
+            
             if (result==null)
             {
                 return null;
             }
+            var ingredients = await m_dishIngredientService.FindIngredientsForDish(id);
             var tags = await m_dishTagService.FindTagsForDish(id);
             var dish = new Dish {
                 Author = result.Author,
@@ -74,6 +76,7 @@ namespace Food.Server.Dish
                 Description = result.Description,
                 TimeAdded = result.TimeAdded,
                 Name = result.Name,
+                Ingredients = ingredients,
                 Tags = tags
             };
             return dish;
