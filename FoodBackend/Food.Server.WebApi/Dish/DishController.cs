@@ -2,16 +2,19 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using Food.Server.Dish;
+using Food.Server.Search;
 
 namespace Food.Server.WebApi.Dish
 {
     public class DishController : ApiController
     {
         private readonly IDishService m_dishService;
+        private readonly ISearchService m_searchService;
 
-        public DishController(IDishService dishService)
+        public DishController(IDishService dishService, ISearchService searchService)
         {
             m_dishService = dishService;
+            m_searchService = searchService;
         }
 
         public async Task<Server.Dish.Dish> Get(int id)
@@ -24,6 +27,12 @@ namespace Food.Server.WebApi.Dish
             var result = await m_dishService.GetAllDishes(limit, offset);
             return result;
         }
+
+        public async Task<IEnumerable<DishLight>> Get(string parameter)
+        {
+            var result = await m_searchService.Search(parameter);
+            return result;
+        } 
        
         public async Task<Server.Dish.Dish> Post(DishCreateRequest dishCreateRequest)
         {

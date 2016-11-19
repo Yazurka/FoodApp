@@ -6,6 +6,7 @@ using Food.Server.DishIngredientRelation;
 using Food.Server.DishTag;
 using Food.Server.Ingredient;
 using Food.Server.Query;
+using Food.Server.Search;
 using Food.Server.Services;
 using Food.Server.Tag;
 using LightInject;
@@ -29,6 +30,7 @@ namespace Food.Server
             serviceRegistry.Register<IQueryHandler<TagQuery, IEnumerable<TagResult>>, TagQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishTagQuery, IEnumerable<TagResult>>, DishTagQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishLightQuery, IEnumerable<DishLightResult>>, DishLightQueryHandler>();
+            serviceRegistry.Register<IQueryHandler<SearchQuery, IEnumerable<DishLightResult>>, SearchQueryHander>();
 
             serviceRegistry.Register<ICommandHandler<IngredientCommand>, IngredientCommandHandler>();
             serviceRegistry.Register<ICommandHandler<DishCommand>, DishCommandHandler>();
@@ -48,6 +50,7 @@ namespace Food.Server
             serviceRegistry.Register<IDishTagService, DishTagService>();
             serviceRegistry.Register<IDishIngredientService, DishIngredientService>();
             serviceRegistry.Register<ITagService, TagService>();
+            serviceRegistry.Register<ISearchService, SearchService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());

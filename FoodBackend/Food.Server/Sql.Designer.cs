@@ -70,7 +70,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d.
+        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d order by d.Id limit @Limit offset @Offset.
         /// </summary>
         internal static string AllDishesLight {
             get {
@@ -258,6 +258,29 @@ namespace Food.Server {
         internal static string InsertTag {
             get {
                 return ResourceManager.GetString("InsertTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d
+        ///where d.Name like &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos; or d.Author like &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos;;.
+        /// </summary>
+        internal static string SearchInDishes {
+            get {
+                return ResourceManager.GetString("SearchInDishes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d
+        ///inner join app.dish_tag dt
+        ///on d.Id = dt.Dish_id_fk
+        ///inner join app.tag t
+        ///on dt.Tag_id_fk = t.id where t.Name like  &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos;;.
+        /// </summary>
+        internal static string SearchInTags {
+            get {
+                return ResourceManager.GetString("SearchInTags", resourceCulture);
             }
         }
         
