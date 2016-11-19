@@ -52,6 +52,7 @@ namespace Food.Server
             serviceRegistry.Register<ITagService, TagService>();
             serviceRegistry.Register<ISearchService, SearchService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
+            serviceRegistry.Register<IEqualityComparer<DishLightResult>, DishLightResultComparer>(new PerContainerLifetime());
 
             serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());
         }

@@ -11,10 +11,11 @@ namespace Food.Server.Search
     public class SearchQueryHander : IQueryHandler<SearchQuery, IEnumerable<DishLightResult>>
     {
         private readonly IDbConnection m_dbConnection;
-
-        public SearchQueryHander(IDbConnection dbConnection)
+        private IEqualityComparer<DishLightResult> m_equalityComparer;
+        public SearchQueryHander(IDbConnection dbConnection, IEqualityComparer<DishLightResult> equalityComparer)
         {
             m_dbConnection = dbConnection;
+            m_equalityComparer = equalityComparer;
         }
 
         public async Task<IEnumerable<DishLightResult>> HandleAsync(SearchQuery query)
@@ -37,7 +38,7 @@ namespace Food.Server.Search
             {
                 return second;
             }
-            IEnumerable<DishLightResult> union = first.Union(second);
+            IEnumerable<DishLightResult> union = first.Union(second, m_equalityComparer);
             return union;
         } 
     }
