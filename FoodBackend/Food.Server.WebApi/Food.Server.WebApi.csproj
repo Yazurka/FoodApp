@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
+    <Compile Include="Authorization\AuthorizeTicketMiddleware.cs" />
     <Compile Include="DishIngredient\DishIngredientController.cs" />
     <Compile Include="DishTag\DishTagController.cs" />
     <Compile Include="Dish\DishController.cs" />

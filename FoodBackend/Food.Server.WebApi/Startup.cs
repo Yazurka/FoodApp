@@ -3,8 +3,7 @@ using System.Web.Http;
 using LightInject;
 using Owin;
 using Swashbuckle.Application;
-using Food.Server;
-using System.Web;
+using Food.Server.WebApi.Authorization;
 
 namespace Food.Server.WebApi
 {
@@ -27,9 +26,8 @@ namespace Food.Server.WebApi
             config.Formatters.Add(new JsonMediaTypeFormatter());
 
             ConfigureSwagger(config);
-
+            app.Use<AuthorizeTicketMiddleware>();
             app.UseWebApi(config);
-            //app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
         }
         private static void ConfigureSwagger(HttpConfiguration config)
         {
