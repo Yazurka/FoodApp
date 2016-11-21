@@ -10,6 +10,7 @@ namespace Food.Server.Selfhost
             return (int)HostFactory.Run(
                  host =>
                  {
+                     host.UseLinuxIfAvailable();
                      host.Service<WebApplication>(
                          service =>
                          {
