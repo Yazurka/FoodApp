@@ -25,7 +25,8 @@ namespace Food.Server.WebApi
             config.Formatters.Clear();
             config.Formatters.Add(new JsonMediaTypeFormatter());
 
-            ConfigureSwagger(config);
+            //ConfigureSwagger(config);
+            //config.EnableSwagger(x => new SwaggerConfig());
             app.Use<AuthorizeTicketMiddleware>();
             app.UseWebApi(config);
         }

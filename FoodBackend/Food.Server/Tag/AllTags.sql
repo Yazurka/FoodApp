@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.tag;
+﻿SELECT * FROM app.tag t order by t.Name;

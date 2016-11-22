@@ -262,25 +262,36 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d
-        ///where d.Name like &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos; or d.Author like &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos;;.
+        ///   Looks up a localized string similar to select 
+        ///	d.Id, 
+        ///	d.Name, 
+        ///    d.Description, 
+        ///    d.Difficulty, 
+        ///    d.Duration, 
+        ///    d.Author, 
+        ///    d.TimeAdded 
+        ///from 
+        ///	app.dish d
+        ///where exists 
+        ///	(
+        ///		select 
+        ///			1 
+        ///		from 
+        ///			app.dish_tag dt 
+        ///		inner join app.tag t
+        ///			on dt.Tag_id_fk = t.id 
+        ///		where 
+        ///			dt.Dish_id_fk = d.Id AND
+        ///            t.Name like @Parameter
+        ///    ) or d.Name like @Parameter or 
+        ///	d.Author like @Parameter 
+        ///
+        ///
+        ///	.
         /// </summary>
-        internal static string SearchInDishes {
+        internal static string SearchInDishesAndTags {
             get {
-                return ResourceManager.GetString("SearchInDishes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d
-        ///inner join app.dish_tag dt
-        ///on d.Id = dt.Dish_id_fk
-        ///inner join app.tag t
-        ///on dt.Tag_id_fk = t.id where t.Name like  &apos;&quot;%&apos; + @Parameter + &apos;%&quot;&apos;;.
-        /// </summary>
-        internal static string SearchInTags {
-            get {
-                return ResourceManager.GetString("SearchInTags", resourceCulture);
+                return ResourceManager.GetString("SearchInDishesAndTags", resourceCulture);
             }
         }
         

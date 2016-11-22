@@ -184,10 +184,7 @@
   <data name="AllDishesLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\alldisheslight.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="SearchInDishes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>search\searchindishes.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="SearchInTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>search\searchintags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="SearchInDishesAndTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>search\searchindishesandtags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

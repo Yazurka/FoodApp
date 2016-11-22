@@ -173,8 +173,7 @@
     <Content Include="Ingredient\InsertIngredient.sql" />
     <Content Include="Ingredient\FindIngredient.sql" />
     <Content Include="Ingredient\AllIngredients.sql" />
-    <Content Include="Search\SearchInDishes.sql" />
-    <Content Include="Search\SearchInTags.sql" />
+    <Content Include="Search\SearchInDishesAndTags.sql" />
     <Content Include="Tag\AllTags.sql" />
     <Content Include="Tag\DeleteTag.sql" />
     <Content Include="Tag\FindTag.sql" />

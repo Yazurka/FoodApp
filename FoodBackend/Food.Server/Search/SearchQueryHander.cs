@@ -20,26 +20,9 @@ namespace Food.Server.Search
 
         public async Task<IEnumerable<DishLightResult>> HandleAsync(SearchQuery query)
         {
-            var dishesWithTagsFitting = await m_dbConnection.QueryAsync<DishLightResult>(Sql.SearchInTags, query);
-            var dishesFitting = await m_dbConnection.QueryAsync<DishLightResult>(Sql.SearchInDishes, query);
+            var searchResult = await m_dbConnection.QueryAsync<DishLightResult>(Sql.SearchInDishesAndTags, query);
 
-            var result = Combine(dishesWithTagsFitting, dishesFitting);
-           
-            return result;
+            return searchResult;
         }
-
-        private IEnumerable<DishLightResult> Combine(IEnumerable<DishLightResult> first, IEnumerable<DishLightResult> second)
-        {
-            if (second == null)
-            {
-                return first;
-            }
-            if (first == null)
-            {
-                return second;
-            }
-            IEnumerable<DishLightResult> union = first.Union(second, m_equalityComparer);
-            return union;
-        } 
     }
 }
