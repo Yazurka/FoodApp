@@ -70,7 +70,7 @@ namespace FoodAdmin.ViewModels
             var dishes = await m_foodFacade.GetAllDishes(10000,0);
             dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
             Dishes = new ObservableCollection<DishLight>(dishes);
-           
+            DishIngredientInProgress = new DishIngredientResult();
             OnPropertyChanged(nameof(Dishes));
         }
         private void CreateNewStep()
@@ -97,13 +97,23 @@ namespace FoodAdmin.ViewModels
             OnPropertyChanged(nameof(TheDish));
         }
 
-        private  void AddDishIngredient()
+        private async void AddDishIngredient()
         {
             TheDish.Ingredients.Add(DishIngredientInProgress);
             DishIngredientInProgress = new DishIngredientResult();
             SearchText = "";
             OnPropertyChanged(nameof(SearchText));
             OnPropertyChanged(nameof(DishIngredientInProgress));
+            if (TheDish.Id != -1)
+            {
+                var dishIngredientsToPost = new List<DishIngredientCreateRequest>{new DishIngredientCreateRequest{
+                    Amount = DishIngredientInProgress.Amount,
+                    IngredientId = DishIngredientInProgress.Id,
+                    Unit = DishIngredientInProgress.Unit
+                }};
+                await m_foodFacade.AddIngredientToDish(TheDish.Id, dishIngredientsToPost);
+            }
+
         }
         private void CreateNewDish()
         {
