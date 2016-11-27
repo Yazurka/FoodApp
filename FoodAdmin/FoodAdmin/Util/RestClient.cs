@@ -70,9 +70,9 @@ namespace FoodAdmin.Util
             }
         }
 
-        public Task Delete(int id, string urlEnd)
+        public async Task Delete(int id, string urlEnd)
         {
-            throw new System.NotImplementedException();
+            var response = await client.DeleteAsync(urlEnd);
         }
     }
 }

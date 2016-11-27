@@ -18,82 +18,105 @@ namespace FoodAdmin.Facade
             m_restClient = restClient;
         }
 
-        public Task<List<DishLight>> GetAllDishes()
+        public async Task<Dish> GetDish(int id)
         {
-            //var res = await m_restClient.Get<List<DishLight>>(0, "Dish");
 
-            return Task.Run(
-                        () =>
-                            new List<DishLight>
-                            {
-                                new DishLight()
-                                {
-                                    Name = "Graffi grillfest yo",
-                                    Author = "Erik er best",
-                                    Description = "Noe mat greier?",
-                                    Difficulty = 10,
-                                    Duration = "1 time",
-                                    Tags = new List<Tag>() { new Tag { Name = "GrillFest" }, new Tag { Name = "Kake" } },
-                                    TimeAdded = new DateTime(1990, 2,8)
-                                },
-                                new DishLight()
-                                {
-                                    Name = "Graffi grillfest yo",
-                                    Author = "Erik er best",
-                                    Description = "Noe mat greier?",
-                                    Difficulty = 10,
-                                    Duration = "1 time",
-                                    Tags = new List<Tag>() { new Tag { Name = "GrillFest" }, new Tag { Name = "Kake" } },
-                                    TimeAdded = new DateTime(1990, 2,8)
-                                }
-                            });
+            var res = await m_restClient.Get<Dish>(id, "Dish?id=");
+
+
+            return res;
+
         }
 
-        public  Task<List<Ingredient>> GetAllIngredients()
+        public async Task<List<DishLight>> GetAllDishes(int limit, int offset)
         {
-            return Task.Run(
-                () => new List<Ingredient>{
-                    new Ingredient() { Name = "Biff", Description = "Fra okse" },
-                    new Ingredient() { Name = "Kylling", Description = "Fersk" },
-                    new Ingredient() { Name = "Safran", Description = "Dyrt krydder. Kan erstattes av gurkemeie, for dårligere resultat" },
-                    new Ingredient() { Name = "Torsk", Description = "Fra Lofoten" },
-                });
+            
+                var res = await m_restClient.Get<List<DishLight>>(0, $"Dish?limit={limit}&offset={offset}");
+            
+
+
+            return res;
+
+            //return Task.Run(
+            //            () =>
+            //                new List<DishLight>
+            //                {
+            //                    new DishLight()
+            //                    {
+            //                        Name = "Graffi grillfest yo",
+            //                        Author = "Erik er best",
+            //                        Description = "Noe mat greier?",
+            //                        Difficulty = 10,
+            //                        Duration = "1 time",
+            //                        Tags = new List<Tag>() { new Tag { Name = "GrillFest" }, new Tag { Name = "Kake" } },
+            //                        TimeAdded = new DateTime(1990, 2,8)
+            //                    },
+            //                    new DishLight()
+            //                    {
+            //                        Name = "Graffi grillfest yo",
+            //                        Author = "Erik er best",
+            //                        Description = "Noe mat greier?",
+            //                        Difficulty = 10,
+            //                        Duration = "1 time",
+            //                        Tags = new List<Tag>() { new Tag { Name = "GrillFest" }, new Tag { Name = "Kake" } },
+            //                        TimeAdded = new DateTime(1990, 2,8)
+            //                    }
+            //                });
         }
 
-        public Task<List<Tag>> GetAllTags()
+        public async Task<List<Ingredient>> GetAllIngredients()
         {
-            //var tags = await m_restClient.Get<List<Tag>>(0, "tag");
-            return
-                    Task.Run(
-                        () =>
-                            new List<Tag>
-                            {
-                                new Tag { Name = "Grillfest" },
-                                new Tag { Name = "Kake" },
-                                new Tag { Name = "Biff" },
-                                new Tag { Name = "Matpakke" },
-                            });
+            var res = await m_restClient.Get<List<Ingredient>>(0, "Ingredient");
+
+
+            return res;
+            //return Task.Run(
+            //    () => new List<Ingredient>{
+            //        new Ingredient() { Name = "Biff", Description = "Fra okse" },
+            //        new Ingredient() { Name = "Kylling", Description = "Fersk" },
+            //        new Ingredient() { Name = "Safran", Description = "Dyrt krydder. Kan erstattes av gurkemeie, for dårligere resultat" },
+            //        new Ingredient() { Name = "Torsk", Description = "Fra Lofoten" },
+            //    });
         }
 
-        public Task UpdateTag(Tag tag)
+        public async Task<List<Tag>> GetAllTags()
         {
-            return Task.CompletedTask;
+            var tags = await m_restClient.Get<List<Tag>>(0, "tag");
+            return tags;
+            //return
+            //        Task.Run(
+            //            () =>
+            //                new List<Tag>
+            //                {
+            //                    new Tag { Name = "Grillfest" },
+            //                    new Tag { Name = "Kake" },
+            //                    new Tag { Name = "Biff" },
+            //                    new Tag { Name = "Matpakke" },
+            //                });
         }
 
-        public Task<Tag> AddTag(Tag tag)
+        public async Task UpdateTag(Tag tag)
         {
-            //var newtag = await m_restClient.Post<Tag>(new Tag() { Name = TagName }, "tag");
-            return Task.Run(() => tag);
+            await m_restClient.Put<Tag>(tag, "Tag");
         }
 
-        public Task DeleteTag(Tag tag)
+        public async Task<Tag> AddTag(Tag tag)
         {
-            return Task.CompletedTask;
+            var newtag = await m_restClient.Post<Tag>(tag, "tag");
+            return newtag;
+            //return Task.Run(() => tag);
+        }
+
+        public async Task DeleteTag(Tag tag)
+        {
+            await m_restClient.Delete(0, $"Tag?id={tag.Id}");
         }
 
         public async Task<List<DishIngredientResult>> GetIngredientsForDish(DishLight dish)
         {
-            return await Task.Run(() => new List<DishIngredientResult> { new DishIngredientResult() { Description = "Desc", Name = "lol?" } });
+           // return await Task.Run(() => new List<DishIngredientResult> { new DishIngredientResult() { Description = "Desc", Name = "lol?" } });
+            var res = (await m_restClient.Get<List<DishIngredientResult>>(dish.Id, "DishIngredient?id="));
+            return res;
         }
 
         public Task<DishImage> GetImageForDish(DishLight dish)
@@ -101,24 +124,27 @@ namespace FoodAdmin.Facade
             return Task.Run(() => new DishImage() { });
         }
 
-        public Task SaveDish(DishImage image, DishLight dish, List<DishIngredientResult> ingredients, List<Step> steps )
+        public Task SaveDish(Dish dish)
         {
             return Task.CompletedTask;
         }
 
-        public Task<Ingredient> AddIngredient(Ingredient ingredient)
+        public async Task<Ingredient> AddIngredient(Ingredient ingredient)
         {
-            return Task.Run(() => ingredient);
+            //return Task.Run(() => ingredient);
+            var res = await m_restClient.Post<Ingredient>(ingredient, "Ingredient");
+            return res;
         }
 
-        public Task DeleteIngredient(Ingredient selectedIngredient)
+        public async Task DeleteIngredient(Ingredient selectedIngredient)
         {
-            return Task.CompletedTask;
+            await m_restClient.Delete(0, $"Ingredient?id={selectedIngredient.Id}");
         }
 
-        public Task UpdateIngredient(Ingredient selectedIngredient)
+        public async Task UpdateIngredient(Ingredient selectedIngredient)
         {
-            return Task.CompletedTask;
+            var res = await m_restClient.Put<Ingredient>(selectedIngredient, $"Ingredient?id={selectedIngredient.Id}");
+ 
         }
     }
 }

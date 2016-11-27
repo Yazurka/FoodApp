@@ -44,29 +44,21 @@ namespace FoodAdmin.ViewModels
             }
         }
 
-        public ObservableCollection<Step> Steps
-        {
-            get { return m_steps; }
-            set
-            {
-                m_steps = value;
-                OnPropertyChanged(nameof(Steps));
-            }
-        }
+       
 
         public Dish TheDish { get; set; }
 
         public async Task Initialize()
         {
-            var dishes = await m_foodFacade.GetAllDishes();
+            var dishes = await m_foodFacade.GetAllDishes(10000,0);
             dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
             Dishes = new ObservableCollection<DishLight>(dishes);
-            Steps = new ObservableCollection<Step> { new Step() };
+           
             OnPropertyChanged(nameof(Dishes));
         }
         private void CreateNewStep()
         {
-            Steps.Add(new Step());  
+            TheDish.Steps.Add(new Step());  
         }
 
         private async void SelectionChanged()
@@ -76,12 +68,7 @@ namespace FoodAdmin.ViewModels
                 OnPropertyChanged(string.Empty);
                 return;
             }
-            TheDish = new Dish
-            {
-                DishValue = SelectedDish,
-                Ingredients = await m_foodFacade.GetIngredientsForDish(SelectedDish),
-                Image = await m_foodFacade.GetImageForDish(SelectedDish)
-            };
+            TheDish = await m_foodFacade.GetDish(SelectedDish.Id);
             OnPropertyChanged(nameof(TheDish));
         }
 
@@ -90,18 +77,17 @@ namespace FoodAdmin.ViewModels
             TheDish = null;
             SelectedDish = null;
             OnPropertyChanged(nameof(TheDish));
-            Steps = new ObservableCollection<Step> { new Step() };
         }
 
         private void CreateNewDish()
         {
-            TheDish = new Dish {DishValue = new DishLight(), Ingredients = new List<DishIngredientResult>()};
+            TheDish = new Dish {Tags = new List<Tag>(), Ingredients = new List<DishIngredientResult>()};
             OnPropertyChanged(nameof(TheDish));
         }
 
         private async void SaveDish()
         {
-            await m_foodFacade.SaveDish(TheDish.Image, TheDish.DishValue, TheDish.Ingredients, Steps.ToList());
+            await m_foodFacade.SaveDish(TheDish);
             Cancel();
         }
     }
