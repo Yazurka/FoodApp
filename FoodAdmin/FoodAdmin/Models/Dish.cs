@@ -17,8 +17,8 @@ namespace FoodAdmin.Models
         public int Duration { get; set; }
         public string Author { get; set; }
         public DateTime TimeAdded { get; set; }
-        public IEnumerable<DishIngredientResult> Ingredients { get; set; }
-        public IEnumerable<Tag> Tags { get; set; }
+        public ObservableCollection<DishIngredientResult> Ingredients { get; set; }
+        public ObservableCollection<Tag> Tags { get; set; }
         [JsonIgnore]
         public ObservableCollection<Step> Steps
         {

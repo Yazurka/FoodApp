@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using FoodAdmin.Facade;
 using FoodAdmin.Models;
 using FoodAdmin.Util;
@@ -16,13 +17,14 @@ namespace FoodAdmin.ViewModels
         private readonly FoodFacade m_foodFacade;
         private DishLight m_selectedDish;
         private readonly IViewDisabler m_viewDisabler;
-        private ObservableCollection<Step> m_steps;
+       
         [ImportingConstructor]
         public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel)
         {
             m_foodFacade = foodFacade;
             m_viewDisabler = viewDisabler;
             IngredientViewModel = ingredientViewModel;
+            
         }
         public IngredientViewModel IngredientViewModel { get; }
         public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
@@ -31,8 +33,23 @@ namespace FoodAdmin.ViewModels
        
 
         public DelegateCommand CancelCommad => new DelegateCommand(Cancel);
+        public DelegateCommand AddDishIngredientCommand => new DelegateCommand(AddDishIngredient);
         public DelegateCommand SaveCommand => new DelegateCommand(SaveDish);
         public ObservableCollection<DishLight> Dishes { get; set; }
+        public DishIngredientResult DishIngredientInProgress { get; set; }
+        public string SearchText { get; set; }
+        public Ingredient SelectedIngredient
+        {
+            get { return null; }
+            set
+            {
+                DishIngredientInProgress.Id = value?.Id?? 0;
+                DishIngredientInProgress.Name = value?.Name;
+                SearchText = value?.Name;
+                OnPropertyChanged(nameof(SearchText));
+            }
+        }
+
 
         public DishLight SelectedDish
         {
@@ -69,6 +86,7 @@ namespace FoodAdmin.ViewModels
                 return;
             }
             TheDish = await m_foodFacade.GetDish(SelectedDish.Id);
+            DishIngredientInProgress = new DishIngredientResult();
             OnPropertyChanged(nameof(TheDish));
         }
 
@@ -79,15 +97,29 @@ namespace FoodAdmin.ViewModels
             OnPropertyChanged(nameof(TheDish));
         }
 
+        private  void AddDishIngredient()
+        {
+            TheDish.Ingredients.Add(DishIngredientInProgress);
+            DishIngredientInProgress = new DishIngredientResult();
+            SearchText = "";
+            OnPropertyChanged(nameof(SearchText));
+            OnPropertyChanged(nameof(DishIngredientInProgress));
+        }
         private void CreateNewDish()
         {
-            TheDish = new Dish {Tags = new List<Tag>(), Ingredients = new List<DishIngredientResult>()};
+            TheDish = new Dish {Tags = new ObservableCollection<Tag>(), Ingredients = new ObservableCollection<DishIngredientResult>(),Id=-1};
             OnPropertyChanged(nameof(TheDish));
         }
 
         private async void SaveDish()
         {
-            await m_foodFacade.SaveDish(TheDish);
+            if (TheDish.Id == -1)
+            {
+                await m_foodFacade.CreateNewDish(TheDish);
+                Cancel();
+                return;
+            }
+            await m_foodFacade.UpdateDish(TheDish);
             Cancel();
         }
     }

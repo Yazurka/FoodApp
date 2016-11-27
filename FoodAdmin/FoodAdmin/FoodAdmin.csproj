@@ -72,10 +72,12 @@
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\OpositeBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\SortParameterConverter.cs" />
     <Compile Include="Facade\FoodFacade.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\DishImage.cs" />
     <Compile Include="Models\DishIngredient.cs" />
+    <Compile Include="Models\DishIngredientCreateRequest.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Step.cs" />
     <Compile Include="Util\Command.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Util\DelegateCommand.cs" />
     <Compile Include="Models\DishLight.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Util\Extensions.cs" />
     <Compile Include="Util\ImageUtilMethods.cs" />
     <Compile Include="Util\IRestClient.cs" />
     <Compile Include="Util\IViewDisabler.cs" />

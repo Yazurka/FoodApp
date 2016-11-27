@@ -7,10 +7,12 @@
              xmlns:Converters="clr-namespace:FoodAdmin.Converters"
              xmlns:Models="clr-namespace:FoodAdmin.Models"
              mc:Ignorable="d"  x:Name="userControl"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+            >
     <UserControl.Resources>
         <Converters:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
         <Converters:OpositeBoolToVisibilityConverter x:Key="opositeBoolToVisibilityConverter"/>
+        <Converters:SortParameterConverter x:Key="sortParameterConverter"/>
         
         <DataTemplate DataType="{x:Type Models:Dish}">
             <Grid>
@@ -61,14 +63,51 @@
                         </Grid>
 
                         <!--TODO-->
-                        <Grid Margin="5">
+                        <Grid Margin="5" DataContext="{Binding ElementName=userControl, Path=DataContext}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Ingredienser:"/>
-                            <ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>
+                            <TextBox x:Name="yolo" Grid.Column="1" Text="{Binding DishIngredientInProgress.Amount}"></TextBox>
+                            <TextBox Grid.Column="2" Text="{Binding DishIngredientInProgress.Unit}"></TextBox>
+
+
+                            <ComboBox Grid.Column="3" SelectedItem="{Binding SelectedIngredient, Mode=OneWayToSource}"
+                                >
+                                <ComboBox.Resources>
+                                    <DataTemplate DataType="{x:Type Models:Ingredient}">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.Resources>
+                                <ComboBox.ItemsSource>
+                                    <MultiBinding Converter="{StaticResource sortParameterConverter}">
+                                        <Binding Path="Text" ElementName="yoloawsome"></Binding>
+                                        <Binding Path="IngredientViewModel.Ingredients"></Binding>
+
+                                    </MultiBinding>
+                                </ComboBox.ItemsSource>
+                                <!--ItemsSource="{Binding ElementName=yolobox, Path=Text , Converter={StaticResource sortParameterConverter}, ConverterParameter=DataContext.IngredientViewModel.Ingredients, Mode=OneWay}">-->
+
+                            </ComboBox>
+                            <TextBox Text="{Binding SearchText}" x:Name="yoloawsome" Grid.Column="3" Margin="0,0,30,0"></TextBox>
+                            <Button Grid.Column="4" Content="Legg til" Command="{Binding AddDishIngredientCommand}"/>
+                            <!--<ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>-->
                         </Grid>
+                        <ItemsControl ItemsSource="{Binding Ingredients}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Amount}"></Label>
+                                        <Label Content="{Binding Unit}"></Label>
+                                        <Label Content="{Binding Name}"></Label>
+                                    </StackPanel>
+                                 </DataTemplate>
+                             </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                         <Label Content="Oppskrift"/>
                         <Grid>
                             <Grid.RowDefinitions>

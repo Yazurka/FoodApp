@@ -124,7 +124,11 @@ namespace FoodAdmin.Facade
             return Task.Run(() => new DishImage() { });
         }
 
-        public Task SaveDish(Dish dish)
+        public Task CreateNewDish(Dish dish)
+        {
+            return Task.CompletedTask;
+        }
+        public Task UpdateDish(Dish dish)
         {
             return Task.CompletedTask;
         }
@@ -145,6 +149,11 @@ namespace FoodAdmin.Facade
         {
             var res = await m_restClient.Put<Ingredient>(selectedIngredient, $"Ingredient?id={selectedIngredient.Id}");
  
+        }
+
+        public async Task AddIngredientToDish(int dishId, List<DishIngredientCreateRequest> dishIngredients)
+        {
+            await m_restClient.Post<DishIngredientCreateRequest>(dishIngredients, $"DishIngredient?dishid={dishId}");
         }
     }
 }
