@@ -27,10 +27,9 @@ namespace Food.Server.WebApi.Dish
             var result = await m_dishService.GetAllDishes(limit, offset);
             return result;
         }
-
-        public async Task<IEnumerable<DishLight>> Get(string parameter)
+        public async Task<IEnumerable<DishLight>> Get(string parameter, int limit, int offset)
         {
-            var result = await m_searchService.Search(parameter);
+            var result = await m_searchService.Search(parameter, limit, offset);
             return result;
         } 
        

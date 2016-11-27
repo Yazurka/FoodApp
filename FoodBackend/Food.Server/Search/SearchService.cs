@@ -18,10 +18,17 @@ namespace Food.Server.Search
             m_dishTagService = dishTagService;
         }
 
-        public async Task<IEnumerable<DishLight>> Search(string parameter)
+        public async Task<IEnumerable<DishLight>> Search(string parameter, int limit, int offset)
         {
             var dishes = new List<DishLight>();
-            IEnumerable<DishLightResult> dishLightResult = await m_queryExecutor.HandleAsync(new SearchQuery { Parameter = "%"+parameter+"%" });
+            IEnumerable<DishLightResult> dishLightResult = await m_queryExecutor.HandleAsync(
+                new SearchQuery
+                {
+                    Parameter = "%"+parameter+"%",
+                    Limit = limit,
+                    Offset = offset
+                }
+                );
             foreach (var dishResult in dishLightResult)
             {
                 IEnumerable<TagResult> tags = await m_dishTagService.FindTagsForDish(dishResult.Id);

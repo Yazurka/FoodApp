@@ -20,7 +20,8 @@ where exists
 			dt.Dish_id_fk = d.Id AND
             t.Name like @Parameter
     ) or d.Name like @Parameter or 
-	d.Author like @Parameter ORDER by d.Name
+	d.Author like @Parameter ORDER by d.Name 
+	limit @Limit offset @Offset
 
 
 	

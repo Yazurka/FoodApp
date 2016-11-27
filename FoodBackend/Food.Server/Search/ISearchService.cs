@@ -7,6 +7,6 @@ namespace Food.Server.Search
 {
     public interface ISearchService
     {
-        Task<IEnumerable<DishLight>> Search(string parameter);
+        Task<IEnumerable<DishLight>> Search(string parameter, int limit, int offset);
     }
 }
