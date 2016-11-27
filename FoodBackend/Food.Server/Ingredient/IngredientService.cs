@@ -46,6 +46,12 @@ namespace Food.Server.Ingredient
             return postedIngredient;
         }
 
+        public async Task UpdateIngredient(int id, UpdateIngredientRequest updateIngredientRequest)
+        {
+            var updateIngredientCommand = new UpdateIngredientCommand {Id = id, Name = updateIngredientRequest.Name, Description = updateIngredientRequest.Description};
+            await m_commandExecutor.ExecuteAsync(updateIngredientCommand);
+        }
+
         public async Task DeleteIngredient(int id)
         {
             await m_commandExecutor.ExecuteAsync(new DeleteIngredientCommand { Id = id });

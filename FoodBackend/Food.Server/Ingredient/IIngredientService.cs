@@ -8,6 +8,7 @@ namespace Food.Server.Ingredient
         Task<IEnumerable<IngredientResult>> GetAllIngredients();
         Task<IngredientResult> FindIngredient(int id);
         Task<IngredientResult> PostIngredient(IngredientCreateRequest ingredient);
+        Task UpdateIngredient(int id, UpdateIngredientRequest updateIngredientRequest);
         Task DeleteIngredient(int id);
 
     }

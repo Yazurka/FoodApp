@@ -28,6 +28,11 @@ namespace Food.Server.WebApi.Ingredient
             var result = await m_ingredientService.GetAllIngredients();
             return result;
         }
+
+        public async Task Put([FromUri]int id, [FromBody]UpdateIngredientRequest updateIngredientRequest)
+        {
+            await m_ingredientService.UpdateIngredient(id, updateIngredientRequest);
+        }
         public async Task<IngredientResult> Post(IngredientCreateRequest ingredientCreateRequest)
         {
             var result = await m_ingredientService.PostIngredient(ingredientCreateRequest);

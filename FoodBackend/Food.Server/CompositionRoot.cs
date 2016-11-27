@@ -18,8 +18,6 @@ namespace Food.Server
     {
         public void Compose(IServiceRegistry serviceRegistry)
         {
-           
-
             serviceRegistry.Register<IQueryExecutor>(factory => new QueryExecutor((IServiceFactory)serviceRegistry));
             serviceRegistry.Register<ICommandExecutor>(factory => new CommandExecutor((IServiceFactory)serviceRegistry));
             serviceRegistry.Register<IDbConnection>(factory => CreateMySqlConnection(factory), new PerScopeLifetime());
@@ -44,6 +42,7 @@ namespace Food.Server
             serviceRegistry.Register<ICommandHandler<DeleteTagCommand>, DeleteTagCommandHandler>();
             serviceRegistry.Register<ICommandHandler<IEnumerable<DeleteDishTagCommand>>, DeleteDishTagCommandHandler>();
             serviceRegistry.Register<ICommandHandler<IEnumerable<DishTagCommand>>, DishTagCommandHandler>();
+            serviceRegistry.Register<ICommandHandler<UpdateIngredientCommand>, UpdateIngredientCommandHandler>();
 
             serviceRegistry.Register<IIngredientService, IngredientService>();
             serviceRegistry.Register<IDishService, DishService>();

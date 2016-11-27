@@ -61,7 +61,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.dish;.
+        ///   Looks up a localized string similar to SELECT * FROM app.dish d order by d.Name;.
         /// </summary>
         internal static string AllDishes {
             get {
@@ -70,7 +70,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded from app.dish d order by d.Id limit @Limit offset @Offset.
+        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded 
+        ///from app.dish d order by d.Name limit @Limit offset @Offset .
         /// </summary>
         internal static string AllDishesLight {
             get {
@@ -97,7 +98,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.tag;.
+        ///   Looks up a localized string similar to SELECT * FROM app.tag t order by t.Name;.
         /// </summary>
         internal static string AllTags {
             get {
@@ -176,7 +177,7 @@ namespace Food.Server {
         ///   Looks up a localized string similar to SELECT i.Id, i.Name, i.Description, di.Amount, di.Unit FROM
         /// app.dish_ingredient di, app.ingredient i 
         /// WHERE di.Ingredient_id_fk = i.Id AND
-        ///di.Dish_id_fk = @Id;
+        ///di.Dish_id_fk = @Id order by i.Name;
         ///.
         /// </summary>
         internal static string FindIngredientForDish {
@@ -198,7 +199,7 @@ namespace Food.Server {
         ///   Looks up a localized string similar to SELECT t.Id, t.Name 
         ///FROM app.tag t, app.dish_tag dt 
         ///WHERE t.id=dt.Tag_id_fk 
-        ///and dt.Dish_id_fk = @id;.
+        ///and dt.Dish_id_fk = @id order by t.Name;.
         /// </summary>
         internal static string FindTagsForDish {
             get {
@@ -284,7 +285,8 @@ namespace Food.Server {
         ///			dt.Dish_id_fk = d.Id AND
         ///            t.Name like @Parameter
         ///    ) or d.Name like @Parameter or 
-        ///	d.Author like @Parameter 
+        ///	d.Author like @Parameter ORDER by d.Name 
+        ///	limit @Limit offset @Offset
         ///
         ///
         ///	.
@@ -303,6 +305,17 @@ namespace Food.Server {
         internal static string UpdateDish {
             get {
                 return ResourceManager.GetString("UpdateDish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE app.ingredient SET
+        ///Name = @Name, Description = @Description WHERE Id=@Id
+        ///.
+        /// </summary>
+        internal static string UpdateIngredient {
+            get {
+                return ResourceManager.GetString("UpdateIngredient", resourceCulture);
             }
         }
         
