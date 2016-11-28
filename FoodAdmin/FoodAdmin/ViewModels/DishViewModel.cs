@@ -32,6 +32,7 @@ namespace FoodAdmin.ViewModels
         public TagViewModel TagViewModel { get; }
         public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
         public DelegateCommand NewStepCommand => new DelegateCommand(CreateNewStep);
+        public DelegateCommand RemoveLastStepCommand => new DelegateCommand(RemoveLastStep);
         public ICommand RemoveIngredientFromDishCommand => new DelegateCommand(RemoveIngredientFromDish);
 
 
@@ -39,10 +40,32 @@ namespace FoodAdmin.ViewModels
 
         public DelegateCommand CancelCommad => new DelegateCommand(Cancel);
         public DelegateCommand AddDishIngredientCommand => new DelegateCommand(AddDishIngredient);
+        public DelegateCommand AddTagCommand => new DelegateCommand(AddTag);
+
+     
+
         public DelegateCommand SaveCommand => new DelegateCommand(SaveDish);
         public ObservableCollection<DishLight> Dishes { get; set; }
         public DishIngredientResult DishIngredientInProgress { get; set; }
+        public Tag TagInProgress { get; set; }
         public string SearchText { get; set; }
+        public string SearchTextTag { get; set; }
+
+        public Tag SelectedTag
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+                TagInProgress.Id = value?.Id ?? 0;
+                TagInProgress.Name = value?.Name;
+                SearchTextTag = value?.Name;
+                OnPropertyChanged(nameof(SearchTextTag));
+            }
+        }
+
         public Ingredient SelectedIngredient
         {
             get { return null; }
@@ -72,15 +95,20 @@ namespace FoodAdmin.ViewModels
 
         public async Task Initialize()
         {
-            var dishes = await m_foodFacade.GetAllDishes(10000,0);
+            var dishes = await m_foodFacade.GetAllDishes(100000,0);
             dishes.Sort((light, dishLight) => light.Name.CompareTo(dishLight.Name));
             Dishes = new ObservableCollection<DishLight>(dishes);
             DishIngredientInProgress = new DishIngredientResult();
+            TagInProgress = new Tag();
             OnPropertyChanged(nameof(Dishes));
         }
         private void CreateNewStep()
         {
             TheDish.Steps.Add(new Step());  
+        }
+        private void RemoveLastStep()
+        {
+            TheDish.Steps.RemoveAt(TheDish.Steps.IndexOf(TheDish.Steps.Last()));
         }
 
         private async void SelectionChanged()
@@ -101,7 +129,23 @@ namespace FoodAdmin.ViewModels
             SelectedDish = null;
             OnPropertyChanged(nameof(TheDish));
         }
-
+        private async void AddTag()
+        {
+            
+            if (TheDish.Id != -1)
+            {
+                var dishTagCreateRequest = new DishTagCreateRequest{
+                    DishId = TheDish.Id,
+                    TagIds = new []{TagInProgress.Id}
+                };
+                await m_foodFacade.AddTagsToDish(dishTagCreateRequest);
+            }
+            TheDish.Tags.Add(TagInProgress);
+            TagInProgress = new Tag();
+            SearchTextTag = "";
+            OnPropertyChanged(nameof(SearchTextTag));
+            OnPropertyChanged(nameof(TagInProgress));
+        }
         private async void AddDishIngredient()
         {
           
@@ -141,10 +185,12 @@ namespace FoodAdmin.ViewModels
             if (TheDish.Id == -1)
             {
                 await m_foodFacade.CreateNewDish(TheDish);
+                await Initialize();
                 Cancel();
                 return;
             }
             await m_foodFacade.UpdateDish(TheDish);
+            await Initialize();
             Cancel();
         }
     }

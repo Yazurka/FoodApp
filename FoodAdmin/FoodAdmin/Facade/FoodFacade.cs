@@ -135,7 +135,7 @@ namespace FoodAdmin.Facade
                 Difficulty = dish.Difficulty,
                 Duration = dish.Duration,
                 Name = dish.Name,
-                Recipe = dish.Recipe,
+                Recipe = JsonConvert.SerializeObject(dish.Steps),
                 TagIds = dish.Tags.Select(x=>x.Id).ToArray(),
                 DishIngredients = dish.Ingredients.Select(x=> new DishIngredientCreateRequest {Amount = x.Amount, IngredientId = x.Id, Unit = x.Unit}).ToArray()
 
@@ -178,6 +178,11 @@ namespace FoodAdmin.Facade
         public async Task AddIngredientToDish(int dishId, List<DishIngredientCreateRequest> dishIngredients)
         {
             await m_restClient.Post<DishIngredientCreateRequest>(dishIngredients, $"DishIngredient?dishid={dishId}");
+        }
+
+        public async Task AddTagsToDish(DishTagCreateRequest dishTagCreateRequest)
+        {
+            await m_restClient.Post<DishIngredientCreateRequest>(dishTagCreateRequest, "DishTag");
         }
     }
 }
