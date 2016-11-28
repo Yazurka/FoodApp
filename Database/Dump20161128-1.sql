@@ -1,4 +1,4 @@
-﻿CREATE DATABASE  IF NOT EXISTS `app` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE  IF NOT EXISTS `app` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `app`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
@@ -43,7 +43,7 @@ CREATE TABLE `dish` (
 
 LOCK TABLES `dish` WRITE;
 /*!40000 ALTER TABLE `dish` DISABLE KEYS */;
-INSERT INTO `dish` VALUES (1,'Rømmegrøt2','grøtrett2','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',3,42,'Marius Norøy Lian',NULL),(52472502,'Saltkjøtt og stappe','salt nydelig mat','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',5,NULL,'Marius Norøy Lian',NULL),(658073992,'kokt egg','eggs','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',1,7,'Marius Norøy Lian','2016-11-10'),(1589008444,'Pannekake','Flat mat','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',3,NULL,'Mohammad Ali',NULL),(1791711019,'Pølse i brød','kjøttrett','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',NULL,NULL,'Marius Norøy Lian',NULL);
+INSERT INTO `dish` VALUES (1,'Rømmegrøt','grøtrett2','[{\"Value\":\"steg 1\"},{\"Value\":\" 2\"},{\"Value\":\"dette er steg 3\"},{\"Value\":\"steg 4\"},{\"Value\":\"steg 5\"},{\"Value\":\"steg6\"}]',3,42,'Marius Norøy Lian',NULL),(52472502,'Saltkjøtt og stappe','salt nydelig mat','[{\"Value\":\"s1\"},{\"Value\":\" 2\"},{\"Value\":\"dette er steg 3\"},{\"Value\":\"steg 4\"},{\"Value\":\"steg 5\"},{\"Value\":\"steg6\"},{\"Value\":\"s7\"}]',5,0,'Marius Norøy Lian',NULL),(658073992,'kokt egg','eggs','[{\"Value\":\"steg 1\"},{\"Value\":\" 2\"},{\"Value\":\"dette er steg 3\"},{\"Value\":\"steg 4\"},{\"Value\":\"steg 5\"},{\"Value\":\"steg6\"}]',1,7,'Marius Norøy Lian','2016-11-10'),(1589008444,'Pannekake','Flat mat','[{\"Value\":\"steg 1\"},{\"Value\":\" 2\"},{\"Value\":\"dette er steg 3\"},{\"Value\":\"steg 4\"},{\"Value\":\"steg 5\"},{\"Value\":\"steg6\"}]',3,NULL,'Mohammad Ali',NULL),(1791711019,'Pølse i brød','kjøttrett','[{\"Value\":\"steg 1\"},{\"Value\":\" 2\"},{\"Value\":\"dette er steg 3\"},{\"Value\":\"steg 4\"},{\"Value\":\"steg 5\"},{\"Value\":\"steg6\"}]',NULL,NULL,'Marius Norøy Lian',NULL),(1986389363,'Min kozerett','kozerett','[{\"Value\":\"gjør slik\"},{\"Value\":\"også tar du å gjør dette2\"},{\"Value\":\"så er du ferdig :)\"}]',5,20,NULL,'2016-11-28');
 /*!40000 ALTER TABLE `dish` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +74,7 @@ CREATE TABLE `dish_ingredient` (
 
 LOCK TABLES `dish_ingredient` WRITE;
 /*!40000 ALTER TABLE `dish_ingredient` DISABLE KEYS */;
-INSERT INTO `dish_ingredient` VALUES (514675721,10,'ss',1526734004,1),(763448097,200,'kg',1558580744,1),(789926779,10,'dl',3,1589008444),(996465228,2.6,'Liter',1343211174,1),(2032243369,200,'Gram',2,1);
+INSERT INTO `dish_ingredient` VALUES (514675721,10,'ss',1526734004,1),(763448097,200,'kg',1558580744,1),(789926779,10,'dl',3,1589008444),(996465228,2.6,'Liter',1343211174,1),(1613977580,20,'l',37229983,1),(1986389363,10,'l',1526734004,1986389363),(2032243369,200,'Gram',2,1);
 /*!40000 ALTER TABLE `dish_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
-INSERT INTO `ingredient` VALUES (1,'Melk','Melkeprodukt'),(2,'Smør','Meieriprodukt'),(3,'Rømme','Melkeprodukt'),(4,'Fløte','Melkeprodukt'),(1343211174,'SolbærSirup','konsentrat'),(1526734004,'stearin','lys'),(1558580744,'Bacon','kjøtt gris'),(2003612574,'Sukker','søt');
+INSERT INTO `ingredient` VALUES (1,'Melk','Melkeprodukt'),(2,'Smør','Meieriprodukt'),(3,'Rømme','Melkeprodukt'),(4,'Fløte','Melkeprodukt'),(37229983,'elg kjøtt','ok'),(1343211174,'SolbærSirup','konsentrat'),(1526734004,'stearin','lys'),(1558580744,'Bacon','kjøtt gris'),(2003612574,'Sukker','søt');
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-28 14:13:56
+-- Dump completed on 2016-11-28 18:00:59

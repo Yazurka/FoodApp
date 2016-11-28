@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoodAdmin.Models;
 using FoodAdmin.Util;
+using Newtonsoft.Json;
 
 namespace FoodAdmin.Facade
 {
@@ -151,7 +152,7 @@ namespace FoodAdmin.Facade
                 Difficulty = dish.Difficulty,
                 Duration = dish.Duration,
                 Name = dish.Name,
-                Recipe = dish.Recipe,
+                Recipe = JsonConvert.SerializeObject(dish.Steps),
             };
             await m_restClient.Put<Dish>(updateRequest, $"Dish?id={dish.Id}");
         }

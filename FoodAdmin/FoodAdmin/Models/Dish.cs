@@ -32,11 +32,11 @@ namespace FoodAdmin.Models
                     }
                     else
                     {
-                        var stringList = JsonConvert.DeserializeObject<List<string>>(Recipe);
+                        var stringList = JsonConvert.DeserializeObject<List<Step>>(Recipe);
                         var steps = new ObservableCollection<Step>();
                         foreach (var s in stringList)
                         {
-                            steps.Add(new Step {Value = s});
+                            steps.Add(new Step {Value = s.Value});
                         }
                         m_steps = steps;
                     }
