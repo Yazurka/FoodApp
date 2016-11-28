@@ -16,7 +16,7 @@ Vagrant::Config.run do |config|
   
   config.vm.provision :shell, :inline => "echo All done, go vagrant ssh!"
 
-  config.vm.forward_port 8080, 8080 # GameScoreBoardServer
+  config.vm.forward_port 8080, 8081 # GameScoreBoardServer
   config.vm.forward_port 3306, 3306 # MySQL
 
 
