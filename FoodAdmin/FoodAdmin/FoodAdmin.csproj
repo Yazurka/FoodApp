@@ -74,12 +74,14 @@
     <Compile Include="Converters\NewDishToVisibilityConverter.cs" />
     <Compile Include="Converters\OpositeBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\SortParameterConverter.cs" />
+    <Compile Include="Converters\SortParameterConverterTag.cs" />
     <Compile Include="Facade\FoodFacade.cs" />
     <Compile Include="Models\Dish.cs" />
     <Compile Include="Models\DishCreateRequest.cs" />
     <Compile Include="Models\DishImage.cs" />
     <Compile Include="Models\DishIngredient.cs" />
     <Compile Include="Models\DishIngredientCreateRequest.cs" />
+    <Compile Include="Models\DishTagCreateRequest.cs" />
     <Compile Include="Models\DishUpdateRequest.cs" />
     <Compile Include="Models\Ingredient.cs" />
     <Compile Include="Models\Step.cs" />

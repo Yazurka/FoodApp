@@ -14,6 +14,7 @@
         <Converters:OpositeBoolToVisibilityConverter x:Key="opositeBoolToVisibilityConverter"/>
         <Converters:NewDishToVisibilityConverter x:Key="newDishToVisibilityConverter"/>
         <Converters:SortParameterConverter x:Key="sortParameterConverter"/>
+        <Converters:SortParameterConverterTag x:Key="sortParameterConverterTag"/>
         
         <DataTemplate DataType="{x:Type Models:Dish}">
             <Grid>
@@ -75,8 +76,6 @@
                             <TextBlock Text="Ingredienser:"/>
                             <TextBox x:Name="yolo" Grid.Column="1" Text="{Binding DishIngredientInProgress.Amount}"></TextBox>
                             <TextBox Grid.Column="2" Text="{Binding DishIngredientInProgress.Unit}"></TextBox>
-
-
                             <ComboBox Grid.Column="3" SelectedItem="{Binding SelectedIngredient, Mode=OneWayToSource}"
                                 >
                                 <ComboBox.Resources>
@@ -110,10 +109,51 @@
                                  </DataTemplate>
                              </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <Label Content="Tags"/>
-                        <ComboBox ItemsSource="{Binding TagViewModel.Tags}" DisplayMemberPath="Name" DataContext="{Binding ElementName=userControl, Path=DataContext}">
+                        
+                        <!--<ComboBox ItemsSource="{Binding TagViewModel.Tags}" DisplayMemberPath="Name" DataContext="{Binding ElementName=userControl, Path=DataContext}">
                             
-                        </ComboBox>
+                        </ComboBox>-->
+                        <!--Tags-->
+                        <Grid Margin="5" DataContext="{Binding ElementName=userControl, Path=DataContext}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                           
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Tags:"/>
+
+                            <ComboBox Grid.Column="1" SelectedItem="{Binding SelectedTag, Mode=OneWayToSource}"
+                                >
+                                <ComboBox.Resources>
+                                    <DataTemplate DataType="{x:Type Models:Tag}">
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.Resources>
+                                <ComboBox.ItemsSource>
+                                    <MultiBinding Converter="{StaticResource sortParameterConverterTag}">
+                                        <Binding Path="Text" ElementName="yoloawsome2"></Binding>
+                                        <Binding Path="TagViewModel.Tags"></Binding>
+
+                                    </MultiBinding>
+                                </ComboBox.ItemsSource>
+                                <!--ItemsSource="{Binding ElementName=yolobox, Path=Text , Converter={StaticResource sortParameterConverter}, ConverterParameter=DataContext.IngredientViewModel.Ingredients, Mode=OneWay}">-->
+
+                            </ComboBox>
+                            <TextBox Text="{Binding SearchTextTag}" x:Name="yoloawsome2" Grid.Column="1" Margin="0,0,30,0"></TextBox>
+                            <Button Grid.Column="2" Content="Legg til" Command="{Binding AddTagCommand}"/>
+                            <!--<ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>-->
+                        </Grid>
+                        <ItemsControl ItemsSource="{Binding Tags}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Name}"></Label>
+                                        <Button Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveTagFromDishCommand}"></Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                         <Label Content="Oppskrift"/>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -143,8 +183,12 @@
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
-                           </ItemsControl>
-                            <Button Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" Command="{Binding ElementName=userControl, Path=DataContext.NewStepCommand}" Content="Legg til nytt steg"/>
+                            </ItemsControl>
+                            <DockPanel  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch"  >
+                                <Button HorizontalAlignment="Left" Command="{Binding ElementName=userControl, Path=DataContext.NewStepCommand}" Content="Legg til nytt steg"/>
+                                <Button  HorizontalAlignment="Right" Command="{Binding ElementName=userControl, Path=DataContext.RemoveLastStepCommand}" Content="Fjern siste steg"/>
+                            </DockPanel>
+                            
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
