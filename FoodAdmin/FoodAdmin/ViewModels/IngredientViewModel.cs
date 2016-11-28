@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using FoodAdmin.Facade;
 using FoodAdmin.Models;
 using FoodAdmin.Util;
@@ -12,11 +14,13 @@ namespace FoodAdmin.ViewModels
     public class IngredientViewModel : ViewModelBase
     {
         private readonly FoodFacade m_foodFacade;
+        private readonly IViewDisabler m_viewDisabler;
 
         [ImportingConstructor]
-        public IngredientViewModel(FoodFacade foodFacade)
+        public IngredientViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler)
         {
             m_foodFacade = foodFacade;
+            m_viewDisabler = viewDisabler;
         }
 
         public ObservableCollection<Ingredient> Ingredients { get; private set; }

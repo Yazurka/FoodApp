@@ -18,19 +18,24 @@ namespace FoodAdmin.ViewModels
         private DishLight m_selectedDish;
         private readonly IViewDisabler m_viewDisabler;
        
+
         [ImportingConstructor]
-        public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel)
+        public DishViewModel(FoodFacade foodFacade, IViewDisabler viewDisabler, IngredientViewModel ingredientViewModel, TagViewModel tagViewModel)
         {
             m_foodFacade = foodFacade;
             m_viewDisabler = viewDisabler;
+            TagViewModel = tagViewModel;
             IngredientViewModel = ingredientViewModel;
             
         }
         public IngredientViewModel IngredientViewModel { get; }
+        public TagViewModel TagViewModel { get; }
         public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
         public DelegateCommand NewStepCommand => new DelegateCommand(CreateNewStep);
+        public ICommand RemoveIngredientFromDishCommand => new DelegateCommand(RemoveIngredientFromDish);
 
-       
+
+
 
         public DelegateCommand CancelCommad => new DelegateCommand(Cancel);
         public DelegateCommand AddDishIngredientCommand => new DelegateCommand(AddDishIngredient);
@@ -99,11 +104,7 @@ namespace FoodAdmin.ViewModels
 
         private async void AddDishIngredient()
         {
-            TheDish.Ingredients.Add(DishIngredientInProgress);
-            DishIngredientInProgress = new DishIngredientResult();
-            SearchText = "";
-            OnPropertyChanged(nameof(SearchText));
-            OnPropertyChanged(nameof(DishIngredientInProgress));
+          
             if (TheDish.Id != -1)
             {
                 var dishIngredientsToPost = new List<DishIngredientCreateRequest>{new DishIngredientCreateRequest{
@@ -113,12 +114,26 @@ namespace FoodAdmin.ViewModels
                 }};
                 await m_foodFacade.AddIngredientToDish(TheDish.Id, dishIngredientsToPost);
             }
+            TheDish.Ingredients.Add(DishIngredientInProgress);
+            DishIngredientInProgress = new DishIngredientResult();
+            SearchText = "";
+            OnPropertyChanged(nameof(SearchText));
+            OnPropertyChanged(nameof(DishIngredientInProgress));
 
         }
         private void CreateNewDish()
         {
             TheDish = new Dish {Tags = new ObservableCollection<Tag>(), Ingredients = new ObservableCollection<DishIngredientResult>(),Id=-1};
             OnPropertyChanged(nameof(TheDish));
+        }
+        //Ta inn hvilken ing som er trykket på
+        private void RemoveIngredientFromDish()
+        {
+           
+            if (TheDish.Id == -1)
+            {
+               // TheDish.Ingredients.Remove(dishIngredient);
+            }
         }
 
         private async void SaveDish()

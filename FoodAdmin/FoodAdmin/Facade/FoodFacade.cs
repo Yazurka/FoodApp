@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using System.Threading.Tasks;
 using FoodAdmin.Models;
 using FoodAdmin.Util;
@@ -124,13 +125,35 @@ namespace FoodAdmin.Facade
             return Task.Run(() => new DishImage() { });
         }
 
-        public Task CreateNewDish(Dish dish)
+        public async Task CreateNewDish(Dish dish)
         {
-            return Task.CompletedTask;
+            var createRequest = new DishCreateRequest
+            {
+                Author = dish.Author,
+                Description = dish.Description,
+                Difficulty = dish.Difficulty,
+                Duration = dish.Duration,
+                Name = dish.Name,
+                Recipe = dish.Recipe,
+                TagIds = dish.Tags.Select(x=>x.Id).ToArray(),
+                DishIngredients = dish.Ingredients.Select(x=> new DishIngredientCreateRequest {Amount = x.Amount, IngredientId = x.Id, Unit = x.Unit}).ToArray()
+
+            };
+            await m_restClient.Post<Dish>(createRequest, "Dish");
+           
         }
-        public Task UpdateDish(Dish dish)
+        public async Task UpdateDish(Dish dish)
         {
-            return Task.CompletedTask;
+            var updateRequest = new UpdateDishRequest
+            {
+                Author = dish.Author,
+                Description = dish.Description,
+                Difficulty = dish.Difficulty,
+                Duration = dish.Duration,
+                Name = dish.Name,
+                Recipe = dish.Recipe,
+            };
+            await m_restClient.Put<Dish>(updateRequest, $"Dish?id={dish.Id}");
         }
 
         public async Task<Ingredient> AddIngredient(Ingredient ingredient)

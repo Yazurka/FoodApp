@@ -1,3 +1,5 @@
+﻿CREATE DATABASE  IF NOT EXISTS `app` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `app`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: app
@@ -41,7 +43,7 @@ CREATE TABLE `dish` (
 
 LOCK TABLES `dish` WRITE;
 /*!40000 ALTER TABLE `dish` DISABLE KEYS */;
-INSERT INTO `dish` VALUES (1,'Rømmegrøt2','grøtrett2','grøtrett - en oppskrift for konger',3,42,'Marius Norøy Lian',NULL),(52472502,'Saltkjøtt og stappe','salt nydelig mat','Oppskrift på Saltkjøtt og stappe, gjør slik og slik og slik',5,NULL,'Marius Norøy Lian',NULL),(658073992,'kokt egg','eggs','Oppskrift på kokt egg, kok egget i 5 min for bløtkokt',1,7,'Marius Norøy Lian','2016-11-10'),(1589008444,'Pannekake','Flat mat','Oppskrift på pannekake',3,NULL,'Marius Norøy Lian',NULL),(1791711019,'Pølse i brød','kjøttrett',NULL,NULL,NULL,'Marius Norøy Lian',NULL);
+INSERT INTO `dish` VALUES (1,'Rømmegrøt2','grøtrett2','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',3,42,'Marius Norøy Lian',NULL),(52472502,'Saltkjøtt og stappe','salt nydelig mat','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',5,NULL,'Marius Norøy Lian',NULL),(658073992,'kokt egg','eggs','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',1,7,'Marius Norøy Lian','2016-11-10'),(1589008444,'Pannekake','Flat mat','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',3,NULL,'Mohammad Ali',NULL),(1791711019,'Pølse i brød','kjøttrett','[\"dette er steg 1\",\"dette er steg 2\",\"dette er steg 3\"]',NULL,NULL,'Marius Norøy Lian',NULL);
 /*!40000 ALTER TABLE `dish` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,7 +74,7 @@ CREATE TABLE `dish_ingredient` (
 
 LOCK TABLES `dish_ingredient` WRITE;
 /*!40000 ALTER TABLE `dish_ingredient` DISABLE KEYS */;
-INSERT INTO `dish_ingredient` VALUES (996465228,2.6,'Liter',1343211174,1),(2032243369,200,'Gram',2,1);
+INSERT INTO `dish_ingredient` VALUES (514675721,10,'ss',1526734004,1),(763448097,200,'kg',1558580744,1),(789926779,10,'dl',3,1589008444),(996465228,2.6,'Liter',1343211174,1),(2032243369,200,'Gram',2,1);
 /*!40000 ALTER TABLE `dish_ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +128,7 @@ CREATE TABLE `ingredient` (
 
 LOCK TABLES `ingredient` WRITE;
 /*!40000 ALTER TABLE `ingredient` DISABLE KEYS */;
-INSERT INTO `ingredient` VALUES (1,'Melk','Melkeprodukt'),(2,'Smør','Meieriprodukt'),(3,'Rømme','Melkeprodukt'),(4,'Fløte','Melkeprodukt'),(5,'Bacon','Kjøttprodukt'),(1343211174,'Solbærsaft','leskedrikk, konsentrat');
+INSERT INTO `ingredient` VALUES (1,'Melk','Melkeprodukt'),(2,'Smør','Meieriprodukt'),(3,'Rømme','Melkeprodukt'),(4,'Fløte','Melkeprodukt'),(1343211174,'SolbærSirup','konsentrat'),(1526734004,'stearin','lys'),(1558580744,'Bacon','kjøtt gris'),(2003612574,'Sukker','søt');
 /*!40000 ALTER TABLE `ingredient` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +152,7 @@ CREATE TABLE `tag` (
 
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-INSERT INTO `tag` VALUES (151698370,'Mekikanskabc'),(297681079,'Fest'),(805764724,'Spicy'),(843741084,'Rask'),(899627983,'Tradisjonell Kozzzemat'),(928694354,'Grillelolololo'),(1092345305,'Kyllingmiddag'),(1107510883,'Hverdag'),(1444907797,'Norsk'),(1582647497,'Grille'),(1921483138,'Kosemat232312');
+INSERT INTO `tag` VALUES (151698370,'Mekikanskabc'),(189422166,'Julemat2'),(297681079,'Fest'),(805764724,'Spicy'),(843741084,'Rask'),(899627983,'Tradisjonell Kozzzemat'),(928694354,'Grillelolololo'),(1092345305,'Kyllingmiddag'),(1107510883,'Hverdag'),(1444907797,'Norsk'),(1582647497,'Grille'),(1921483138,'Kosemat232312');
 /*!40000 ALTER TABLE `tag` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -163,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-18 19:50:07
+-- Dump completed on 2016-11-28 14:13:56

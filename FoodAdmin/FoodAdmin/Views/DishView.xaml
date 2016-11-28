@@ -12,6 +12,7 @@
     <UserControl.Resources>
         <Converters:BoolToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
         <Converters:OpositeBoolToVisibilityConverter x:Key="opositeBoolToVisibilityConverter"/>
+        <Converters:NewDishToVisibilityConverter x:Key="newDishToVisibilityConverter"/>
         <Converters:SortParameterConverter x:Key="sortParameterConverter"/>
         
         <DataTemplate DataType="{x:Type Models:Dish}">
@@ -104,10 +105,15 @@
                                         <Label Content="{Binding Amount}"></Label>
                                         <Label Content="{Binding Unit}"></Label>
                                         <Label Content="{Binding Name}"></Label>
+                                        <Button Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveIngredientFromDishCommand}"></Button>
                                     </StackPanel>
                                  </DataTemplate>
                              </ItemsControl.ItemTemplate>
                         </ItemsControl>
+                        <Label Content="Tags"/>
+                        <ComboBox ItemsSource="{Binding TagViewModel.Tags}" DisplayMemberPath="Name" DataContext="{Binding ElementName=userControl, Path=DataContext}">
+                            
+                        </ComboBox>
                         <Label Content="Oppskrift"/>
                         <Grid>
                             <Grid.RowDefinitions>
