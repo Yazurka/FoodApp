@@ -11,5 +11,6 @@ namespace Food.Server.DishIngredientRelation
         public double Amount { get; set; }
         public string Unit { get; set; }
         public int IngredientId { get; set; }
+        public string Comment { get; set; }
     }
 }

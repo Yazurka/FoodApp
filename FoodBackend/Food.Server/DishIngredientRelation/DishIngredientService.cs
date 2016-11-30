@@ -61,7 +61,8 @@ namespace Food.Server.DishIngredientRelation
                     Dish_id_fk = dishId,
                     Ingredient_id_fk = dishIngredient.IngredientId,
                     Unit = dishIngredient.Unit,
-                    Amount = dishIngredient.Amount
+                    Amount = dishIngredient.Amount,
+                    Comment = dishIngredient.Comment
                 });
             }
 

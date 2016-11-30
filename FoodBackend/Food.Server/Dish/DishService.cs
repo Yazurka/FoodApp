@@ -110,6 +110,19 @@ namespace Food.Server.Dish
 
         public async Task DeleteDish(int id)
         {
+            var dishToBeDeleted = await FindDish(id);
+            var ingredientIds = dishToBeDeleted.Ingredients.Select(x => x.Id).ToArray();
+            var tagIds = dishToBeDeleted.Tags.Select(x => x.Id).ToArray();
+
+            if (ingredientIds.Count()>0)
+            {
+                await m_dishIngredientService.DeleteIngredientFromDish(id, ingredientIds);
+            }
+            if (tagIds.Count()>0)
+            {
+                 await m_dishTagService.RemoveTagsFromDish(id, tagIds);
+            }
+            
             await m_commandExecutor.ExecuteAsync(new DeleteDishCommand { Id = id });
         }
 

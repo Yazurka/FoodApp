@@ -7,6 +7,6 @@ namespace FoodAdmin.Util
         Task<T> Get<T>(int id, string urlEnd);
         Task<T> Post<T>(object data, string urlEnd);
         Task<T> Put<T>(object data, string urlEnd) where T : class; 
-        Task Delete(int id, string urlEnd);
+        Task Delete(string urlEnd);
     }
 }

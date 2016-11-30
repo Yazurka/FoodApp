@@ -10,5 +10,6 @@ namespace FoodAdmin.Models
 
         public double Amount { get; set; }
         public string Unit { get; set; }
+        public string Comment { get; set; }
     }
 }

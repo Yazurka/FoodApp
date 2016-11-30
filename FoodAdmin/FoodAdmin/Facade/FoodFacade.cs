@@ -111,7 +111,7 @@ namespace FoodAdmin.Facade
 
         public async Task DeleteTag(Tag tag)
         {
-            await m_restClient.Delete(0, $"Tag?id={tag.Id}");
+            await m_restClient.Delete($"Tag?id={tag.Id}");
         }
 
         public async Task<List<DishIngredientResult>> GetIngredientsForDish(DishLight dish)
@@ -137,7 +137,7 @@ namespace FoodAdmin.Facade
                 Name = dish.Name,
                 Recipe = JsonConvert.SerializeObject(dish.Steps),
                 TagIds = dish.Tags.Select(x=>x.Id).ToArray(),
-                DishIngredients = dish.Ingredients.Select(x=> new DishIngredientCreateRequest {Amount = x.Amount, IngredientId = x.Id, Unit = x.Unit}).ToArray()
+                DishIngredients = dish.Ingredients.Select(x=> new DishIngredientCreateRequest {Amount = x.Amount, IngredientId = x.Id, Unit = x.Unit, Comment = x.Comment}).ToArray()
 
             };
             await m_restClient.Post<Dish>(createRequest, "Dish");
@@ -166,7 +166,7 @@ namespace FoodAdmin.Facade
 
         public async Task DeleteIngredient(Ingredient selectedIngredient)
         {
-            await m_restClient.Delete(0, $"Ingredient?id={selectedIngredient.Id}");
+            await m_restClient.Delete($"Ingredient?id={selectedIngredient.Id}");
         }
 
         public async Task UpdateIngredient(Ingredient selectedIngredient)
@@ -183,6 +183,20 @@ namespace FoodAdmin.Facade
         public async Task AddTagsToDish(DishTagCreateRequest dishTagCreateRequest)
         {
             await m_restClient.Post<DishIngredientCreateRequest>(dishTagCreateRequest, "DishTag");
+        }
+
+        public async Task DeleteDishIngredient(int dishId, DishIngredientResult dishIngredient)
+        {
+            await m_restClient.Delete($"DishIngredient?dishid={dishId}&ingredientIds={dishIngredient.Id}");
+        }
+        public async Task DeleteDishTag(int dishId, Tag tag)
+        {
+            await m_restClient.Delete($"DishTag?dishid={dishId}&tagIds={tag.Id}");
+        }
+
+        public async Task DeleteDish(int id)
+        {
+            await m_restClient.Delete($"Dish?id={id}");
         }
     }
 }

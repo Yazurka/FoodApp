@@ -13,6 +13,8 @@ namespace Food.Server.DishIngredientRelation
         public string Description { get; set; }
         public double Amount { get; set; }
         public string Unit { get; set; }
-       
+        public string Comment { get; set; }
+
+
     }
 }

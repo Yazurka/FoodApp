@@ -70,7 +70,7 @@ namespace FoodAdmin.Util
             }
         }
 
-        public async Task Delete(int id, string urlEnd)
+        public async Task Delete(string urlEnd)
         {
             var response = await client.DeleteAsync(urlEnd);
         }

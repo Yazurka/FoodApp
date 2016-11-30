@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace FoodAdmin
+namespace FoodAdmin.Util
 {
     public class DelegateCommand : ICommand
     {

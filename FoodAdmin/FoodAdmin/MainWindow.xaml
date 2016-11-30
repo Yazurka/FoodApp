@@ -8,8 +8,10 @@
         xmlns:viewModels="clr-namespace:FoodAdmin.ViewModels"
         xmlns:Views="clr-namespace:FoodAdmin.Views"
         xmlns:Converters="clr-namespace:FoodAdmin.Converters"
+        xmlns:Dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         d:DataContext="{d:DesignInstance Type=viewModels:FoodAdminViewModel, IsDesignTimeCreatable=True}"
-        Title="Matapp" Height="600" Width="700">
+        Title="Mat Admin" Height="600" Width="700"
+                     >
     <Controls:MetroWindow.Resources>
 
         <Color x:Key="FilledColor" A="255" B="155" R="155" G="155"/>

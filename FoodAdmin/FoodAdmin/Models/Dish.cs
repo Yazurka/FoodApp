@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using FoodAdmin.Util;
 using Newtonsoft.Json;
 
 namespace FoodAdmin.Models
 {
-    public class Dish
+    public class Dish : ViewModelBase
     {
         private ObservableCollection<Step> m_steps; 
 

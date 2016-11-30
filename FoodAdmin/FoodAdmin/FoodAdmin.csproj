@@ -94,8 +94,11 @@
     <Compile Include="Util\ImageUtilMethods.cs" />
     <Compile Include="Util\IRestClient.cs" />
     <Compile Include="Util\IViewDisabler.cs" />
+    <Compile Include="Util\PopupDialog.cs" />
     <Compile Include="Util\RestClient.cs" />
     <Compile Include="Util\ViewDisabler.cs" />
+    <Compile Include="Util\WatermarkAdorner.cs" />
+    <Compile Include="Util\WatermarkService.cs" />
     <Compile Include="ViewModels\DishViewModel.cs" />
     <Compile Include="ViewModels\FoodAdminViewModel.cs" />
     <Compile Include="ViewModels\IngredientViewModel.cs" />
