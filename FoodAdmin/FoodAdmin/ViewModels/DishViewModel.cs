@@ -238,7 +238,7 @@ namespace FoodAdmin.ViewModels
         private async void AddDishIngredient()
         {
 
-            if (DishIngredientInProgress.Id == 0 || Math.Abs(DishIngredientInProgress.Amount) < 0.000000001 || string.IsNullOrEmpty(DishIngredientInProgress.Unit))
+            if (DishIngredientInProgress.Id == 0 || Math.Abs(DishIngredientInProgress.Amount) < double.Epsilon || string.IsNullOrEmpty(DishIngredientInProgress.Unit))
             {
                 await m_popupDialog.Dialog.ShowMessageAsync(this, "Kan ikke legge til ingrediens", "Ingrediensen du prøver å legge til må velges fra nedtrekkslista, enhetsfeltet og mengdefeltet må ha en verdi");
                 return;
