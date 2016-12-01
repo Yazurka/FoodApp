@@ -29,16 +29,19 @@ namespace Food.Server.WebApi.Ingredient
             return result;
         }
 
+        [Authorize]
         public async Task Put([FromUri]int id, [FromBody]UpdateIngredientRequest updateIngredientRequest)
         {
             await m_ingredientService.UpdateIngredient(id, updateIngredientRequest);
         }
+        [Authorize]
         public async Task<IngredientResult> Post(IngredientCreateRequest ingredientCreateRequest)
         {
             var result = await m_ingredientService.PostIngredient(ingredientCreateRequest);
             return result;
         }
 
+        [Authorize]
         public async Task Delete(int id)
         {
             await m_ingredientService.DeleteIngredient(id);

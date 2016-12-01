@@ -35,7 +35,9 @@ namespace FoodAdmin.ViewModels
         public TagViewModel TagViewModel { get; }
         public DelegateCommand CreateNewDishCommand => new DelegateCommand(CreateNewDish);
         public DelegateCommand NewStepCommand => new DelegateCommand(CreateNewStep);
-        public DelegateCommand RemoveLastStepCommand => new DelegateCommand(RemoveLastStep);
+        public Command AddStepBelowCommand => new Command(InsertBelowStep);
+        public Command AddStepAboveCommand => new Command(InsertAboveStep);
+        public Command RemoveStepCommand => new Command(RemoveStep);
         public Command RemoveIngredientFromDishCommand => new Command(RemoveIngredientFromDish);
         public Command RemoveTagFromDishCommand => new Command(RemoveTagFromDish);
 
@@ -141,21 +143,38 @@ namespace FoodAdmin.ViewModels
         {
             TheDish.Steps.Add(new Step());  
         }
-        private void RemoveLastStep()
+        private void RemoveStep(object param)
         {
-            TheDish.Steps.RemoveAt(TheDish.Steps.IndexOf(TheDish.Steps.Last()));
+            TheDish.Steps.RemoveAt(TheDish.Steps.IndexOf(param as Step));
         }
+        private void InsertAboveStep(object param)
+        {
+            TheDish.Steps.Insert(TheDish.Steps.IndexOf(param as Step),new Step());
+        }
+        private void InsertBelowStep(object param)
+        {
+            var index = TheDish.Steps.IndexOf(param as Step);
 
-        private async void SelectionChanged()
+            TheDish.Steps.Insert(index+1, new Step());
+
+        } 
+
+        private void SelectionChanged()
         {
             if (SelectedDish == null)
             {
                 OnPropertyChanged(string.Empty);
                 return;
             }
-            TheDish = await m_foodFacade.GetDish(SelectedDish.Id);
+            m_viewDisabler.Disable("Laster...", GetAndSetChosenDish());
+           
             DishIngredientInProgress = new DishIngredientResult();
             OnPropertyChanged(nameof(TheDish));
+        }
+
+        private async Task GetAndSetChosenDish()
+        {
+            TheDish = await m_foodFacade.GetDish(SelectedDish.Id);
         }
 
         private async void Cancel()
@@ -187,7 +206,7 @@ namespace FoodAdmin.ViewModels
             }
             if (DishAllreadyHasTag(TagInProgress))
             {
-                await m_popupDialog.Dialog.ShowMessageAsync(this, "Kan ikke legge til tag", "Taggen du prøver å legge til har du allerede lagt til");
+                await m_popupDialog.Dialog.ShowMessageAsync(this, "Kan ikke legge til tag", "Taggen du prøver å legge til har du allerede");
                 return;
             }
 
@@ -226,7 +245,7 @@ namespace FoodAdmin.ViewModels
             }
             if (DishAllreadyHasIngredient(DishIngredientInProgress))
             {
-                await m_popupDialog.Dialog.ShowMessageAsync(this, "Kan ikke legge til ingrediens", "Ingrediensen du prøver å legge til har du allerede lagt til");
+                await m_popupDialog.Dialog.ShowMessageAsync(this, "Kan ikke legge til ingrediens", "Ingrediensen du prøver å legge til har du allerede");
                 return;
             }
 
@@ -252,7 +271,7 @@ namespace FoodAdmin.ViewModels
             TheDish = new Dish {Tags = new ObservableCollection<Tag>(), Ingredients = new ObservableCollection<DishIngredientResult>(),Id=-1};
             OnPropertyChanged(nameof(TheDish));
         }
-        //Ta inn hvilken ing som er trykket på
+
         private async void RemoveIngredientFromDish(object param)
         {
             var ingredient = param as DishIngredientResult;
@@ -295,7 +314,7 @@ namespace FoodAdmin.ViewModels
                 {
                     await m_foodFacade.DeleteDish(TheDish.Id);
                 }
-                await Initialize();
+                m_viewDisabler.Disable("Laster...", Initialize());
                 ResetDish();
             }
 
@@ -310,13 +329,13 @@ namespace FoodAdmin.ViewModels
             if (TheDish.Id == -1)
             {
                 await m_foodFacade.CreateNewDish(TheDish);
-                await Initialize();
+                m_viewDisabler.Disable("Laster...", Initialize());
                 ResetDish();
                 return;
             }
             
             await m_foodFacade.UpdateDish(TheDish);
-            await Initialize();
+            m_viewDisabler.Disable("Laster...", Initialize());
             ResetDish();
         }
     }

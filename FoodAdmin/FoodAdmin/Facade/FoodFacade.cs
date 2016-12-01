@@ -109,9 +109,9 @@ namespace FoodAdmin.Facade
             //return Task.Run(() => tag);
         }
 
-        public async Task DeleteTag(Tag tag)
+        public async Task<int> DeleteTag(Tag tag)
         {
-            await m_restClient.Delete($"Tag?id={tag.Id}");
+           return await m_restClient.Delete($"Tag?id={tag.Id}");
         }
 
         public async Task<List<DishIngredientResult>> GetIngredientsForDish(DishLight dish)
@@ -164,9 +164,9 @@ namespace FoodAdmin.Facade
             return res;
         }
 
-        public async Task DeleteIngredient(Ingredient selectedIngredient)
+        public async Task<int> DeleteIngredient(Ingredient selectedIngredient)
         {
-            await m_restClient.Delete($"Ingredient?id={selectedIngredient.Id}");
+           return await m_restClient.Delete($"Ingredient?id={selectedIngredient.Id}");
         }
 
         public async Task UpdateIngredient(Ingredient selectedIngredient)

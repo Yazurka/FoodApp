@@ -24,16 +24,21 @@ namespace Food.Server.WebApi.Tag
             var result = await m_tagService.GetAllTags();
             return result;
         }
+
+        [Authorize]
         public async Task<TagResult> Post(TagCreateRequest tagCreateRequest)
         {
             var result = await m_tagService.PostTag(tagCreateRequest);
             return result;
         }
+
+        [Authorize]
         public async Task Delete(int id)
         {
             await m_tagService.DeleteTag(id);
         }
 
+        [Authorize]
         public async Task Put(TagUpdateRequest tagUpdateRequest)
         {
             await m_tagService.UpdateTag(tagUpdateRequest);

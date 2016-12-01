@@ -5,8 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodAdmin.Views"
              xmlns:Converters="clr-namespace:FoodAdmin.Converters"
+             xmlns:Util="clr-namespace:FoodAdmin.Util"
+             xmlns:Dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+              Dialogs:DialogParticipation.Register="{Binding}">
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
            <RowDefinition Height="Auto"/>
@@ -16,7 +19,13 @@
         <DockPanel Grid.Row="0">
 
             <Button Command="{Binding CreateNewTagCommand}" Content="Opprett" DockPanel.Dock="Right" Margin="5"/>
-            <TextBox HorizontalAlignment="Stretch" Text="{Binding TagName}" Margin="5"></TextBox>
+            <AdornerDecorator  HorizontalAlignment="Stretch" Margin="5" >
+                <TextBox Text="{Binding TagName}" >
+                    <Util:WatermarkService.Watermark>
+                        <TextBlock HorizontalAlignment="Center">Navn på ny tag</TextBlock>
+                    </Util:WatermarkService.Watermark>
+                </TextBox>
+            </AdornerDecorator>
 
         </DockPanel>
 

@@ -18,7 +18,8 @@
         <Converters:NewDishToVisibilityConverter x:Key="newDishToVisibilityConverter"/>
         <Converters:SortParameterConverter x:Key="sortParameterConverter"/>
         <Converters:SortParameterConverterTag x:Key="sortParameterConverterTag"/>
-        
+        <Converters:DatetimeToStringConverter x:Key="CnvDateTimeConverter" />
+
         <DataTemplate DataType="{x:Type Models:Dish}">
             <Grid>
                 <Grid.RowDefinitions>
@@ -56,16 +57,16 @@
                             <TextBox Text="{Binding Author}" Grid.Column="1"/>
                         </Grid>
 
-                        <Grid Margin="5">
+                        <Grid ToolTip="Tidspunktet denne retten ble lagt til" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Lagt Til:"/>
-                            <Label Content="{Binding TimeAdded}" Grid.Column="1"/>
+                            <TextBlock Text="Opprettet:"/>
+                            <Label Grid.Column="1" Content="{Binding TimeAdded, Converter={StaticResource CnvDateTimeConverter}}"/>
                         </Grid>
 
-                        <Grid Margin="5">
+                        <Grid ToolTip="Ca hvor lang tid retten tar å lage i hele minutter" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>
@@ -74,18 +75,20 @@
                             <TextBox AcceptsReturn="True" Text="{Binding Duration}" Grid.Column="1"/>
                         </Grid>
 
-                        <Grid Margin="5">
+                        <Grid ToolTip="Vaskelighetsgrad" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Vaskelighetsgrad:"/>
-                            <Slider Minimum="1" Maximum="10" Grid.Column="1" Value="{Binding Difficulty}" Margin="5,0"/>
-                            <TextBlock Grid.Column="2" Text="{Binding Difficulty}"/>
+                            <TextBlock Grid.Column="1" Text="Enkelt"/>
+                            <Slider Minimum="1" Maximum="10" Grid.Column="2" Value="{Binding Difficulty}" Margin="5,0"/>
+                            <TextBlock Grid.Column="3" Text="Vanskelig"/>
                         </Grid>
 
-                        <!--TODO-->
+                    
                         <Grid Margin="5" DataContext="{Binding ElementName=userControl, Path=DataContext}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
@@ -117,9 +120,7 @@
                                     </Util:WatermarkService.Watermark>
                                 </TextBox>
                             </AdornerDecorator>
-                            <!--<TextBox Text="{Binding DishIngredientInProgress.Amount}"></TextBox>
-                            <TextBox  Text="{Binding DishIngredientInProgress.Unit}"></TextBox>
-                            <TextBox  Grid.Column="3" Text="{Binding DishIngredientInProgress.Comment}"></TextBox>-->
+                       
                             <ComboBox Grid.Column="3" SelectedItem="{Binding SelectedIngredient, Mode=OneWayToSource}"
                                 >
                                 <ComboBox.Resources>
@@ -134,8 +135,7 @@
 
                                     </MultiBinding>
                                 </ComboBox.ItemsSource>
-                                <!--ItemsSource="{Binding ElementName=yolobox, Path=Text , Converter={StaticResource sortParameterConverter}, ConverterParameter=DataContext.IngredientViewModel.Ingredients, Mode=OneWay}">-->
-
+                                
                             </ComboBox>
                             <AdornerDecorator Grid.Column="3" >
                                 <TextBox Text="{Binding SearchText}"  x:Name="yoloawsome" Grid.Column="4" Margin="0,0,30,0">
@@ -144,9 +144,9 @@
                                     </Util:WatermarkService.Watermark>
                                 </TextBox>
                             </AdornerDecorator>
-                            <!--<TextBox Text="{Binding SearchText}"  x:Name="yoloawsome" Grid.Column="4" Margin="0,0,30,0"></TextBox>-->
-                            <Button Grid.Column="5" Content="Legg til" Command="{Binding AddDishIngredientCommand}"/>
-                            <!--<ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>-->
+                          
+                            <Button Grid.Column="5" Margin="5,0,0,0" Content="Legg til" Command="{Binding AddDishIngredientCommand}"/>
+                           
                         </Grid>
                         <Separator Margin="10"/>
                         <Grid>
@@ -186,10 +186,7 @@
                                  </DataTemplate>
                              </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        
-                        <!--<ComboBox ItemsSource="{Binding TagViewModel.Tags}" DisplayMemberPath="Name" DataContext="{Binding ElementName=userControl, Path=DataContext}">
-                            
-                        </ComboBox>-->
+                     
                         <!--Tags-->
                         <Grid Margin="5" DataContext="{Binding ElementName=userControl, Path=DataContext}">
                             <Grid.ColumnDefinitions>
@@ -217,7 +214,6 @@
 
                                     </MultiBinding>
                                 </ComboBox.ItemsSource>
-                                <!--ItemsSource="{Binding ElementName=yolobox, Path=Text , Converter={StaticResource sortParameterConverter}, ConverterParameter=DataContext.IngredientViewModel.Ingredients, Mode=OneWay}">-->
 
                             </ComboBox>
                             <AdornerDecorator Grid.Column="1" >
@@ -227,9 +223,9 @@
                                     </Util:WatermarkService.Watermark>
                                 </TextBox>
                             </AdornerDecorator>
-                            <!--<TextBox Text="{Binding SearchTextTag}" x:Name="yoloawsome2" Grid.Column="1" Margin="0,0,30,0"></TextBox>-->
+                         
                             <Button Grid.Column="2" Content="Legg til" Command="{Binding AddTagCommand}" />
-                            <!--<ComboBox Grid.Column="1" ItemsSource="{Binding ElementName=userControl, Path=DataContext.IngredientViewModel.Ingredients}" DisplayMemberPath="Name" IsTextSearchEnabled="True" TextSearch.TextPath=""/>-->
+                           
                         </Grid>
                         <ItemsControl Background="WhiteSmoke" BorderBrush="SlateGray" BorderThickness="2" ItemsSource="{Binding Tags}">
                             <ItemsControl.ItemTemplate>
@@ -267,17 +263,23 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <Label Content="nr"/>
+                                            <Label Content="Steg: "/>
                                             <TextBox Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Value}"></TextBox>
-                                            <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Padding="10"/>
+                                            <Button Margin="5,0,0,0" Height="13" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding ElementName=userControl, Path=DataContext.RemoveStepCommand}" CommandParameter="{Binding}" Content="Fjern"/>
+                                            <Button Margin="5,0,0,0" Height="13" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Right" Command="{Binding ElementName=userControl, Path=DataContext.AddStepAboveCommand}" CommandParameter="{Binding}" Content="Legg til over"/>
+                                            <Button Margin="5,0,5,0" Height="13" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" Command="{Binding ElementName=userControl, Path=DataContext.AddStepBelowCommand}" CommandParameter="{Binding}" Content="Legg til under"/>
+                                            <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Padding="10"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <DockPanel  Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch"  >
                                 <Button HorizontalAlignment="Left" Command="{Binding ElementName=userControl, Path=DataContext.NewStepCommand}" Content="Legg til nytt steg"/>
-                                <Button  HorizontalAlignment="Right" Command="{Binding ElementName=userControl, Path=DataContext.RemoveLastStepCommand}" Content="Fjern siste steg"/>
+                                
                             </DockPanel>
                             
                         </Grid>

@@ -18,10 +18,12 @@ namespace Food.Server.WebApi.DishTag
             m_dishTagService = dishTagService;
         }
 
+        [Authorize]
         public async Task Post(DishTagCreateRequest dishTagCreateRequest)
         {
             await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
         }
+        [Authorize]
         public async Task Delete([FromUri]int dishId, [FromUri]int[] tagIds)
         {
             await m_dishTagService.RemoveTagsFromDish(dishId,tagIds);

@@ -31,18 +31,22 @@ namespace Food.Server.WebApi.Dish
         {
             var result = await m_searchService.Search(parameter, limit, offset);
             return result;
-        } 
-       
+        }
+
+        [Authorize]
         public async Task<Server.Dish.Dish> Post(DishCreateRequest dishCreateRequest)
         {
             var result = await m_dishService.PostDish(dishCreateRequest);
             return result;
         }
+
+        [Authorize]
         public async Task Delete(int id)
         {
             await m_dishService.DeleteDish(id);
         }
 
+        [Authorize]
         public async Task Put([FromUri]int id, [FromBody]UpdateDishRequest updateDishRequest)
         {
             await m_dishService.UpdateDish(id, updateDishRequest);

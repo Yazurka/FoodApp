@@ -19,7 +19,7 @@ namespace FoodAdmin.ViewModels
 
         public async Task Initialize()
         {
-            await Task.WhenAll(DishViewModel.Initialize(), IngredientViewModel.Initialize(), TagViewModel.Initialize());
+            ViewDisabler.Disable("Laster..." , Task.WhenAll(DishViewModel.Initialize(), IngredientViewModel.Initialize(), TagViewModel.Initialize()));
         }
 
         public IViewDisabler ViewDisabler { get; }

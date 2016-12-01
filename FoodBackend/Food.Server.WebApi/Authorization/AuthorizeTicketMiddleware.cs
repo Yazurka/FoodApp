@@ -41,9 +41,9 @@ namespace Food.Server.WebApi.Authorization
                     context.Request.User = new ClaimsPrincipal(identity);
                     Thread.CurrentPrincipal = context.Request.User;
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    //YOLO
+                    throw exception;
                 }
             }
 

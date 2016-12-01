@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DatetimeToStringConverter.cs" />
     <Compile Include="Converters\NewDishToVisibilityConverter.cs" />
     <Compile Include="Converters\OpositeBoolToVisibilityConverter.cs" />
     <Compile Include="Converters\SortParameterConverter.cs" />
