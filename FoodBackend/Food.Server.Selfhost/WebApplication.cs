@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Food.Server.WebApi;
 using Microsoft.Owin.Hosting;
 
@@ -12,7 +13,8 @@ namespace Food.Server.Selfhost
         public void Start()
         {
             var startOptions = new StartOptions();
-            startOptions.Urls.Add("http://localhost:8080"); // 10.0.110.190
+            var urlstring = ConfigurationManager.AppSettings["ListeningAddress"];
+            startOptions.Urls.Add(urlstring); // 10.0.110.190
             m_application = WebApp.Start<Startup>(startOptions);
         }
 

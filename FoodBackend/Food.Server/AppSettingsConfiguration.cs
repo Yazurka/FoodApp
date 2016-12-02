@@ -1,4 +1,6 @@
-﻿namespace Food.Server
+﻿using System.Configuration;
+
+namespace Food.Server
 {
     public class AppSettingsConfiguration : IConfiguration
     {
@@ -9,7 +11,9 @@
         /// </summary>
         public string ConnectionString
         {
-            get { return "Server=localhost;Database=app;Uid=foodacc;Pwd=apk4pm5;"; }
+            get
+            {
+                return ConfigurationManager.AppSettings["ConnectionString"]; }
         }
     }
 }
