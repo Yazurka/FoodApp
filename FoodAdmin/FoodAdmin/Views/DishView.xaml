@@ -144,8 +144,8 @@
                                     </Util:WatermarkService.Watermark>
                                 </TextBox>
                             </AdornerDecorator>
-                          
-                            <Button Grid.Column="5" Margin="5,0,0,0" Content="Legg til" Command="{Binding AddDishIngredientCommand}"/>
+
+                            <Button ToolTip="Legg til ingrediens" Grid.Column="5" Margin="5,0,0,0" Content="Legg til" Command="{Binding AddDishIngredientCommand}"/>
                            
                         </Grid>
                         <Separator Margin="10"/>
@@ -168,6 +168,14 @@
                                 <DataTemplate>
                                     
                                         <Grid Margin="5" x:Name="ingredient">
+                                            <Grid.ToolTip>
+                                                <StackPanel Orientation="Horizontal">
+                                                <Label Content="{Binding Amount}"/>
+                                                <Label Content="{Binding Unit}"/>
+                                                <Label Content="{Binding Name}"/>
+                                                <Label Content="{Binding Comment}"/>
+                                            </StackPanel>
+                                            </Grid.ToolTip>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -180,7 +188,7 @@
                                             <Label Grid.Column="1" Content="{Binding Unit}"></Label>
                                             <Label Grid.Column="2" Content="{Binding Name}"></Label>
                                             <Label Grid.Column="3" Content="{Binding Comment}"></Label>
-                                            <Button Grid.Column="4" Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveIngredientFromDishCommand}" CommandParameter="{Binding ElementName=ingredient, Path=DataContext}"></Button>
+                                            <Button ToolTip="Slett" Grid.Column="4" Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveIngredientFromDishCommand}" CommandParameter="{Binding ElementName=ingredient, Path=DataContext}"></Button>
                                         </Grid>
 
                                  </DataTemplate>
@@ -223,8 +231,8 @@
                                     </Util:WatermarkService.Watermark>
                                 </TextBox>
                             </AdornerDecorator>
-                         
-                            <Button Grid.Column="2" Content="Legg til" Command="{Binding AddTagCommand}" />
+
+                            <Button ToolTip="Legg til tag" Grid.Column="2" Content="Legg til" Command="{Binding AddTagCommand}" />
                            
                         </Grid>
                         <ItemsControl Background="WhiteSmoke" BorderBrush="SlateGray" BorderThickness="2" ItemsSource="{Binding Tags}">
@@ -236,7 +244,7 @@
                                             <ColumnDefinition Width="50"/>
                                         </Grid.ColumnDefinitions>
                                         <Label Content="{Binding Name}"></Label>
-                                        <Button Grid.Column="1" Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveTagFromDishCommand}" CommandParameter="{Binding ElementName=tag, Path=DataContext}"></Button>
+                                        <Button ToolTip="Slett" Grid.Column="1" Content="Slett" Margin="5,0,0,0" DataContext="{Binding ElementName=userControl, Path=DataContext}" Command="{Binding RemoveTagFromDishCommand}" CommandParameter="{Binding ElementName=tag, Path=DataContext}"></Button>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
