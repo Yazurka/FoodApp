@@ -12,8 +12,8 @@ namespace FoodApp
         public App()
         {
             InitializeComponent();
+            MainPage = new DishLightPage();
 
-            MainPage = new FoodApp.MainPage();
         }
 
         protected override void OnStart()
