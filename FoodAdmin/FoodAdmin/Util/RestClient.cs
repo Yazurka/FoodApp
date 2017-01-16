@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using Newtonsoft.Json;
 
 namespace FoodAdmin.Util
@@ -13,8 +14,8 @@ namespace FoodAdmin.Util
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class RestClient : IRestClient
     {
-        private readonly HttpClient client;
-        private readonly string baseUrl = "http://localhost:8080/api/";
+        private readonly HttpClient client; 
+        private readonly string baseUrl = ConfigurationManager.AppSettings["FoodServerBaseUrl"];
         public RestClient()
         {
             client = new HttpClient();
