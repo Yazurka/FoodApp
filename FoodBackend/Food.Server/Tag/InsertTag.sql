@@ -1,3 +1,3 @@
-﻿INSERT INTO app.tag
+﻿INSERT INTO tag
 (Id, Name) 
 VALUES (@Id, @Name)

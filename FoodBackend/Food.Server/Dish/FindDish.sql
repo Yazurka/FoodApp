@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.dish i WHERE i.id=@id;
+﻿SELECT * FROM dish i WHERE i.id=@id;

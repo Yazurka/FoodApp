@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.ingredient;
+﻿SELECT * FROM ingredient;

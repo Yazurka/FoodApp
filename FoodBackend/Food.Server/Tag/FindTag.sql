@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.tag i WHERE i.id=@id;
+﻿SELECT * FROM tag i WHERE i.id=@id;

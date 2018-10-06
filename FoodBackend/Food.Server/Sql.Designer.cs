@@ -61,7 +61,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.dish d order by d.Name;.
+        ///   Looks up a localized string similar to SELECT * FROM dish d order by d.Name;.
         /// </summary>
         internal static string AllDishes {
             get {
@@ -71,7 +71,7 @@ namespace Food.Server {
         
         /// <summary>
         ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded 
-        ///from app.dish d order by d.Name limit @Limit offset @Offset .
+        ///from dish d order by d.Name limit @Limit offset @Offset .
         /// </summary>
         internal static string AllDishesLight {
             get {
@@ -80,7 +80,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.dish_ingredient;.
+        ///   Looks up a localized string similar to SELECT * FROM dish_ingredient;.
         /// </summary>
         internal static string AllDishIngredients {
             get {
@@ -89,7 +89,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.ingredient;.
+        ///   Looks up a localized string similar to SELECT * FROM ingredient;.
         /// </summary>
         internal static string AllIngredients {
             get {
@@ -98,7 +98,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.tag t order by t.Name;.
+        ///   Looks up a localized string similar to SELECT * FROM tag t order by t.Name;.
         /// </summary>
         internal static string AllTags {
             get {
@@ -107,7 +107,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.dish WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM dish WHERE Id=@Id.
         /// </summary>
         internal static string DeleteDish {
             get {
@@ -116,7 +116,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.dish_ingredient WHERE 
+        ///   Looks up a localized string similar to DELETE FROM dish_ingredient WHERE 
         ///Dish_id_fk = @DishId AND
         ///Ingredient_id_fk= @IngredientId.
         /// </summary>
@@ -127,7 +127,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.dish_tag WHERE 
+        ///   Looks up a localized string similar to DELETE FROM dish_tag WHERE 
         ///Dish_id_fk = @Dish_id_fk AND
         /// Tag_id_fk=@Tag_id_fk.
         /// </summary>
@@ -138,7 +138,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.ingredient WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM ingredient WHERE Id=@Id.
         /// </summary>
         internal static string DeleteIngredient {
             get {
@@ -147,7 +147,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM app.tag WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM tag WHERE Id=@Id.
         /// </summary>
         internal static string DeleteTag {
             get {
@@ -156,7 +156,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.dish i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM dish i WHERE i.id=@id;.
         /// </summary>
         internal static string FindDish {
             get {
@@ -165,7 +165,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.ingredient i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM ingredient i WHERE i.id=@id;.
         /// </summary>
         internal static string FindIngredient {
             get {
@@ -175,7 +175,7 @@ namespace Food.Server {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT i.Id, i.Name, i.Description, di.Amount, di.Unit, di.Comment FROM
-        /// app.dish_ingredient di, app.ingredient i 
+        /// dish_ingredient di, ingredient i 
         /// WHERE di.Ingredient_id_fk = i.Id AND
         ///di.Dish_id_fk = @Id order by i.Name;
         ///.
@@ -187,7 +187,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM app.tag i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM tag i WHERE i.id=@id;.
         /// </summary>
         internal static string FindTag {
             get {
@@ -197,7 +197,7 @@ namespace Food.Server {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT t.Id, t.Name 
-        ///FROM app.tag t, app.dish_tag dt 
+        ///FROM tag t, dish_tag dt 
         ///WHERE t.id=dt.Tag_id_fk 
         ///and dt.Dish_id_fk = @id order by t.Name;.
         /// </summary>
@@ -208,7 +208,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.dish
+        ///   Looks up a localized string similar to INSERT INTO dish
         ///(Id, Name, Description, Recipe, Difficulty, Duration, Author, TimeAdded) 
         ///VALUES (@Id, @Name, @Description, @Recipe, @Difficulty, @Duration, @Author, @TimeAdded).
         /// </summary>
@@ -219,7 +219,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.dish_ingredient
+        ///   Looks up a localized string similar to INSERT INTO dish_ingredient
         ///(Id, Amount, Unit, Ingredient_id_fk, Dish_id_fk, Comment) 
         ///VALUES (@Id, @Amount, @Unit, @Ingredient_id_fk, @Dish_id_fk, @Comment).
         /// </summary>
@@ -230,7 +230,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.dish_tag
+        ///   Looks up a localized string similar to INSERT INTO dish_tag
         ///(Id, Dish_id_fk, Tag_id_fk) 
         ///VALUES (@Id, @Dish_id_fk, @Tag_id_fk).
         /// </summary>
@@ -241,7 +241,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.ingredient
+        ///   Looks up a localized string similar to INSERT INTO ingredient
         ///(Id, Name, Description) 
         ///VALUES (@Id, @Name, @Description).
         /// </summary>
@@ -252,7 +252,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to INSERT INTO app.tag
+        ///   Looks up a localized string similar to INSERT INTO tag
         ///(Id, Name) 
         ///VALUES (@Id, @Name).
         /// </summary>
@@ -272,14 +272,14 @@ namespace Food.Server {
         ///    d.Author, 
         ///    d.TimeAdded 
         ///from 
-        ///	app.dish d
+        ///	dish d
         ///where exists 
         ///	(
         ///		select 
         ///			1 
         ///		from 
-        ///			app.dish_tag dt 
-        ///		inner join app.tag t
+        ///			dish_tag dt 
+        ///		inner join tag t
         ///			on dt.Tag_id_fk = t.id 
         ///		where 
         ///			dt.Dish_id_fk = d.Id AND
@@ -298,7 +298,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE app.dish SET
+        ///   Looks up a localized string similar to UPDATE dish SET
         ///Name = @Name , Description = @Description, Recipe = @Recipe, Difficulty = @Difficulty, Duration  = @Duration, Author = @Author
         ///WHERE Id=@Id.
         /// </summary>
@@ -309,7 +309,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE app.ingredient SET
+        ///   Looks up a localized string similar to UPDATE ingredient SET
         ///Name = @Name, Description = @Description WHERE Id=@Id
         ///.
         /// </summary>
@@ -320,7 +320,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UPDATE app.tag set
+        ///   Looks up a localized string similar to UPDATE tag set
         ///Name = @Name WHERE
         ///Id = @Id.
         /// </summary>

@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.dish d order by d.Name;
+﻿SELECT * FROM dish d order by d.Name;

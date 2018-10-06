@@ -1,3 +1,3 @@
-﻿INSERT INTO app.ingredient
+﻿INSERT INTO ingredient
 (Id, Name, Description) 
 VALUES (@Id, @Name, @Description)

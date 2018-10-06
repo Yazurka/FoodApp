@@ -1,1 +1,1 @@
-﻿DELETE FROM app.dish WHERE Id=@Id
+﻿DELETE FROM dish WHERE Id=@Id

@@ -1,1 +1,1 @@
-﻿DELETE FROM app.tag WHERE Id=@Id
+﻿DELETE FROM tag WHERE Id=@Id

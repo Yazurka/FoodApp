@@ -7,14 +7,14 @@
     d.Author, 
     d.TimeAdded 
 from 
-	app.dish d
+	dish d
 where exists 
 	(
 		select 
 			1 
 		from 
-			app.dish_tag dt 
-		inner join app.tag t
+			dish_tag dt 
+		inner join tag t
 			on dt.Tag_id_fk = t.id 
 		where 
 			dt.Dish_id_fk = d.Id AND

@@ -1,1 +1,1 @@
-﻿DELETE FROM app.ingredient WHERE Id=@Id
+﻿DELETE FROM ingredient WHERE Id=@Id

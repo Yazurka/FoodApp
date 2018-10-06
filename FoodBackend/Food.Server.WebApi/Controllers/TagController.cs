@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Server.WebApi.Tag
 {
-    public class TagController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class TagController : ControllerBase
     {
         private readonly ITagService m_tagService;
 
@@ -16,11 +18,14 @@ namespace Food.Server.WebApi.Tag
             m_tagService = tagService;
         }
 
+        [HttpGet("{id}")]
         public async Task<TagResult> Get(int id)
         {
             var result = await m_tagService.FindTag(id);
             return result;  
-        }     
+        }
+
+        [HttpGet]
         public async Task<IEnumerable<TagResult>> Get()
         {
             var result = await m_tagService.GetAllTags();
@@ -28,6 +33,7 @@ namespace Food.Server.WebApi.Tag
         }
 
         [Authorize]
+        [HttpPost]
         public async Task<TagResult> Post(TagCreateRequest tagCreateRequest)
         {
             var result = await m_tagService.PostTag(tagCreateRequest);
@@ -35,12 +41,14 @@ namespace Food.Server.WebApi.Tag
         }
 
         [Authorize]
+        [HttpDelete]
         public async Task Delete(int id)
         {
             await m_tagService.DeleteTag(id);
         }
 
         [Authorize]
+        [HttpPut]
         public async Task Put(TagUpdateRequest tagUpdateRequest)
         {
             await m_tagService.UpdateTag(tagUpdateRequest);

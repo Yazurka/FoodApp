@@ -1,3 +1,3 @@
-﻿UPDATE app.tag set
+﻿UPDATE tag set
 Name = @Name WHERE
 Id = @Id

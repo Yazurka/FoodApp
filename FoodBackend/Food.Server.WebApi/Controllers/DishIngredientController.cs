@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Server.WebApi.DishIngredient
 {
-    public class DishIngredientController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DishIngredientController : ControllerBase
     {
         private readonly IDishIngredientService m_dishIngredientService;
 
@@ -19,11 +21,14 @@ namespace Food.Server.WebApi.DishIngredient
             m_dishIngredientService = dishIngredientService;
         }
 
+        [HttpGet("id")]
         public async Task<IEnumerable<DishIngredientResult>> Get(int id)
         {
             var result = await m_dishIngredientService.FindIngredientsForDish(id);
             return result;
         }
+
+        [HttpGet]
         public async Task<IEnumerable<DishIngredientResult>> Get()  
         {
             var result = await m_dishIngredientService.GetAllDishIngredients();
@@ -31,12 +36,14 @@ namespace Food.Server.WebApi.DishIngredient
         }
 
         [Authorize]
+        [HttpPost]
         public async Task Post([FromRoute]int dishId, [FromBody]DishIngredientCreateRequest[] dishIngredientsCreateRequest)
         {
             await m_dishIngredientService.AddIngredientsToDish(dishId, dishIngredientsCreateRequest);
         }
 
         [Authorize]
+        [HttpDelete]
         public async Task Delete([FromRoute]int dishId, [FromRoute]int []ingredientIds)
         {
             await m_dishIngredientService.DeleteIngredientFromDish(dishId,ingredientIds);

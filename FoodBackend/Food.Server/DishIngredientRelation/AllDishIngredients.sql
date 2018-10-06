@@ -1,1 +1,1 @@
-﻿SELECT * FROM app.dish_ingredient;
+﻿SELECT * FROM dish_ingredient;

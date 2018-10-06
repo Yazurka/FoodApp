@@ -11,7 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Server.WebApi.Ingredient
 {
-    public class IngredientController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class IngredientController : ControllerBase
     {
         private readonly IIngredientService m_ingredientService;
 
@@ -20,11 +22,14 @@ namespace Food.Server.WebApi.Ingredient
             m_ingredientService = ingredientService;
         }
 
+        [HttpGet("{id}")]
         public async Task<IngredientResult> Get(int id)
         {
             var result = await m_ingredientService.FindIngredient(id);
             return result;
         }
+
+        [HttpGet]
         public async Task<IEnumerable<IngredientResult>> Get()
         {
             var result = await m_ingredientService.GetAllIngredients();
@@ -32,11 +37,14 @@ namespace Food.Server.WebApi.Ingredient
         }
 
         [Authorize]
+        [HttpPut]
         public async Task Put([FromRoute]int id, [FromBody]UpdateIngredientRequest updateIngredientRequest)
         {
             await m_ingredientService.UpdateIngredient(id, updateIngredientRequest);
         }
+
         [Authorize]
+        [HttpPost]
         public async Task<IngredientResult> Post(IngredientCreateRequest ingredientCreateRequest)
         {
             var result = await m_ingredientService.PostIngredient(ingredientCreateRequest);
@@ -44,6 +52,7 @@ namespace Food.Server.WebApi.Ingredient
         }
 
         [Authorize]
+        [HttpDelete]
         public async Task Delete(int id)
         {
             await m_ingredientService.DeleteIngredient(id);

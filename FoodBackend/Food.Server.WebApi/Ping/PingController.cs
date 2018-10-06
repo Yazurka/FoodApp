@@ -3,7 +3,9 @@ using System.Web.Http;
 
 namespace Food.Server.WebApi.Ping
 {
-   public class PingController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class PingController : ControllerBase
     {
         public string Get()
         {

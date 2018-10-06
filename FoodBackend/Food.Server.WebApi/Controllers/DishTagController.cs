@@ -11,7 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Food.Server.WebApi.DishTag
 {
-    public class DishTagController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class DishTagController : ControllerBase
     {
         private readonly IDishTagService m_dishTagService;
 
@@ -21,17 +23,20 @@ namespace Food.Server.WebApi.DishTag
         }
 
         [Authorize]
+        [HttpPost]
         public async Task Post(DishTagCreateRequest dishTagCreateRequest)
         {
             await m_dishTagService.AddTagsToDish(dishTagCreateRequest);
         }
 
         [Authorize]
+        [HttpDelete]
         public async Task Delete([FromRoute]int dishId, [FromRoute]int[] tagIds)
         {
             await m_dishTagService.RemoveTagsFromDish(dishId,tagIds);
         }
 
+        [HttpGet]
         public async Task<IEnumerable<TagResult>> Get(int dishId)
         {
             var result = await m_dishTagService.FindTagsForDish(dishId);
