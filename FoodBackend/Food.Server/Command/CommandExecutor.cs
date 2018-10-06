@@ -10,6 +10,7 @@ namespace Food.Server.Command
     public class CommandExecutor : ICommandExecutor
     {
         private readonly IServiceFactory factory;
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandExecutor"/> class.

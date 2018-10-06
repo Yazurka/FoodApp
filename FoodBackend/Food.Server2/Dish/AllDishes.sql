@@ -1,0 +1,1 @@
+﻿SELECT * FROM app.dish d order by d.Name;

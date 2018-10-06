@@ -11,7 +11,7 @@ namespace Food.Server.Search
     public class SearchQueryHander : IQueryHandler<SearchQuery, IEnumerable<DishLightResult>>
     {
         private readonly IDbConnection m_dbConnection;
-        private IEqualityComparer<DishLightResult> m_equalityComparer;
+        private readonly IEqualityComparer<DishLightResult> m_equalityComparer;
         public SearchQueryHander(IDbConnection dbConnection, IEqualityComparer<DishLightResult> equalityComparer)
         {
             m_dbConnection = dbConnection;

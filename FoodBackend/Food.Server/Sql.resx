@@ -121,17 +121,32 @@
   <data name="AllDishes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\alldishes.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="AllDishesLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dish\alldisheslight.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="AllDishIngredients" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dishingredientrelation\alldishingredients.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="AllIngredients" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\allingredients.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="AllTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tag\alltags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="DeleteDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\deletedish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="DeleteDishIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dishingredientrelation\deletedishingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DeleteDishTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dishtag\deletedishtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="DeleteIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\deleteingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DeleteTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tag\deletetag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="FindDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\finddish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -139,55 +154,40 @@
   <data name="FindIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\findingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="FindIngredientForDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dishingredientrelation\findingredientfordish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FindTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tag\findtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FindTagsForDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dishtag\findtagsfordish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="InsertDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\insertdish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InsertDishIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dishingredientrelation\insertdishingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="InsertDishTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>dishtag\insertdishtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="InsertIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\insertingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DeleteDishIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dishingredientrelation\deletedishingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="AllTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\alltags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DeleteTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\deletetag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="FindTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\findtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InsertTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>tag\inserttag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="FindTagsForDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dishtag\findtagsfordish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="InsertDishTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dishtag\insertdishtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DeleteDishTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dishtag\deletedishtag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="FindIngredientForDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dishingredientrelation\findingredientfordish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  <data name="SearchInDishesAndTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>search\searchindishesandtags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="UpdateDish" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>dish\updatedish.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="UpdateTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>tag\updatetag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="AllDishesLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>dish\alldisheslight.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="SearchInDishesAndTags" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>search\searchindishesandtags.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="UpdateIngredient" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>ingredient\updateingredient.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="UpdateTag" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>tag\updatetag.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

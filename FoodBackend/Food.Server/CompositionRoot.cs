@@ -20,7 +20,6 @@ namespace Food.Server
         {
             serviceRegistry.Register<IQueryExecutor>(factory => new QueryExecutor((IServiceFactory)serviceRegistry));
             serviceRegistry.Register<ICommandExecutor>(factory => new CommandExecutor((IServiceFactory)serviceRegistry));
-            serviceRegistry.Register<IDbConnection>(factory => CreateMySqlConnection(factory), new PerScopeLifetime());
 
             serviceRegistry.Register<IQueryHandler<IngredientQuery, IEnumerable<IngredientResult>>, IngredientQueryHandler>();
             serviceRegistry.Register<IQueryHandler<DishQuery, IEnumerable<DishResult>>, DishQueryHandler>();
@@ -52,15 +51,6 @@ namespace Food.Server
             serviceRegistry.Register<ISearchService, SearchService>();
             serviceRegistry.Register<IIdGenerator, IdGenerator>(new PerRequestLifeTime());
             serviceRegistry.Register<IEqualityComparer<DishLightResult>, DishLightResultComparer>(new PerContainerLifetime());
-
-            serviceRegistry.Register<IConfiguration, AppSettingsConfiguration>(new PerContainerLifetime());
-        }
-
-        private static MySqlConnection CreateMySqlConnection(IServiceFactory factory)
-        {
-            var connection = new MySqlConnection(factory.GetInstance<IConfiguration>().ConnectionString);
-            connection.Open();
-            return connection;
         }
     }
 }

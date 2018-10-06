@@ -19,7 +19,7 @@ namespace Food.Server {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Sql {
@@ -174,7 +174,7 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT i.Id, i.Name, i.Description, di.Amount, di.Unit FROM
+        ///   Looks up a localized string similar to SELECT i.Id, i.Name, i.Description, di.Amount, di.Unit, di.Comment FROM
         /// app.dish_ingredient di, app.ingredient i 
         /// WHERE di.Ingredient_id_fk = i.Id AND
         ///di.Dish_id_fk = @Id order by i.Name;
@@ -220,8 +220,8 @@ namespace Food.Server {
         
         /// <summary>
         ///   Looks up a localized string similar to INSERT INTO app.dish_ingredient
-        ///(Id, Amount, Unit, Ingredient_id_fk, Dish_id_fk) 
-        ///VALUES (@Id, @Amount, @Unit, @Ingredient_id_fk, @Dish_id_fk).
+        ///(Id, Amount, Unit, Ingredient_id_fk, Dish_id_fk, Comment) 
+        ///VALUES (@Id, @Amount, @Unit, @Ingredient_id_fk, @Dish_id_fk, @Comment).
         /// </summary>
         internal static string InsertDishIngredient {
             get {

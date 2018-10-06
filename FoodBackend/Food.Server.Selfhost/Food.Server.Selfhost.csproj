@@ -123,12 +123,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Food.Server.WebApi\Food.Server.WebApi.csproj">
-      <Project>{c6642ad1-7100-43d1-b449-661381034993}</Project>
-      <Name>Food.Server.WebApi</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

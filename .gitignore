@@ -143,3 +143,4 @@ UpgradeLog.htm
 *.ncrunchproject
 _NCrunch_*/
 *.ncrunchsolution
+/FoodBackend/.vs/FoodBackend/v15/Server/sqlite3/db.lock

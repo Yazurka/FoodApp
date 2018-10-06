@@ -1,8 +1,9 @@
-﻿using System.Web.Http;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
 
 namespace Food.Server.WebApi.Ping
 {
-   public class PingController : ApiController
+   public class PingController : Controller
     {
         public string Get()
         {

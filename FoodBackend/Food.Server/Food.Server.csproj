@@ -1,202 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B7DBEEA-84D5-463A-86A3-20102FEEA987}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Food.Server</RootNamespace>
-    <AssemblyName>Food.Server</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Google.Protobuf, Version=3.1.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.1.0\lib\net45\Google.Protobuf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LightInject, Version=4.1.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.4.1.4\lib\net45\LightInject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Drawing.Design" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="LightInject" Version="5.1.10" />
+    <PackageReference Include="MySql.Data" Version="8.0.12" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="AppSettingsConfiguration.cs" />
-    <Compile Include="CompositionRoot.cs" />
-    <Compile Include="DishIngredientRelation\DeleteDishIngredientCommand.cs" />
-    <Compile Include="DishIngredientRelation\DeleteDishIngredientCommandHandler.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientCommand.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientCommandHandler.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientCreateRequest.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientQuery.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientQueryHandler.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientResult.cs" />
-    <Compile Include="DishIngredientRelation\DishIngredientService.cs" />
-    <Compile Include="DishIngredientRelation\IDishIngredientService.cs" />
-    <Compile Include="DishTag\DeleteDishTagCommand.cs" />
-    <Compile Include="DishTag\DeleteDishTagCommandHandler.cs" />
-    <Compile Include="DishTag\DishTagCommand.cs" />
-    <Compile Include="DishTag\DishTagCommandHandler.cs" />
-    <Compile Include="DishTag\DishTagCreateRequest.cs" />
-    <Compile Include="DishTag\DishTagQuery.cs" />
-    <Compile Include="DishTag\DishTagQueryHandler.cs" />
-    <Compile Include="DishTag\DishTagService.cs" />
-    <Compile Include="DishTag\IDishTagService.cs" />
-    <Compile Include="Dish\DeleteDishCommand.cs" />
-    <Compile Include="Dish\DeleteDishCommandHandler.cs" />
-    <Compile Include="Dish\DishCommand.cs" />
-    <Compile Include="Dish\DishCommandHandler.cs" />
-    <Compile Include="Dish\DishCreateRequest.cs" />
-    <Compile Include="Dish\DishLight.cs" />
-    <Compile Include="Dish\DishLightQuery.cs" />
-    <Compile Include="Dish\DishLightQueryHandler.cs" />
-    <Compile Include="Dish\DishLightResult.cs" />
-    <Compile Include="Dish\DishQuery.cs" />
-    <Compile Include="Dish\DishQueryHandler.cs" />
-    <Compile Include="Dish\Dish.cs" />
-    <Compile Include="Dish\DishResult.cs" />
-    <Compile Include="Dish\DishService.cs" />
-    <Compile Include="Dish\IDishService.cs" />
-    <Compile Include="Dish\UpdateDishCommand.cs" />
-    <Compile Include="Dish\UpdateDishCommandHandler.cs" />
-    <Compile Include="Dish\UpdateDishRequest.cs" />
-    <Compile Include="IConfiguration.cs" />
-    <Compile Include="Ingredient\DeleteIngredientCommand.cs" />
-    <Compile Include="Ingredient\DeleteIngredientCommandHandler.cs" />
-    <Compile Include="Ingredient\IIngredientService.cs" />
-    <Compile Include="Ingredient\IngredientCommand.cs" />
-    <Compile Include="Ingredient\IngredientCommandHandler.cs" />
-    <Compile Include="Ingredient\IngredientCreateRequest.cs" />
-    <Compile Include="Ingredient\IngredientQuery.cs" />
-    <Compile Include="Ingredient\IngredientQueryHandler.cs" />
-    <Compile Include="Ingredient\IngredientResult.cs" />
-    <Compile Include="Ingredient\IngredientService.cs" />
-    <Compile Include="Ingredient\UpdateIngredientCommand.cs" />
-    <Compile Include="Ingredient\UpdateIngredientCommandHandler.cs" />
-    <Compile Include="Ingredient\UpdateIngredientRequest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Command\CommandExecutor.cs" />
-    <Compile Include="Command\ICommandExecutor.cs" />
-    <Compile Include="Command\ICommandHandler.cs" />
-    <Compile Include="Query\IQuery.cs" />
-    <Compile Include="Query\IQueryExecutor.cs" />
-    <Compile Include="Query\IQueryHandler.cs" />
-    <Compile Include="Query\QueryExecutor.cs" />
-    <Compile Include="Search\DishLightResultComparer.cs" />
-    <Compile Include="Search\ISearchService.cs" />
-    <Compile Include="Search\SearchQuery.cs" />
-    <Compile Include="Search\SearchQueryHander.cs" />
-    <Compile Include="Search\SearchService.cs" />
-    <Compile Include="Sql.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Sql.Designer.cs">
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Sql.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tag\DeleteTagCommand.cs" />
-    <Compile Include="Tag\DeleteTagCommandHandler.cs" />
-    <Compile Include="Tag\ITagService.cs" />
-    <Compile Include="Tag\TagCommand.cs" />
-    <Compile Include="Tag\TagCommandHandler.cs" />
-    <Compile Include="Tag\TagCreateRequest.cs" />
-    <Compile Include="Tag\TagQuery.cs" />
-    <Compile Include="Tag\TagQueryHandler.cs" />
-    <Compile Include="Tag\TagResult.cs" />
-    <Compile Include="Tag\TagService.cs" />
-    <Compile Include="Services\IdGenerator.cs" />
-    <Compile Include="Services\IIdGenerator.cs" />
-    <Compile Include="Tag\TagUpdateRequest.cs" />
-    <Compile Include="Tag\UpdateTagCommand.cs" />
-    <Compile Include="Tag\UpdateTagCommandHandler.cs" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DishIngredientRelation\AllDishIngredients.sql" />
-    <Content Include="DishIngredientRelation\DeleteDishIngredient.sql" />
-    <Content Include="DishIngredientRelation\FindIngredientForDish.sql" />
-    <Content Include="DishIngredientRelation\InsertDishIngredient.sql" />
-    <Content Include="DishTag\DeleteDishTag.sql" />
-    <Content Include="DishTag\FindTagsForDish.sql" />
-    <Content Include="DishTag\InsertDishTag.sql" />
-    <Content Include="Dish\AllDishesLight.sql" />
-    <Content Include="Dish\AllDishes.sql" />
-    <Content Include="Dish\DeleteDish.sql" />
-    <Content Include="Dish\FindDish.sql" />
-    <Content Include="Dish\UpdateDish.sql" />
-    <Content Include="Dish\InsertDish.sql" />
-    <Content Include="Ingredient\DeleteIngredient.sql" />
-    <Content Include="Ingredient\UpdateIngredient.sql" />
-    <Content Include="Ingredient\InsertIngredient.sql" />
-    <Content Include="Ingredient\FindIngredient.sql" />
-    <Content Include="Ingredient\AllIngredients.sql" />
-    <Content Include="Search\SearchInDishesAndTags.sql" />
-    <Content Include="Tag\AllTags.sql" />
-    <Content Include="Tag\DeleteTag.sql" />
-    <Content Include="Tag\FindTag.sql" />
-    <Content Include="Tag\UpdateTag.sql" />
-    <Content Include="Tag\InsertTag.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Sql.resx">
+    <EmbeddedResource Update="Sql.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Sql.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

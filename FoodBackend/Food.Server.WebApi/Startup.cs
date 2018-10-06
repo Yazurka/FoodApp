@@ -1,52 +1,71 @@
-﻿using System.Net.Http.Formatting;
-using System.Web.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
 using LightInject;
-using Owin;
-using Swashbuckle.Application;
-using Food.Server.WebApi.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Food.Server.WebApi
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public Startup(IConfiguration configuration)
         {
-            var config = new HttpConfiguration();
-            var container = new ServiceContainer();
-
-            Configure(container);
-            container.ScopeManagerProvider = new PerLogicalCallContextScopeManagerProvider();
-            container.RegisterApiControllers(typeof(Startup).Assembly);
-            container.EnableWebApi(config);
-
-
-            ConfigureHttpRoutes(config);
-            config.MapHttpAttributeRoutes();
-            config.Formatters.Clear();
-            config.Formatters.Add(new JsonMediaTypeFormatter());
-
-            //ConfigureSwagger(config);
-            //config.EnableSwagger(x => new SwaggerConfig());
-            app.Use<AuthorizeTicketMiddleware>();
-            app.UseWebApi(config);
+            Configuration = configuration;
         }
-        private static void ConfigureSwagger(HttpConfiguration config)
+
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
         {
-            config.EnableSwagger(
-                c => c.SingleApiVersion("v1", "FoodServer").Description("Food Server Web Api"))
-                .EnableSwaggerUi(
-                    c => c.CustomAsset("index", typeof(Startup).Assembly, "Food.Server.WebApi.Swagger.index.html"));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "FoodApp API", Version = "v1" });
+            });
         }
-        public virtual void Configure(IServiceContainer serviceContainer)
+
+        public void ConfigureContainer(IServiceContainer container)
         {
-            serviceContainer.RegisterFrom<CompositionRoot>();
+            container.RegisterFrom<CompositionRoot>();
+            var dbConnectionString = Configuration.GetConnectionString("DbConnection");
+            container.Register<IDbConnection>((factory) => new SqlConnection(dbConnectionString));
+            container.RegisterInstance(Configuration);
         }
-        private static void ConfigureHttpRoutes(HttpConfiguration config)
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            config.Routes.MapHttpRoute(
-                name: "API Default",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional });
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseHsts();
+            }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food App API V1");
+            });
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }
