@@ -7,6 +7,8 @@ namespace Food.Server.WebApi.Ping
     [ApiController]
     public class PingController : ControllerBase
     {
+
+        [HttpGet]
         public string Get()
         {
             return "Food Server is up";

@@ -35,7 +35,7 @@ namespace Food.Server.WebApi.Dish
             return result;
         }
 
-        [HttpGet]
+        [HttpGet("Parameter")]
         public async Task<IEnumerable<DishLight>> Get(string parameter, int limit, int offset)
         {
             var result = await m_searchService.Search(parameter, limit, offset);
