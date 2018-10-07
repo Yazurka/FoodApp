@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Authorization\" />
-    <Folder Include="wwwroot\" />
+    <Folder Include="Pages\" />
   </ItemGroup>
 
   <ItemGroup>

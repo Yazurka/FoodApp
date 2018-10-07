@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using LightInject;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,13 @@ namespace Food.Server.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddSwaggerGen(c =>
@@ -54,9 +62,13 @@ namespace Food.Server.WebApi
             }
             else
             {
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -64,7 +76,6 @@ namespace Food.Server.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food App API V1");
             });
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
