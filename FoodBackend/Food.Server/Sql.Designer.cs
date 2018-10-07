@@ -61,7 +61,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM dish d order by d.Name;.
+        ///   Looks up a localized string similar to SELECT * FROM dish d order by d.Name;
+        ///.
         /// </summary>
         internal static string AllDishes {
             get {
@@ -70,8 +71,18 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to select d.Id, d.Name, d.Description, d.Difficulty, d.Duration, d.Author, d.TimeAdded 
-        ///from dish d order by d.Name limit @Limit offset @Offset .
+        ///   Looks up a localized string similar to SELECT 
+        ///		d.Id, d.Name, 
+        ///		d.Description, 
+        ///		d.Difficulty, 
+        ///		d.Duration,
+        ///		d.Author, 
+        ///		d.TimeAdded 
+        ///FROM
+        ///		dish d 
+        ///ORDER BY 
+        ///		d.Name 
+        ///OFFSET @Offset ROWS FETCH NEXT @Limit ROWS ONLY;.
         /// </summary>
         internal static string AllDishesLight {
             get {
@@ -80,7 +91,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM dish_ingredient;.
+        ///   Looks up a localized string similar to SELECT * FROM dish_ingredient;
+        ///.
         /// </summary>
         internal static string AllDishIngredients {
             get {
@@ -98,7 +110,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM tag t order by t.Name;.
+        ///   Looks up a localized string similar to SELECT * FROM tag t order by t.Name;
+        ///.
         /// </summary>
         internal static string AllTags {
             get {
@@ -107,7 +120,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM dish WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM dish WHERE Id=@Id
+        ///.
         /// </summary>
         internal static string DeleteDish {
             get {
@@ -147,7 +161,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DELETE FROM tag WHERE Id=@Id.
+        ///   Looks up a localized string similar to DELETE FROM tag WHERE Id=@Id
+        ///.
         /// </summary>
         internal static string DeleteTag {
             get {
@@ -156,7 +171,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM dish i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM dish i WHERE i.id=@id;
+        ///.
         /// </summary>
         internal static string FindDish {
             get {
@@ -165,7 +181,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM ingredient i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM ingredient i WHERE i.id=@id;
+        ///.
         /// </summary>
         internal static string FindIngredient {
             get {
@@ -187,7 +204,8 @@ namespace Food.Server {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SELECT * FROM tag i WHERE i.id=@id;.
+        ///   Looks up a localized string similar to SELECT * FROM tag i WHERE i.id=@id;
+        ///.
         /// </summary>
         internal static string FindTag {
             get {

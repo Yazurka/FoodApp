@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Authorization\" />
-    <Folder Include="Pages\" />
+    <Folder Include="wwwroot\lib\landing-page\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +16,7 @@
     <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1985401" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
   </ItemGroup>
 

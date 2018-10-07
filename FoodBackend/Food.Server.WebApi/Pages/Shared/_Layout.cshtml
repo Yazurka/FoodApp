@@ -8,26 +8,34 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/landing-page/landing-page.css" />
+        <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/landing-page/landing-page.min.css" />
+        <link rel="stylesheet" href="~/lib/fontawesome-free/css/all.min.css" />
     </environment>
+    <link rel="stylesheet" href="~/lib/simple-line-icons/css/simple-line-icons.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" asp-page="/Index">Home</a></li>
-                <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
-                <li class="nav-item"><a class="nav-link" asp-page="/Contact">Contact</a></li>
+    <nav class="navbar navbar-light bg-light static-top" style="margin-top:-50px">
+        <div class="container">
+            <a class="navbar-brand" asp-page="/Index">Home</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-page="/Dish/Index">Dishes</a>
+                </li>
             </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a class="btn btn-primary" href="#" style="margin-left:5px">Sign In</a>
         </div>
     </nav>
 
