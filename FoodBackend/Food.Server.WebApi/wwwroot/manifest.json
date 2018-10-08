@@ -1,0 +1,20 @@
+﻿{
+  "name": "Food app",
+  "short_name": "Food",
+  "description": "Food app",
+  "icons": [
+    {
+      "src": "/images/FoodApp_192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/FoodApp_512",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/",
+  "color": "#F24F26",
+  "background_color": "#FFFFFF",
+  "theme_color": "#20c4f4"
+}

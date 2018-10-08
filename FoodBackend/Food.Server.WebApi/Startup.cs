@@ -14,7 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
+using WebEssentials.AspNetCore.Pwa;
 
 namespace Food.Server.WebApi
 {
@@ -36,6 +38,18 @@ namespace Food.Server.WebApi
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddProgressiveWebApp(new PwaOptions
+            {
+                RegisterServiceWorker = false,
+                RegisterWebmanifest = false,
+                CacheId = "v1",
+                OfflineRoute = "/offline.html"
+            });
+
+            // Add framework services.
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -71,12 +85,17 @@ namespace Food.Server.WebApi
             app.UseCookiePolicy();
             app.UseSwagger();
 
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Dish}");
+            });
+
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Food App API V1");
-            });
-
-            app.UseMvc();
+            });            
         }
     }
 }
