@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Food App</title>
+    <link rel="manifest" href="~/manifest.webmanifest" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -49,6 +50,7 @@
         </footer>
     </div>
 
+    <script>'serviceWorker' in navigator && navigator.serviceWorker.register('/serviceworker')</script>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
