@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Food.Server.Command;
+﻿using Food.Server.Command;
 using Food.Server.DishIngredientRelation;
 using Food.Server.DishTag;
 using Food.Server.Query;
 using Food.Server.Services;
 using Food.Server.Tag;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Food.Server.Dish
 {
@@ -32,8 +32,8 @@ namespace Food.Server.Dish
         public async Task<IEnumerable<DishLight>> GetAllDishes(int limit, int offset)
         {
 
-            var dishResults = await m_queryExecutor.HandleAsync(new DishLightQuery {Limit = limit, Offset = offset});
-       
+            var dishResults = await m_queryExecutor.HandleAsync(new DishLightQuery { Limit = limit, Offset = offset });
+
             var dishes = new List<DishLight>();
             foreach (var dishResult in dishResults)
             {
@@ -52,25 +52,26 @@ namespace Food.Server.Dish
 
                 });
             }
-            
+
             return dishes;
         }
 
         public async Task<Dish> FindDish(int id)
         {
-            
-            var result = (await m_queryExecutor.HandleAsync(new DishQuery {Id = id})).FirstOrDefault();
-            
-            if (result==null)
+
+            var result = (await m_queryExecutor.HandleAsync(new DishQuery { Id = id })).FirstOrDefault();
+
+            if (result == null)
             {
                 return null;
             }
             var ingredients = await m_dishIngredientService.FindIngredientsForDish(id);
             var tags = await m_dishTagService.FindTagsForDish(id);
-            var dish = new Dish {
+            var dish = new Dish
+            {
                 Author = result.Author,
                 Id = result.Id,
-                Recipe = result.Recipe,
+                Recipe = DeserializeRecipe(result.Recipe),
                 Duration = result.Duration,
                 Difficulty = result.Difficulty,
                 Description = result.Description,
@@ -80,6 +81,12 @@ namespace Food.Server.Dish
                 Tags = tags
             };
             return dish;
+        }
+
+        private static List<string> DeserializeRecipe(string recipe)
+        {
+            var steps = JsonConvert.DeserializeObject<List<RecipeStep>>(recipe);
+            return steps.Select(x => x.Value).ToList();
         }
 
         public async Task<Dish> PostDish(DishCreateRequest dish)
@@ -97,7 +104,7 @@ namespace Food.Server.Dish
             {
                 await m_dishIngredientService.AddIngredientsToDish(dishCommand.Id, dish.DishIngredients);
             }
-            
+
 
             var postedDish = await FindDish(dishCommand.Id);
             return postedDish;
@@ -105,7 +112,7 @@ namespace Food.Server.Dish
 
         private static DishTagCreateRequest CreteDishCreateRequest(DishCommand dishCommand, DishCreateRequest dishCreateRequest)
         {
-            return new DishTagCreateRequest { DishId = dishCommand.Id, TagIds = dishCreateRequest.TagIds }; 
+            return new DishTagCreateRequest { DishId = dishCommand.Id, TagIds = dishCreateRequest.TagIds };
         }
 
         public async Task DeleteDish(int id)
@@ -114,15 +121,15 @@ namespace Food.Server.Dish
             var ingredientIds = dishToBeDeleted.Ingredients.Select(x => x.Id).ToArray();
             var tagIds = dishToBeDeleted.Tags.Select(x => x.Id).ToArray();
 
-            if (ingredientIds.Count()>0)
+            if (ingredientIds.Count() > 0)
             {
                 await m_dishIngredientService.DeleteIngredientFromDish(id, ingredientIds);
             }
-            if (tagIds.Count()>0)
+            if (tagIds.Count() > 0)
             {
-                 await m_dishTagService.RemoveTagsFromDish(id, tagIds);
+                await m_dishTagService.RemoveTagsFromDish(id, tagIds);
             }
-            
+
             await m_commandExecutor.ExecuteAsync(new DeleteDishCommand { Id = id });
         }
 
@@ -143,7 +150,8 @@ namespace Food.Server.Dish
 
         private DishCommand CreateDishCommand(DishCreateRequest dishRequest)
         {
-            var dishCommand = new DishCommand {
+            var dishCommand = new DishCommand
+            {
                 Id = m_idGenerator.GenerateId(),
                 Name = dishRequest.Name,
                 Description = dishRequest.Description,
@@ -155,5 +163,10 @@ namespace Food.Server.Dish
             };
             return dishCommand;
         }
+    }
+
+    public class RecipeStep
+    {
+        public string Value { get; set; }
     }
 }
