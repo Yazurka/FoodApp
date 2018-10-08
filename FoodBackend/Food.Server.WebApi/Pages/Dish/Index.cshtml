@@ -4,11 +4,26 @@
     ViewData["Title"] = "Dishes";
 }
 
-<h2>Dishes</h2>
-
+<p class="h2" style="margin-top:10px">Dishes</p>
+<hr />
 <ul class="list-group">
     @foreach (var dish in Model.Dishes)
     {
-        <li class="list-group-item">@dish.Name</li>
+        <li class="list-group-item">
+            <div class="container">
+                <a class="h5" href="/Dish/@dish.Id">@dish.Name</a>
+                <hr />
+                <p>Time: @dish.Duration</p>
+                <p>Difficulty: @dish.Difficulty</p>
+                <ul class="list-inline">
+                    @foreach (var tag in dish.Tags)
+                    {
+                        <li class="list-inline-item">
+                            <span class="badge badge-info">@tag.Name</span>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </li>
     }
 </ul>

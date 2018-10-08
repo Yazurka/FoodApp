@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Dish\Index2.cshtml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Dish\Index2.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Authorization\" />
     <Folder Include="wwwroot\lib\landing-page\" />
   </ItemGroup>

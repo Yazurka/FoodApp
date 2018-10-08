@@ -1,0 +1,10 @@
+﻿@page "/Dish/{id}"
+@model Food.Server.WebApi.Pages.Dish.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2 style="margin-top:10px">@Model.Dish.Name</h2>
+
+<h4>@Model.Dish.Recipe</h4>
+
