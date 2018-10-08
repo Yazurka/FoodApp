@@ -23,7 +23,7 @@ namespace FoodAdmin.Facade
         public async Task<Dish> GetDish(int id)
         {
 
-            var res = await m_restClient.Get<Dish>(id, "Dish?id=");
+            var res = await m_restClient.Get<Dish>(id, $"Dish");
 
 
             return res;
@@ -111,13 +111,13 @@ namespace FoodAdmin.Facade
 
         public async Task<int> DeleteTag(Tag tag)
         {
-           return await m_restClient.Delete($"Tag?id={tag.Id}");
+           return await m_restClient.Delete($"Tag?/{tag.Id}");
         }
 
         public async Task<List<DishIngredientResult>> GetIngredientsForDish(DishLight dish)
         {
            // return await Task.Run(() => new List<DishIngredientResult> { new DishIngredientResult() { Description = "Desc", Name = "lol?" } });
-            var res = (await m_restClient.Get<List<DishIngredientResult>>(dish.Id, "DishIngredient?id="));
+            var res = (await m_restClient.Get<List<DishIngredientResult>>(dish.Id, "DishIngredient/"));
             return res;
         }
 
@@ -154,7 +154,7 @@ namespace FoodAdmin.Facade
                 Name = dish.Name,
                 Recipe = JsonConvert.SerializeObject(dish.Steps),
             };
-            await m_restClient.Put<Dish>(updateRequest, $"Dish?id={dish.Id}");
+            await m_restClient.Put<Dish>(updateRequest, $"Dish/{dish.Id}");
         }
 
         public async Task<Ingredient> AddIngredient(Ingredient ingredient)
@@ -166,12 +166,12 @@ namespace FoodAdmin.Facade
 
         public async Task<int> DeleteIngredient(Ingredient selectedIngredient)
         {
-           return await m_restClient.Delete($"Ingredient?id={selectedIngredient.Id}");
+           return await m_restClient.Delete($"Ingredient/{selectedIngredient.Id}");
         }
 
         public async Task UpdateIngredient(Ingredient selectedIngredient)
         {
-            var res = await m_restClient.Put<Ingredient>(selectedIngredient, $"Ingredient?id={selectedIngredient.Id}");
+            var res = await m_restClient.Put<Ingredient>(selectedIngredient, $"Ingredient/{selectedIngredient.Id}");
  
         }
 
@@ -196,7 +196,7 @@ namespace FoodAdmin.Facade
 
         public async Task DeleteDish(int id)
         {
-            await m_restClient.Delete($"Dish?id={id}");
+            await m_restClient.Delete($"Dish/{id}");
         }
     }
 }

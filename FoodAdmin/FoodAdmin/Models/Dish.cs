@@ -13,7 +13,7 @@ namespace FoodAdmin.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Recipe { get; set; }
+        public List<string> Recipe { get; set; }
         public int Difficulty { get; set; }
         public int Duration { get; set; }
         public string Author { get; set; }
@@ -27,17 +27,17 @@ namespace FoodAdmin.Models
             {
                 if (m_steps == null)
                 {
-                    if (string.IsNullOrEmpty(Recipe))
+                    if (Recipe.Count>0)
                     {
                         m_steps = new ObservableCollection<Step>();
                     }
                     else
                     {
-                        var stringList = JsonConvert.DeserializeObject<List<Step>>(Recipe);
+                       
                         var steps = new ObservableCollection<Step>();
-                        foreach (var s in stringList)
+                        foreach (var s in Recipe)
                         {
-                            steps.Add(new Step {Value = s.Value});
+                            steps.Add(new Step {Value = s});
                         }
                         m_steps = steps;
                     }

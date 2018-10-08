@@ -159,15 +159,18 @@ namespace FoodAdmin.ViewModels
 
         } 
 
-        private void SelectionChanged()
+        private async void SelectionChanged()
         {
             if (SelectedDish == null)
             {
                 OnPropertyChanged(string.Empty);
                 return;
             }
+            
             m_viewDisabler.Disable("Laster...", GetAndSetChosenDish());
            
+
+
             DishIngredientInProgress = new DishIngredientResult();
             OnPropertyChanged(nameof(TheDish));
         }

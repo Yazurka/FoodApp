@@ -36,7 +36,7 @@ namespace FoodAdmin.Util
             }
             else
             {
-                response = await client.GetAsync(urlEnd+id);
+                response = await client.GetAsync(urlEnd+"/"+id);
             }
             
             var content = await response.Content.ReadAsStringAsync();
